@@ -1,0 +1,23 @@
+.flex-box{
+  background-color: snow;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  height: 100vh;
+}
+
+.flex-stretch{
+  align-items: stretch;
+  align-self: stretch;
+  max-width: 85vw;
+  margin: auto;
+}
+
+
+.flex-box, p {
+  font-family: verdana;
+  font-size: 1.2rem;
+  color: rgba(46, 79, 79, 0.8);
+}
