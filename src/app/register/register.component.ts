@@ -1,6 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {
-  AbstractControl,
   AbstractControlOptions,
   FormBuilder,
   FormGroup,
@@ -10,7 +9,7 @@ import {
 import {StudentService} from "../service/student/student.service";
 import {catchError, throwError} from "rxjs";
 import {Router, RouterLink} from "@angular/router";
-import {confirmPasswordValidator} from "../utility/ConfirmPasswordValidator";
+import {repeatPasswordValidator} from "../utility/RepeatPasswordValidator";
 
 @Component({
   selector: 'app-register',
@@ -34,10 +33,10 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       displayName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
+      repeatPassword: ['', Validators.required],
     },
       {
-        validators: confirmPasswordValidator('password', 'confirmPassword')
+        validators: repeatPasswordValidator('password', 'repeatPassword')
       } as AbstractControlOptions
     )
   }

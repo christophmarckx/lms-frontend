@@ -50,17 +50,17 @@
         </div>
       }
       <label>Confirm Password</label>
-      <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password">
+      <input type="password" class="form-control" formControlName="repeatPassword" placeholder="Repeat Password">
       @if (
-        createStudentForm.controls["confirmPassword"].invalid &&
-        createStudentForm.controls["confirmPassword"].touched &&
-        createStudentForm.controls["confirmPassword"].errors
+        createStudentForm.controls["repeatPassword"].invalid &&
+        createStudentForm.controls["repeatPassword"].touched &&
+        createStudentForm.controls["repeatPassword"].errors
         ) {
         <div>
-          @if (createStudentForm.controls["confirmPassword"].getError('required')) {
+          @if (createStudentForm.controls["repeatPassword"].getError('required')) {
             <div>You need to confirm the password</div>
           }
-          @if (createStudentForm.controls["confirmPassword"].getError('mismatch')) {
+          @if (createStudentForm.controls["repeatPassword"].getError('mismatch')) {
             <div>Confirm password is not the same</div>
           }
         </div>
