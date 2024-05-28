@@ -11,5 +11,5 @@ import {RouterLink} from "@angular/router";
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-   title: string = "LMS";
+   title: string = "L.M.S.";
 }
