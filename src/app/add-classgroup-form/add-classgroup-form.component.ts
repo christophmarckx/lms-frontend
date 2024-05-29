@@ -6,6 +6,8 @@ import {Observable} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {CreateClassgroup} from "../models/CreateClassgroup";
 import {CreateCourse} from "../models/CreateCourse";
+import {ClassgroupService} from "../services/classgroup/classgroup.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -30,7 +32,11 @@ export class AddClassgroupFormComponent {
     return this.courseService.getAllCourses();
   }
 
-  constructor(private formBuilder: FormBuilder, private courseService: CourseService, private classgroupService: ClassgroupService) {
+  constructor(private formBuilder: FormBuilder,
+              private courseService: CourseService,
+              private classgroupService: ClassgroupService,
+              private router: Router
+  ) {
     this.createClassgroupForm.valueChanges.subscribe(() => this.onFormUpdate());
     this.courseOptions$ = this.getCourses();
     this.selectedCourseId = "";
@@ -62,12 +68,12 @@ export class AddClassgroupFormComponent {
       name: rawValues.name!,
       courseId: rawValues.courseId!
     }
-    this.courseService.addCourse(createClassgroup).subscribe(
+    this.classgroupService.addClassgroup(createClassgroup).subscribe(
       (response) => {
         this.router.navigate(['']);
       },
       (error) => {
-        this.createCourseError = JSON.parse(error.error).message;
+        this.createClassgroupError = JSON.parse(error.error).message;
       }
     );
   }
