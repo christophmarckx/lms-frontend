@@ -51,7 +51,7 @@ export class UpdateCourseFormComponent implements OnInit {
   });
 
   onFormUpdate() {
-    this.isFormInvalid = this.updateCourseNameForm.invalid || !this.updateCourseNameForm.touched;
+    this.isFormInvalid = this.updateCourseNameForm.invalid;
   }
 
   updateCourseName(){
