@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 import {environment} from "../../../environment/environment";
 import {AuthenticationInformation} from "../../model/authentication/AuthenticationInformation";
+import {AuthenticatedUser} from "../../model/authentication/AuthenticatedUser";
+import {jwtDecode, JwtPayload} from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -13,71 +15,125 @@ export class AuthenticationService {
   session = new BehaviorSubject<any>({});
   refreshTokenInProgress = false;
   url: string;
+  backendUrl: string;
+  clientId: string = `${environment["clientId"]}`;
+  clientSecret: string = `${environment["clientSecret"]}`;
 
   constructor() {
     this.url = `${environment.oidcUrl}`;
+    this.backendUrl = `${environment.backendUrl}/users`;
   }
 
-  loginAdminToKeycloak() {
+  loginUser(email: string, password: string | null) {
     let body = new URLSearchParams();
-    body.set('username', 'trapezium');
-    body.set('password', '!howDoYouSpellThat?');
-    body.set('grant_type', 'password');
-    body.set('client_id', 'admin-cli');
+    body.set('username', email);
+
+    if (password === null) {
+      let refreshToken = localStorage.getItem('refresh_token');
+
+      if (refreshToken === null) {
+        this.logoutUser();
+        return;
+      }
+
+      body.set('grant_type', 'refresh_token');
+      body.set('refresh_token', refreshToken);
+      body.set('client_id', this.clientId);
+      body.set('client_secret', this.clientSecret);
+    }
+    else {
+      body.set('password', password);
+      body.set('grant_type', 'password');
+      body.set('client_id', this.clientId);
+      body.set('client_secret', this.clientSecret);
+    }
 
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
-    return this.http.post<AuthenticationInformation>(this.url + '/realms/' + `${environment.realm}` + '/protocol/openid-connect/token', body, options);
+    return this.http
+      .post<AuthenticationInformation>(this.url, body, options)
   }
 
-  createUserInKeycloak(email: string, password: string, adminAccessToken: string) {
-    let body = {
-      username: email,
-      enabled: true,
-      credentials: [{
-        type: "password",
-        value: password,
-        temporary: false
-      }]
+  logoutUser() {
+    this.session.next({});
+    localStorage.removeItem('authenticatedUser');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+  }
+
+  setSession(authenticatedUser: AuthenticatedUser) {
+    this.session.next(authenticatedUser);
+    localStorage.setItem('authenticatedUser', JSON.stringify(authenticatedUser));
+  }
+
+  getUserFromBackend(email: string) {
+    return this.http
+      .get<AuthenticatedUser>(this.backendUrl + "?email=" + email);
+  }
+
+  getUserFromLocalStorage() {
+    let token = localStorage.getItem('access_token');
+
+    if (token === null) {
+      this.logoutUser();
+      return this.session.asObservable();
     }
 
-    let options = {
-      headers: new HttpHeaders().set('Authorization', "Bearer " + adminAccessToken)
-    };
+    if (this.isExpired(token)) {
+      this.refreshToken()
+    }
 
-    return this.http.post<any>(this.url + '/admin/realms/' + `${environment.realm}` + '/users', body, options);
+    if (!this.session.getValue().email && localStorage.getItem("authenticatedUser")) {
+      this.session.next(JSON.parse(localStorage.getItem("authenticatedUser")!));
+    }
+
+    return this.session.asObservable();
   }
 
-  getUserFromKeycloak(email: string, adminAccessToken: string) {
-    let options = {
-      headers: new HttpHeaders().set('Authorization', "Bearer " + adminAccessToken)
-    };
+  refreshToken() {
+    if (this.refreshTokenInProgress) {
+      return;
+    }
+    this.refreshTokenInProgress = true;
+    console.log("refresh the token");
 
-    return this.http.get<any>(this.url + '/admin/realms/' + `${environment.realm}` + '/users?username=' + email, options);
-  }
+    let authenticatedUser: AuthenticatedUser = JSON.parse(localStorage.getItem("authenticatedUser")!)
 
-  addRoleToUser(userId: string, adminAccessToken: string) {
-    let options = {
-      headers: new HttpHeaders().set('Authorization', "Bearer " + adminAccessToken)
-    };
+    let subscribe = this.loginUser(authenticatedUser.email, null)
+    if (subscribe === undefined) {
+      this.logoutUser();
+      this.refreshTokenInProgress = false;
+      return;
+    }
 
-    let body = [
-      {
-        "id": "753cd57c-980a-4ae5-bb6c-65499c1f515f",
-        "name": "STUDENT"
+    subscribe.subscribe({
+      next: authenticationInformation => {
+
+        localStorage.setItem('access_token', authenticationInformation.access_token);
+        localStorage.setItem('refresh_token', authenticationInformation.refresh_token);
+        console.log("refresh done");
+        this.refreshTokenInProgress = false;
+      },
+      error: err => {
+        console.error('Login with refresh token error:', err);
+        this.logoutUser();
+        this.refreshTokenInProgress = false;
       }
-    ]
-
-    return this.http.post<any>(this.url + '/admin/realms/' + `${environment.realm}` + '/users/' + userId + '/role-mappings/clients/317ec40c-49e2-4940-9f8e-9493fce737c5', body, options);
+    });
   }
 
-  deleteUserFromKeycloak(userId: string, adminAccessToken: string) {
-    let options = {
-      headers: new HttpHeaders().set('Authorization', "Bearer " + adminAccessToken)
-    };
+  public isExpired(token: string) {
+    const expiry = this.decodeToken(token).exp;
 
-    return this.http.delete<any>(this.url + '/admin/realms/' + `${environment.realm}` + '/users/' + userId, options);
+    if (expiry === undefined)
+      return true;
+
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+  }
+
+  public decodeToken(jwtToken: string) {
+    return jwtDecode<JwtPayload>(jwtToken);
   }
 }

@@ -42,11 +42,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    this.studentService.createStudent(this.createStudentForm.value, this.createStudentForm.value.password)
+    this.studentService.createStudent(this.createStudentForm.value)
       .pipe(
         catchError(error => {
           console.error('There was an error!', error);
-          this.errorMessage = error.error.errorMessage !== undefined ? error.error.errorMessage : error.error.error;
+          this.errorMessage = error.error.errorMessage;
           return throwError(() => new Error());
         }))
       .subscribe(data => {
