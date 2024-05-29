@@ -1,0 +1,8 @@
+<div>
+  <p>{{module.id}}</p>
+  <p>{{module.name}}</p>
+  <p>{{module.description}}</p>
+  @if(module.parentModule){
+    <p>parentmodule: {{module.parentModule?.name}}</p>
+  }
+</div>
