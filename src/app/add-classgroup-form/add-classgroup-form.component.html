@@ -8,6 +8,33 @@
         <option [value]="course.id">{{course.name}}</option>
       }
     </select>
-    @if (isForm)
+    @if (isFormInvalid) {
+      <div class="form-errors">
+        @for (controlName of formControlNames; track controlName) {
+          <div>
+            @if (hasError(controlName, 'required')) {
+              - {{ controlName }} is required.
+            } @else if (hasError(controlName, 'minlength')) {
+              - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
+            } @else if (hasError(controlName, 'maxlength')) {
+              - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
+            }
+          </div>
+        }
+      </div>
+    }
+    @if (createClassgroupError) {
+      <div class="backend-error">
+        {{ createClassgroupError }}
+      </div>
+    }
+    <button class="btn btn-create"
+            type="submit"
+            [class.btn]="!isFormInvalid"
+            [class.btn-disabled]="isFormInvalid"
+            [disabled]="isFormInvalid"
+    >
+      Create classgroup
+    </button>
   </form>
 </div>

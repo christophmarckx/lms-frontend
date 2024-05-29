@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CourseService} from "../services/course.service";
+import {CourseService} from "../services/course/course.service";
 import {Course} from "../models/Course";
 import {Observable} from "rxjs";
 import {AsyncPipe} from "@angular/common";
+import {CreateClassgroup} from "../models/CreateClassgroup";
+import {CreateCourse} from "../models/CreateCourse";
 
 
 @Component({
@@ -28,7 +30,7 @@ export class AddClassgroupFormComponent {
     return this.courseService.getAllCourses();
   }
 
-  constructor(private formBuilder: FormBuilder, private courseService: CourseService) {
+  constructor(private formBuilder: FormBuilder, private courseService: CourseService, private classgroupService: ClassgroupService) {
     this.createClassgroupForm.valueChanges.subscribe(() => this.onFormUpdate());
     this.courseOptions$ = this.getCourses();
     this.selectedCourseId = "";
@@ -51,6 +53,34 @@ export class AddClassgroupFormComponent {
   }
 
   addClassgroup() {
+    if (this.isFormInvalid) {
+      alert('The data that you inserted is not valid. Try again!');
+      return;
+    }
+    const rawValues = this.createClassgroupForm.getRawValue();
+    const createClassgroup: CreateClassgroup = {
+      name: rawValues.name!,
+      courseId: rawValues.courseId!
+    }
+    this.courseService.addCourse(createClassgroup).subscribe(
+      (response) => {
+        this.router.navigate(['']);
+      },
+      (error) => {
+        this.createCourseError = JSON.parse(error.error).message;
+      }
+    );
+  }
 
+  hasError(controlName: string, errorName: string): boolean {
+    return this.createClassgroupForm.controls[controlName as keyof typeof this.createClassgroupForm.controls].hasError(errorName);
+  }
+
+  getError(controlName: string, errorName: string) {
+    const {errors} = this.createClassgroupForm.controls[controlName as keyof typeof this.createClassgroupForm.controls];
+    if (errors) {
+      return errors[errorName];
+    }
+    return '';
   }
 }
