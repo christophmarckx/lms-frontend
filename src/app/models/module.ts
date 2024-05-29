@@ -2,6 +2,5 @@ export interface Module {
 
   id: string;
   name: string;
-  description?: string;
-  parentModule?: Module;
+  parentModule?: Module | null;
 }
