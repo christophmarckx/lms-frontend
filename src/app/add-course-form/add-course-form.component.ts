@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CourseService} from "../services/course.service";
+import {CourseService} from "../services/course/course.service";
 import {Router} from "@angular/router";
 import {CreateCourse} from "../models/CreateCourse";
 
@@ -47,6 +47,9 @@ export class AddCourseFormComponent implements OnInit{
       description: rawValues.description ? rawValues.description : undefined
     }
     this.courseService.addCourse(createCourse).subscribe(
+      (response) => {
+        this.router.navigate(['']);
+      },
       (error) => {
         this.createCourseError = JSON.parse(error.error).message;
       }
@@ -64,4 +67,7 @@ export class AddCourseFormComponent implements OnInit{
     }
     return '';
   }
+
+
+
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
+import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -16,6 +16,10 @@ export class CourseService {
 
   addCourse(course: any): Observable<any> {
     return this.http.post(this.urlString, course);
+  }
+
+  getAllCourses(): Observable<any> {
+    return this.http.get(this.urlString);
   }
 
 
