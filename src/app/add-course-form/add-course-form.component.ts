@@ -47,6 +47,9 @@ export class AddCourseFormComponent implements OnInit{
       description: rawValues.description ? rawValues.description : undefined
     }
     this.courseService.addCourse(createCourse).subscribe(
+      (response) => {
+        this.router.navigate(['']);
+      },
       (error) => {
         this.createCourseError = JSON.parse(error.error).message;
       }
@@ -64,4 +67,7 @@ export class AddCourseFormComponent implements OnInit{
     }
     return '';
   }
+
+
+
 }

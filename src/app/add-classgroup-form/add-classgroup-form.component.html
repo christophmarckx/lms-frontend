@@ -1,0 +1,13 @@
+<div class="form-group">
+  <form (ngSubmit)="addClassgroup()" [formGroup]="createClassgroupForm">
+    <label class="form-label" for="name">Name</label>
+    <input class="form-control" formControlName="name" id="name" type="text" />
+    <label class="form-label" for="courseId">Course</label>
+    <select formControlName="courseId" (change)="onCourseChange($event)">
+      @for (course of courseOptions$ | async; track course.id) {
+        <option [value]="course.id">{{course.name}}</option>
+      }
+    </select>
+    @if (isForm)
+  </form>
+</div>

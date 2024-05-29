@@ -18,5 +18,9 @@ export class CourseService {
     return this.http.post(this.urlString, course);
   }
 
+  getAllCourses(): Observable<any> {
+    return this.http.get(this.urlString);
+  }
+
 
 }
