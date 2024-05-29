@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
+import {UpdateCourse} from "../../models/UpdateCourse";
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,11 @@ export class CourseService {
     return this.http.get(this.urlString);
   }
 
+  getCourseById(courseId: string): Observable<any> {
+    return this.http.get(this.urlString + '/' + courseId).pipe();
+  }
 
+  updateCourseName(courseId: string, updateCourse: UpdateCourse): Observable<any> {
+    return this.http.put(this.urlString + '/' + courseId, updateCourse);
+  }
 }
