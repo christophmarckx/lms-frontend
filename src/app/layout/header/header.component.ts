@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {RouterLink} from "@angular/router";
-import {AuthenticationService} from "../../service/authentication/authentication.service";
 import {AsyncPipe, NgIf} from "@angular/common";
+import {AuthenticationService} from "../../service/authentication/authentication.service";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,6 @@ import {AsyncPipe, NgIf} from "@angular/common";
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
   authenticationService = inject(AuthenticationService);
   title: string = "L.M.S.";
 }
