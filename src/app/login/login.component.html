@@ -1,15 +1,17 @@
 <section>
   <div class="dialog-login">
-    <h2>Register a new student</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <label>Email</label>
-      <input type="text" class="form-control" formControlName="email" placeholder="Email">
+      <h1>Log yourself in</h1>
+      <label>
+        Email
+        <input type="text" class="form-control" formControlName="email" placeholder="Email">
+      </label>
       @if (
         loginForm.controls["email"].invalid &&
         loginForm.controls["email"].touched &&
         loginForm.controls["email"].errors
         ) {
-        <div>
+        <div class="form-errors">
           @if (loginForm.controls["email"].getError('required')) {
             <div>Email is required</div>
           }
@@ -18,14 +20,16 @@
           }
         </div>
       }
-      <label>Password</label>
-      <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      <label>
+        Password
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      </label>
       @if (
         loginForm.controls["password"].invalid &&
         loginForm.controls["password"].touched &&
         loginForm.controls["password"].errors
         ) {
-        <div>
+        <div class="form-errors">
           @if (loginForm.controls["password"].getError('required')) {
             <div>Password is required</div>
           }
@@ -35,9 +39,16 @@
         </div>
       }
       @if (errorMessage) {
-        <div>{{ errorMessage }}</div>
+        <div class="backend-error">{{ errorMessage }}</div>
       }
-      <button type="submit" class="btn-submit" [disabled]="!loginForm.valid">Login</button>
+      <button class="btn"
+              type="submit"
+              [class.btn]="loginForm.valid"
+              [class.btn-disabled]="!loginForm.valid"
+              [disabled]="!loginForm.valid"
+      >
+        Login
+      </button>
     </form>
   </div>
 </section>
