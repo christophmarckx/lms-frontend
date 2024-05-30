@@ -16,30 +16,33 @@
             </li>
             <ng-container *ngIf="authenticationService.getUserFromLocalStorage() | async as authenticatedUser">
               @if (authenticatedUser.id) {
-                <li class="nav-item">
-                  <a routerLink="add-classgroup" class="header-btn" routerLinkActive="header-btn-active">Add classgroup</a>
-                </li>
+                @if (authenticatedUser.role === UserRole.COACH) {
+                  <li class="nav-item">
+                    <a routerLink="add-classgroup" class="header-btn" routerLinkActive="header-btn-active">Add
+                      classgroup</a>
+                  </li>
                   <li class="nav-item">
                     <a routerLink="add-course" class="header-btn" routerLinkActive="header-btn-active">Add course</a>
                   </li>
-                <li class="nav-item">
-                  <a routerLink="modules" class="header-btn" routerLinkActive="header-btn-active">Modules</a>
-                </li>
                   <li class="nav-item">
-                    <a class="header-btn" href="" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
+                    <a routerLink="modules" class="header-btn" routerLinkActive="header-btn-active">Modules</a>
                   </li>
+                }
+                <li class="nav-item">
+                  <a class="header-btn" href="" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
+                </li>
               }
               @else {
-                  <li class="nav-item">
-                    <a class="header-btn" [routerLink]="['login']" routerLinkActive="header-btn-active">Login</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="header-btn" [routerLink]="['register']" routerLinkActive="header-btn-active">Register</a>
-                  </li>
+                <li class="nav-item">
+                  <a class="header-btn" [routerLink]="['login']" routerLinkActive="header-btn-active">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="header-btn" [routerLink]="['register']" routerLinkActive="header-btn-active">Register</a>
+                </li>
               }
             </ng-container>
         </ul>
-        </div>
       </div>
+    </div>
   </nav>
 </div>
