@@ -15,9 +15,24 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
-          <li class="nav-item">
-            <a routerLink="modules" class="nav-link">Modules</a>
-          </li>
+          <ng-container *ngIf="authenticationService.getUserFromLocalStorage() | async as authenticatedUser">
+            @if (authenticatedUser.id) {
+              <li class="nav-item">
+                <a class="nav-link" href="#" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="modules" class="nav-link">Modules</a>
+              </li>
+            }
+            @else {
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['login']">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['register']">Register</a>
+              </li>
+            }
+          </ng-container>
         </ul>
       </div>
   </div>

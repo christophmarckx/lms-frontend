@@ -1,7 +1,7 @@
-import { ApplicationConfig } from '@angular/core';
-import {provideRouter, Routes, withComponentInputBinding} from '@angular/router';
+import {ApplicationConfig} from '@angular/core';
+import {provideRouter, withComponentInputBinding} from '@angular/router';
 
-import { routes } from './app.routes';
+import {routes} from './app.routes';
 import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {securityInterceptor} from './authentication/security.interceptor';
 

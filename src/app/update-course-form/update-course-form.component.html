@@ -1,0 +1,32 @@
+<div class="form-group">
+  <form (ngSubmit)="updateCourseName()" [formGroup]="updateCourseNameForm">
+    <label class="form-label" for="name">Name</label>
+    <input class="form-control" formControlName="name" id="name" type="text"/>
+    @if (isFormInvalid) {
+      <div class="form-errors">
+        @for (controlName of formControlNames; track controlName) {
+          <div>
+            @if (hasError(controlName, 'required')) {
+              - {{ controlName }} is required.
+            } @else if (hasError(controlName, 'minlength')) {
+              - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
+            } @else if (hasError(controlName, 'maxlength')) {
+              - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
+            }
+          </div>
+        }
+      </div>
+    }
+    @if (updateCourseNameError) {
+      <div class="backend-error">
+        {{ updateCourseNameError }}
+      </div>
+    }
+    <button class="btn btn-create"
+            type="submit"
+            [class.btn]="!isFormInvalid"
+            [class.btn-disabled]="isFormInvalid"
+            [disabled]="isFormInvalid">
+      UPDATE</button>
+  </form>
+</div>
