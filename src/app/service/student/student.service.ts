@@ -4,6 +4,7 @@ import {AuthenticationService} from "../authentication/authentication.service";
 import {environment} from "../../../environment/environment";
 import {CreateStudent} from "../../model/student/CreateStudent";
 import {Student} from "../../model/student/Student";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,9 @@ export class StudentService {
 
   createStudent(createStudent: CreateStudent) {
     return this.http.post<Student>(this.url, createStudent);
+  }
+
+  getStudentById(studentId: string): Observable<any> {
+    return this.http.get<Student>(this.url + '/' + studentId);
   }
 }
