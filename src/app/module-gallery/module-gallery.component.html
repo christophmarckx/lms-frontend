@@ -1,11 +1,9 @@
 @for(module of modules; track module) {
-  <app-module-card [module]="module">
-
-  </app-module-card>
+  <app-module-card (click)="selectModule(module.id)" [module]="module"> </app-module-card>
 }
-<br>
-<hr>
 
 <button routerLink="add-module"> Create module</button>
 
-
+@if (selectedModule){
+  <app-module-with-courses [moduleWithCourses]="selectedModule"></app-module-with-courses>
+}

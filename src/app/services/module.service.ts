@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Module} from "../models/module";
 import {CreateModule} from "../models/CreateModule";
+import {ModuleWithCourses} from "../models/ModuleWithCourses";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class ModuleService {
 
   getAllModules(): Observable<Module[]> {
     return this.http.get<Module[]>(this.urlString);
+  }
+
+  getModuleById(moduleId: string): Observable<ModuleWithCourses> {
+    return this.http.get<ModuleWithCourses>(this.urlString + "/" + moduleId);
   }
 
   createModule(createModule : any) : Observable<any> {
