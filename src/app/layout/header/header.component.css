@@ -1,4 +1,47 @@
-h1{
+h1 {
   font-weight: bold;
   justify-content: center;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#logo {
+  width: 75px;
+}
+
+/* F8F9FA*/
+#header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #489ccc;
+  margin-bottom: 15px;
+}
+
+.header-btn {
+  font-family: Calibri, sans-serif;
+  font-size: 1.2em;
+  color: #489ccc;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px 15px;
+  margin-left: 15px;
+  border: 2px solid #00000000;
+  transition: all;
+  transition-duration: 350ms;
+  border-radius: 15px;
+}
+
+.header-btn:hover {
+  color: #ee4e50;
+  border: 2px solid #ee4e50;
+}
+
+.header-btn:first-child {
+  margin-left: 0;
 }
