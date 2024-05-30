@@ -71,6 +71,14 @@ input {
   cursor: pointer;
 }
 
+.btn-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .btn-disabled {
   color: #489ccc;
   text-decoration: none;
@@ -101,4 +109,19 @@ input {
   color: #f46546;
 }
 
+select {
+  height: 35px;
+  width: 250px;
+  color: #212934;
+}
 
+form h1 {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #489ccc;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  width: 100%;
+}

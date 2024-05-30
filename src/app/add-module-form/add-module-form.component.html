@@ -2,12 +2,17 @@
   <section>
     <div class="form-group">
       <form (ngSubmit)="addModule()" [formGroup]="createModuleForm">
-        <label class="form-label" for="name" >Module name</label>
-        <input class="form-control" formControlName="name" id="name" type="text" placeholder="Enter name... :)"/>
-        <label class="form-label" for="parentModule" >Parent module</label>
-        <select id="parentModule" formControlName="parentModuleId" >
-          <option *ngFor="let module of modules" value="{{module.id}}">{{ module.name }}</option>
-        </select>
+        <h1>Add a new module!</h1>
+        <label class="form-label" for="name" >
+          Module name
+          <input class="form-control" formControlName="name" id="name" type="text" placeholder="Enter name... :)"/>
+        </label>
+        <label class="form-label" for="parentModule" >
+          Parent module
+          <select id="parentModule" formControlName="parentModuleId" >
+            <option *ngFor="let module of modules" value="{{module.id}}">{{ module.name }}</option>
+          </select>
+        </label>
 
         @if (isFormInvalid) {
           <div class="form-errors">
@@ -29,12 +34,16 @@
             {{ createModuleError }}
           </div>
         }
-        <button class="btn btn-create"
-                type="submit"
-                [class.btn]="!isFormInvalid"
-                [class.btn-disabled]="isFormInvalid"
-                [disabled]="isFormInvalid">
-          CREATE</button>
+        <div class="btn-container">
+          <button class="btn"
+                  type="submit"
+                  [class.btn]="!isFormInvalid"
+                  [class.btn-disabled]="isFormInvalid"
+                  [disabled]="isFormInvalid"
+          >
+            Validate
+          </button>
+        </div>
       </form>
     </div>
   </section>
