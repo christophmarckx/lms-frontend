@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {Module} from "../../models/module";
+import {ModuleService} from "../../services/module.service";
+import {ModuleWithCourses} from "../../models/ModuleWithCourses";
 
 @Component({
   selector: 'app-module-card',
@@ -9,7 +11,6 @@ import {Module} from "../../models/module";
   styleUrl: './module-card.component.css'
 })
 export class ModuleCardComponent {
-
   @Input() module: Module;
 
 }
