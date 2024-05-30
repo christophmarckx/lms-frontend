@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Component, inject, OnInit} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CourseService} from "../services/course/course.service";
 import {Router} from "@angular/router";
 import {CreateCourse} from "../models/CreateCourse";
@@ -15,6 +15,9 @@ import {CreateCourse} from "../models/CreateCourse";
 })
 export class AddCourseFormComponent implements OnInit{
 
+  private readonly formBuilder: FormBuilder = inject(FormBuilder);
+  private readonly courseService: CourseService = inject(CourseService);
+  private readonly router: Router = inject(Router);
   public formControlNames : string[] = ['name', 'description'];
   public isFormInvalid: boolean = true;
   public createCourseError?: string;
@@ -24,9 +27,7 @@ export class AddCourseFormComponent implements OnInit{
     description: ['']
   })
 
-  constructor(private formBuilder: FormBuilder,
-              private courseService: CourseService,
-              private router: Router) {
+  constructor() {
     this.createCourseForm.valueChanges.subscribe(() => this.onFormUpdate());
   }
 
@@ -67,7 +68,4 @@ export class AddCourseFormComponent implements OnInit{
     }
     return '';
   }
-
-
-
 }

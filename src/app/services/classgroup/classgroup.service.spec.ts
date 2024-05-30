@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ClassgroupService } from './classgroup.service';
+import {ClassgroupService} from './classgroup.service';
 
 describe('ClassgroupService', () => {
   let service: ClassgroupService;

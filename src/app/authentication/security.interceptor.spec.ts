@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpInterceptorFn } from '@angular/common/http';
+import {TestBed} from '@angular/core/testing';
+import {HttpInterceptorFn} from '@angular/common/http';
 
-import { securityInterceptor } from './security.interceptor';
+import {securityInterceptor} from './security.interceptor';
 
 describe('securityInterceptor', () => {
-  const interceptor: HttpInterceptorFn = (req, next) => 
+  const interceptor: HttpInterceptorFn = (req, next) =>
     TestBed.runInInjectionContext(() => securityInterceptor(req, next));
 
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import {Component, inject, Inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ModuleCardComponent} from "./module-card/module-card.component";
 import {Module} from "../models/module";
 import {ModuleService} from "../services/module.service";
