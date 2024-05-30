@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CourseService} from "../services/course/course.service";
 import {Course} from "../models/Course";
 import {Observable} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {CreateClassgroup} from "../models/CreateClassgroup";
-import {CreateCourse} from "../models/CreateCourse";
 import {ClassgroupService} from "../services/classgroup/classgroup.service";
 import {Router} from "@angular/router";
 
@@ -22,6 +21,10 @@ import {Router} from "@angular/router";
 })
 export class AddClassgroupFormComponent {
 
+  private readonly formBuilder: FormBuilder = inject(FormBuilder);
+  private readonly courseService: CourseService = inject(CourseService);
+  private readonly classgroupService: ClassgroupService = inject(ClassgroupService);
+  private readonly router: Router = inject(Router);
   public formControlNames: string[] = ['name','courseId'];
   public isFormInvalid: boolean = true;
   public createClassgroupError?: string;
@@ -32,11 +35,7 @@ export class AddClassgroupFormComponent {
     return this.courseService.getAllCourses();
   }
 
-  constructor(private formBuilder: FormBuilder,
-              private courseService: CourseService,
-              private classgroupService: ClassgroupService,
-              private router: Router
-  ) {
+  constructor() {
     this.createClassgroupForm.valueChanges.subscribe(() => this.onFormUpdate());
     this.courseOptions$ = this.getCourses();
     this.selectedCourseId = "";

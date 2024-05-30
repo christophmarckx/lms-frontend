@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddClassgroupFormComponent } from './add-classgroup-form.component';
+import {AddClassgroupFormComponent} from './add-classgroup-form.component';
 
 describe('AddClassgroupFormComponent', () => {
   let component: AddClassgroupFormComponent;
@@ -11,7 +11,7 @@ describe('AddClassgroupFormComponent', () => {
       imports: [AddClassgroupFormComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(AddClassgroupFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
