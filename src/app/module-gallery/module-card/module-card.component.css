@@ -1,0 +1,23 @@
+.module-card-root {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #9bccd850;
+}
+
+p {
+  padding: 20px 15px;
+  margin: 0;
+}
+
+.module-card-root p:first-child {
+  flex: 1;
+}
+
+.module-card-root p:last-child {
+  flex: 2;
+}
+
+.different-bg {
+  background-color: #489ccc50;
+}

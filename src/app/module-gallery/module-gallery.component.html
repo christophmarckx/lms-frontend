@@ -1,11 +1,11 @@
-@for(module of modules; track module) {
-  <app-module-card [module]="module">
+<div class="modules-gallery">
+  <div class="page-header">
+    <h1>View all modules</h1>
+    <button class="btn" routerLink="add-module">Create module</button>
+  </div>
+  @for(module of modules; track module) {
+    <app-module-card [module]="module" [isPair]="$index % 2 === 0">
 
-  </app-module-card>
-}
-<br>
-<hr>
-
-<button routerLink="add-module"> Create module</button>
-
-
+    </app-module-card>
+  }
+</div>

@@ -11,5 +11,6 @@ import {Module} from "../../models/module";
 export class ModuleCardComponent {
 
   @Input() module: Module;
+  @Input() isPair!: boolean;
 
 }
