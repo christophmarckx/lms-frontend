@@ -70,7 +70,7 @@ export class AuthenticationService {
 
   getUserFromBackend(email: string) {
     return this.http
-      .get<AuthenticatedUser>(this.backendUrl + "?email=" + email);
+      .get<AuthenticatedUser>(this.backendUrl);
   }
 
   getUserFromLocalStorage() {
