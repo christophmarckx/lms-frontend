@@ -8,6 +8,5 @@ export const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'add-course', component: AddCourseFormComponent},
   {path: 'modules', component: ModuleGalleryComponent},
-  {path: 'add-module', component: AddModuleFormComponent}
-
+  {path: 'modules/add-module', component: AddModuleFormComponent}
 ];

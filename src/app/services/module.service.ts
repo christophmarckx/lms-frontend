@@ -21,7 +21,6 @@ export class ModuleService {
   }
 
   createModule(createModule : any) : Observable<any> {
-    console.log(createModule)
     return this.http.post(this.urlString, createModule);
   }
 

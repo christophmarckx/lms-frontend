@@ -4,6 +4,7 @@ import {ModuleService} from "../services/module.service";
 import {Module} from "../models/module";
 import {NgForOf} from "@angular/common";
 import {CreateModule} from "../models/CreateModule";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-module-form',
@@ -23,7 +24,8 @@ export class AddModuleFormComponent implements OnInit{
   public createModuleError?: string;
 
   constructor(private moduleService : ModuleService,
-              private formBuilder: FormBuilder,) {
+              private formBuilder: FormBuilder,
+              private router : Router) {
     this.createModuleForm.valueChanges.subscribe(() => this.onFormUpdate());
   }
 
@@ -38,11 +40,13 @@ export class AddModuleFormComponent implements OnInit{
        parentModuleId: rawValues.parentModuleId ? rawValues.parentModuleId : null
      }
 
-     console.log("Test " + createModule);
     this.moduleService.createModule(createModule).subscribe(
-      // (error) => {
-      //   this.createModuleError = JSON.parse(error.error).message;
-      // }
+      (response) => {
+        this.router.navigate(["modules"])
+      },
+      (error) => {
+        this.createModuleError = JSON.parse(error.error).message;
+      }
     );
   }
 
@@ -52,7 +56,7 @@ export class AddModuleFormComponent implements OnInit{
   })
 
   onFormUpdate() {
-    this.isFormInvalid = this.createModuleForm.invalid || !this.createModuleForm.touched;
+    this.isFormInvalid = this.createModuleForm.invalid;
   }
 
   ngOnInit(): void {
@@ -62,10 +66,6 @@ export class AddModuleFormComponent implements OnInit{
     });
   }
 
-  selectParentModule() : void {
-    console.log("salut")
-    //this.selectedParentModule = id;
-  }
 
   hasError(controlName: string, errorName: string): boolean {
     return this.createModuleForm.controls[controlName as keyof typeof this.createModuleForm.controls].hasError(errorName);
