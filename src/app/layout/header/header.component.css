@@ -13,7 +13,10 @@ h1 {
   width: 75px;
 }
 
-/* F8F9FA*/
+.nav-item {
+  margin-left: 15px;
+}
+
 #header-container {
   display: flex;
   flex-direction: row;
@@ -26,7 +29,7 @@ h1 {
 .header-btn {
   font-family: Calibri, sans-serif;
   font-size: 1.2em;
-  color: #489ccc;
+  color: gray;
   font-weight: bold;
   text-decoration: none;
   padding: 5px 15px;
@@ -35,6 +38,10 @@ h1 {
   transition: all;
   transition-duration: 350ms;
   border-radius: 15px;
+}
+
+.header-btn-active {
+  color: #489ccc;
 }
 
 .header-btn:hover {

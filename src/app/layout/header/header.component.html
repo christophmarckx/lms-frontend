@@ -11,28 +11,30 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <a class="header-btn active" aria-current="page" href="#">Home</a>
+            <li class="nav-item">
+              <a class="header-btn" routerLink="/" routerLinkActive="header-btn-active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+            </li>
             <ng-container *ngIf="authenticationService.getUserFromLocalStorage() | async as authenticatedUser">
               @if (authenticatedUser.id) {
                 <li class="nav-item">
-                  <a routerLink="add-classgroup" class="header-btn nav-link">Add classgroup</a>
+                  <a routerLink="add-classgroup" class="header-btn" routerLinkActive="header-btn-active">Add classgroup</a>
                 </li>
                   <li class="nav-item">
-                    <a routerLink="add-course" class="header-btn nav-link">Add course</a>
+                    <a routerLink="add-course" class="header-btn" routerLinkActive="header-btn-active">Add course</a>
                   </li>
                 <li class="nav-item">
-                  <a routerLink="modules" class="header-btn nav-link">Modules</a>
+                  <a routerLink="modules" class="header-btn" routerLinkActive="header-btn-active">Modules</a>
                 </li>
                   <li class="nav-item">
-                    <a class="header-btn nav-link" href="" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
+                    <a class="header-btn" href="" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
                   </li>
               }
               @else {
                   <li class="nav-item">
-                    <a class="header-btn nav-link" [routerLink]="['login']">Login</a>
+                    <a class="header-btn" [routerLink]="['login']">Login</a>
                   </li>
                   <li class="nav-item">
-                    <a class="header-btn nav-link" [routerLink]="['register']">Register</a>
+                    <a class="header-btn" [routerLink]="['register']">Register</a>
                   </li>
               }
             </ng-container>

@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 import {AuthenticationService} from "../../service/authentication/authentication.service";
 import {AsyncPipe, NgIf} from "@angular/common";
 
@@ -10,6 +10,7 @@ import {AsyncPipe, NgIf} from "@angular/common";
     RouterLink,
     AsyncPipe,
     NgIf,
+    RouterLinkActive,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
