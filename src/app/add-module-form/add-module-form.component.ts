@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ModuleService} from "../services/module.service";
-import {Module} from "../models/module";
+import {Module} from "../models/Module";
 import {NgForOf} from "@angular/common";
 import {CreateModule} from "../models/CreateModule";
 import {Router} from "@angular/router";

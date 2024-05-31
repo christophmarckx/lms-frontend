@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ModuleCardComponent} from "./module-card/module-card.component";
-import {Module} from "../models/module";
+import {Module} from "../models/Module";
 import {ModuleService} from "../services/module.service";
 import {AddModuleFormComponent} from "../add-module-form/add-module-form.component";
 import {RouterLink} from "@angular/router";
