@@ -4,8 +4,7 @@
     <button class="btn" routerLink="add-module">Create module</button>
   </div>
   @for(module of modules; track module) {
-    <app-module-card (click)="selectModule(module.id)" [module]="module" [isPair]="$index % 2 === 0">
-
+    <app-module-card (stringEventEmitter)="changeModuleId(module.id)" [module]="module" [isPair]="$index % 2 === 0">
     </app-module-card>
   }
   @if (selectedModule){

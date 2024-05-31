@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {Module} from "../../models/module";
 import {ModuleService} from "../../services/module.service";
 import {ModuleWithCourses} from "../../models/ModuleWithCourses";
@@ -11,7 +11,11 @@ import {ModuleWithCourses} from "../../models/ModuleWithCourses";
   styleUrl: './module-card.component.css'
 })
 export class ModuleCardComponent {
-  @Input() module: Module;
+  @Input() module!: Module;
   @Input() isPair!: boolean;
+  @Output() stringEventEmitter = new EventEmitter<string>();
 
+  changeSelectedModuleId() {
+    this.stringEventEmitter.emit(this.module.id);
+  }
 }

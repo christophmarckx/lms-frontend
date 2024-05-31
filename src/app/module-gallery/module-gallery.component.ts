@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {ModuleCardComponent} from "./module-card/module-card.component";
 import {Module} from "../models/module";
 import {ModuleService} from "../services/module.service";
@@ -16,15 +16,23 @@ import {ModuleWithCoursesComponent} from "./module-with-courses/module-with-cour
 })
 export class ModuleGalleryComponent implements OnInit{
   modules: Module[];
-  selectedModule: ModuleWithCourses;
+  selectedModule: ModuleWithCourses | null;
   moduleService: ModuleService = inject(ModuleService);
+  @ViewChild('module-card') moduleId: string = '';
+
+  changeModuleId(newModuleId: string) {
+    this.selectModule(newModuleId);
+  }
+
   selectModule(moduleId: string) {
+    if (this.selectedModule && moduleId === this.selectedModule.id) {
+      this.selectedModule = null;
+      return;
+    }
     return this.moduleService.getModuleById(moduleId).subscribe(module => this.selectedModule = module);
   }
 
-
   ngOnInit() {
-        this.moduleService.getAllModules().subscribe(modules => this.modules = modules);
+    this.moduleService.getAllModules().subscribe(modules => this.modules = modules);
   }
-
 }

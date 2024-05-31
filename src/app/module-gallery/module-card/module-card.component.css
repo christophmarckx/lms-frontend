@@ -1,6 +1,8 @@
 .module-card-root {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   background-color: #9bccd850;
 }
@@ -10,14 +12,16 @@ p {
   margin: 0;
 }
 
-.module-card-root p:first-child {
-  flex: 1;
-}
-
-.module-card-root p:last-child {
-  flex: 2;
-}
-
 .different-bg {
   background-color: #489ccc50;
+}
+
+.btn {
+  height: fit-content;
+  margin-right: 15px;
+}
+
+.module-card-root div {
+  flex:1;
+  margin-right: 10px;
 }

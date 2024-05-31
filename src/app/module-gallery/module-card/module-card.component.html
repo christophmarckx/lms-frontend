@@ -1,7 +1,13 @@
 <div class="module-card-root" [class.different-bg]="!isPair">
-  <p>Module name: {{module.name}}</p>
-  @if(module.parentModule){
-    <p>Parent module: {{module.parentModule!.name}}</p>
-  }
-<!--  TODO Add button to display courses linked to these modules-->
+  <div>
+    <p>Module name: {{module.name}}</p>
+  </div>
+  <div>
+    @if(module.parentModule){
+      <p>Parent module: {{module.parentModule!.name}}</p>
+    } @else {
+      <p>No parent module</p>
+    }
+  </div>
+  <a class="btn" (click)="changeSelectedModuleId()">See courses</a>
 </div>
