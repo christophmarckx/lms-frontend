@@ -1,15 +1,17 @@
 <section>
   <div class="dialog-create-student">
-    <h2>Register a new student</h2>
     <form [formGroup]="createStudentForm" (ngSubmit)="onSubmit()">
-      <label>Email</label>
-      <input type="text" class="form-control" formControlName="email" placeholder="Email">
+      <h1>Register a new student</h1>
+      <label>
+        Email
+        <input type="text" class="form-control" formControlName="email" placeholder="Email">
+      </label>
       @if (
         createStudentForm.controls["email"].invalid &&
         createStudentForm.controls["email"].touched &&
         createStudentForm.controls["email"].errors
         ) {
-        <div>
+        <div class="form-errors">
           @if (createStudentForm.controls["email"].getError('required')) {
             <div>Email is required</div>
           }
@@ -18,27 +20,31 @@
           }
         </div>
       }
-      <label>DisplayName</label>
-      <input type="text" class="form-control" formControlName="displayName" placeholder="Display Name">
+      <label>
+        Display Name
+        <input type="text" class="form-control" formControlName="displayName" placeholder="Display Name">
+      </label>
       @if (
         createStudentForm.controls["displayName"].invalid &&
         createStudentForm.controls["displayName"].touched &&
         createStudentForm.controls["displayName"].errors
         ) {
-        <div>
+        <div class="form-errors">
           @if (createStudentForm.controls["displayName"].getError('required')) {
             <div>Display name is required</div>
           }
         </div>
       }
-      <label>Password</label>
-      <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      <label>
+        Password
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      </label>
       @if (
         createStudentForm.controls["password"].invalid &&
         createStudentForm.controls["password"].touched &&
         createStudentForm.controls["password"].errors
         ) {
-        <div>
+        <div class="form-errors">
           @if (createStudentForm.controls["password"].getError('required')) {
             <div>Password is required</div>
           }
@@ -47,14 +53,16 @@
           }
         </div>
       }
-      <label>Confirm Password</label>
-      <input type="password" class="form-control" formControlName="repeatPassword" placeholder="Repeat Password">
+      <label>
+        Confirm Password
+        <input type="password" class="form-control" formControlName="repeatPassword" placeholder="Repeat Password">
+      </label>
       @if (
         createStudentForm.controls["repeatPassword"].invalid &&
         createStudentForm.controls["repeatPassword"].touched &&
         createStudentForm.controls["repeatPassword"].errors
         ) {
-        <div>
+        <div class="form-errors">
           @if (createStudentForm.controls["repeatPassword"].getError('required')) {
             <div>You need to confirm the password</div>
           }
@@ -64,9 +72,16 @@
         </div>
       }
       @if (errorMessage) {
-        <div>{{ errorMessage }}</div>
+        <div class="backend-error">{{ errorMessage }}</div>
       }
-      <button type="submit" class="btn-submit" [disabled]="!createStudentForm.valid">Register Student</button>
+      <button class="btn"
+              type="submit"
+              [class.btn]="createStudentForm.valid"
+              [class.btn-disabled]="!createStudentForm.valid"
+              [disabled]="!createStudentForm.valid"
+      >
+        Validate
+      </button>
     </form>
   </div>
 </section>
