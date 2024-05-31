@@ -18,4 +18,8 @@ export class ClassgroupService {
   addClassgroup(classgroup: CreateClassgroup): Observable<any> {
     return this.http.post(this.urlString, classgroup);
   }
+
+  getClassgroup(id : string) : Observable<any> {
+    return this.http.get(this.urlString + '/' + id)
+  }
 }

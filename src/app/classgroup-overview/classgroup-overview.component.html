@@ -1,0 +1,20 @@
+<div>
+  <h2>{{classgroupWithMembers.name}}</h2>
+  <p>{{classgroupWithMembers.course.name}}</p>
+  @if(classgroupWithMembers.coaches.length > 0){
+    <h3>Coaches</h3>
+    <ul>
+      @for(coach of classgroupWithMembers.coaches; track coach) {
+        <li>{{coach.displayName}}</li>
+      }
+    </ul>
+  }
+  @if(classgroupWithMembers.students.length > 0){
+    <h3>Students</h3>
+    <ul>
+      @for(student of classgroupWithMembers.students; track student) {
+        <li>{{student.displayName}}</li>
+      }
+    </ul>
+  }
+</div>
