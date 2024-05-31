@@ -6,39 +6,43 @@
         <input class="form-control" formControlName="name" id="name" type="text"/>
         <label class="form-label" for="description">Description</label>
         <input class="form-control" formControlName="description" id="description" type="text"/>
+        <label class="form-label" for="description">Parent Module
+          <select formControlName="moduleId" (change)="onCodelabChange($event)">
+            @for (module of modules; track module) {
+              <option [value]="module.id">{{ module.name }}</option>
+            }
+          </select>
+        </label>
 
-        <select formControlName="moduleId" (change)="onCodelabChange($event)">
-          @for (module of modules; track module) {
-            <option [value]="module.id">{{ module.name }}</option>
-          }</select>
 
-          @if (isFormInvalid) {
-            <div class="form-errors">
-              @for (controlName of formControlNames; track controlName) {
-                <div>
-                  @if (hasError(controlName, 'required')) {
-                    - {{ controlName }} is required.
-                  } @else if (hasError(controlName, 'minlength')) {
-                    - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
-                  } @else if (hasError(controlName, 'maxlength')) {
-                    - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
-                  }
-                </div>
-              }
-            </div>
-          }
-          @if (createCodelabError) {
-            <div class="backend-error">
-              {{ createCodelabError }}
-            </div>
-          }
-          <button class="btn btn-create"
-                  type="submit"
-                  [class.btn]="!isFormInvalid"
-                  [class.btn-disabled]="isFormInvalid"
-                  [disabled]="isFormInvalid">
-            CREATE
-          </button>
+
+        @if (isFormInvalid) {
+          <div class="form-errors">
+            @for (controlName of formControlNames; track controlName) {
+              <div>
+                @if (hasError(controlName, 'required')) {
+                  - {{ controlName }} is required.
+                } @else if (hasError(controlName, 'minlength')) {
+                  - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
+                } @else if (hasError(controlName, 'maxlength')) {
+                  - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
+                }
+              </div>
+            }
+          </div>
+        }
+        @if (createCodelabError) {
+          <div class="backend-error">
+            {{ createCodelabError }}
+          </div>
+        }
+        <button class="btn btn-create"
+                type="submit"
+                [class.btn]="!isFormInvalid"
+                [class.btn-disabled]="isFormInvalid"
+                [disabled]="isFormInvalid">
+          CREATE
+        </button>
       </form>
     </div>
   </section>
