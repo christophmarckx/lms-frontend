@@ -6,15 +6,19 @@ import {AddModuleFormComponent} from "../add-module-form/add-module-form.compone
 import {RouterLink} from "@angular/router";
 import {ModuleWithCourses} from "../models/ModuleWithCourses";
 import {ModuleWithCoursesComponent} from "./module-with-courses/module-with-courses.component";
+import {AsyncPipe, NgIf} from "@angular/common";
+import {AuthenticationService} from "../service/authentication/authentication.service";
+import {UserRole} from "../model/authentication/AuthenticatedUser";
 
 @Component({
   selector: 'app-module-gallery',
   standalone: true,
-  imports: [ModuleCardComponent, AddModuleFormComponent, RouterLink, ModuleWithCoursesComponent],
+  imports: [ModuleCardComponent, AddModuleFormComponent, RouterLink, ModuleWithCoursesComponent, AsyncPipe, NgIf],
   templateUrl: './module-gallery.component.html',
   styleUrl: './module-gallery.component.css'
 })
 export class ModuleGalleryComponent implements OnInit{
+  authenticationService: AuthenticationService = inject(AuthenticationService);
   modules: Module[];
   selectedModule: ModuleWithCourses | null;
   moduleService: ModuleService = inject(ModuleService);
@@ -35,4 +39,6 @@ export class ModuleGalleryComponent implements OnInit{
   ngOnInit() {
     this.moduleService.getAllModules().subscribe(modules => this.modules = modules);
   }
+
+  protected readonly UserRole = UserRole;
 }

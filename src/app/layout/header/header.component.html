@@ -16,6 +16,11 @@
             </li>
             <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
               @if (authenticatedUser.id) {
+                @if (authenticatedUser.role === UserRole.STUDENT) {
+                  <li class="nav-item">
+                    <a routerLink="modules" class="header-btn" routerLinkActive="header-btn-active">Modules</a>
+                  </li>
+                }
                 @if (authenticatedUser.role === UserRole.COACH) {
                   <li class="nav-item">
                     <a routerLink="add-classgroup" class="header-btn" routerLinkActive="header-btn-active">Add
