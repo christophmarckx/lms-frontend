@@ -14,7 +14,7 @@
             <li class="nav-item">
               <a class="header-btn" routerLink="/" routerLinkActive="header-btn-active" [routerLinkActiveOptions]="{exact: true}">Home</a>
             </li>
-            <ng-container *ngIf="authenticationService.getUserFromLocalStorage() | async as authenticatedUser">
+            <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
               @if (authenticatedUser.id) {
                 @if (authenticatedUser.role === UserRole.COACH) {
                   <li class="nav-item">
@@ -29,12 +29,12 @@
                   </li>
                 }
                 <li class="nav-item">
-                  <a class="header-btn" href="" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
+                  <a class="header-btn" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
                 </li>
               }
               @else {
                 <li class="nav-item">
-                  <a class="header-btn" [routerLink]="['login']" routerLinkActive="header-btn-active">Login</a>
+                  <a class="header-btn" (click)="authenticationService.loginUser()">Login</a>
                 </li>
                 <li class="nav-item">
                   <a class="header-btn" [routerLink]="['register']" routerLinkActive="header-btn-active">Register</a>

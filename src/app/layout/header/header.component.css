@@ -38,6 +38,7 @@ h1 {
   transition: all;
   transition-duration: 350ms;
   border-radius: 15px;
+  cursor: pointer;
 }
 
 .header-btn-active {
