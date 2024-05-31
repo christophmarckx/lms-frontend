@@ -1,7 +1,8 @@
-<div>
-  <p> SELECTED MODULE: {{moduleWithCourses.name}}</p>
-  @for (moduleCourse of moduleWithCourses.courses; track moduleCourse){
-    <p>{{moduleCourse.name}}</p>
-  }
-  <p>PLEASE STYLE THIS I'M CRYING</p>
+<div class="module-with-courses-container">
+  <h3> Courses linked with the module: {{moduleWithCourses.name}}</h3>
+  <ul>
+    @for (moduleCourse of moduleWithCourses.courses; track moduleCourse){
+      <li>{{moduleCourse.name}}</li>
+    }
+  </ul>
 </div>
