@@ -3,6 +3,7 @@ import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CourseService} from "../services/course/course.service";
 import {Router} from "@angular/router";
 import {CreateCourse} from "../models/CreateCourse";
+import {PopupService} from "../services/popup/popup.service";
 
 @Component({
   selector: 'app-add-course-form',
@@ -18,6 +19,7 @@ export class AddCourseFormComponent implements OnInit{
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly courseService: CourseService = inject(CourseService);
   private readonly router: Router = inject(Router);
+  private readonly popupService: PopupService = inject(PopupService);
   public formControlNames : string[] = ['name', 'description'];
   public isFormInvalid: boolean = true;
   public createCourseError?: string;
@@ -50,6 +52,7 @@ export class AddCourseFormComponent implements OnInit{
     this.courseService.addCourse(createCourse).subscribe(
       (response) => {
         this.router.navigate(['']);
+        this.popupService.showPopup('The course has been successfully added');
       },
       (error) => {
         this.createCourseError = JSON.parse(error.error).message;

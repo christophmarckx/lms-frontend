@@ -1,0 +1,10 @@
+@if (message != null) {
+  <div
+    class="popup"
+    [class.error-popup]="isErrorPopup"
+    [class.success-popup]="!isErrorPopup"
+    (click)="hide()"
+  >
+    <p class="message">{{message}}</p>
+  </div>
+}

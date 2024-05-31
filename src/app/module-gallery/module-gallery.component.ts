@@ -1,13 +1,13 @@
 import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {ModuleCardComponent} from "./module-card/module-card.component";
 import {Module} from "../models/module";
-import {ModuleService} from "../services/module.service";
+import {ModuleService} from "../services/module/module.service";
 import {AddModuleFormComponent} from "../add-module-form/add-module-form.component";
 import {RouterLink} from "@angular/router";
 import {ModuleWithCourses} from "../models/ModuleWithCourses";
 import {ModuleWithCoursesComponent} from "./module-with-courses/module-with-courses.component";
 import {AsyncPipe, NgIf} from "@angular/common";
-import {AuthenticationService} from "../service/authentication/authentication.service";
+import {AuthenticationService} from "../services/authentication/authentication.service";
 import {UserRole} from "../model/authentication/AuthenticatedUser";
 
 @Component({
