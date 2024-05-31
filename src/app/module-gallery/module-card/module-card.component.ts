@@ -14,8 +14,16 @@ export class ModuleCardComponent {
   @Input() module!: Module;
   @Input() isPair!: boolean;
   @Output() stringEventEmitter = new EventEmitter<string>();
+  @Input() isModuleSelected!: boolean;
 
   changeSelectedModuleId() {
     this.stringEventEmitter.emit(this.module.id);
+  }
+
+  btnTextToDisplay(): string {
+    if (this.isModuleSelected) {
+      return 'Hide courses';
+    }
+    return 'Display courses';
   }
 }

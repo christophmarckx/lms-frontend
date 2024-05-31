@@ -1,5 +1,5 @@
 <div class="module-with-courses-container">
-  <h3> Courses linked with the module: {{moduleWithCourses.name}}</h3>
+  <h3>{{moduleWithCourses.courses.length <= 0 ? 'No courses ' : 'Courses '}} linked with the module {{moduleWithCourses.name}}</h3>
   <ul>
     @for (moduleCourse of moduleWithCourses.courses; track moduleCourse){
       <li>{{moduleCourse.name}}</li>

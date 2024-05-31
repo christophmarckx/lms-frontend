@@ -16,9 +16,14 @@ p {
   background-color: #489ccc50;
 }
 
-.btn {
+.btn, .btn-disabled {
+  width: 160px;
   height: fit-content;
   margin-right: 15px;
+}
+
+.btn-disabled:hover {
+  background-color: #FFFFFF50;
 }
 
 .module-card-root div {

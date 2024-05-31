@@ -9,5 +9,12 @@
       <p>No parent module</p>
     }
   </div>
-  <a class="btn" (click)="changeSelectedModuleId()">See courses</a>
+  <button
+    class="btn"
+    [class.btn]="!isModuleSelected"
+    [class.btn-disabled]="isModuleSelected"
+    (click)="changeSelectedModuleId()"
+  >
+    {{ btnTextToDisplay() }}
+  </button>
 </div>
