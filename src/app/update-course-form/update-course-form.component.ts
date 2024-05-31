@@ -3,6 +3,7 @@ import {CourseService} from "../services/course/course.service";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UpdateCourse} from "../models/UpdateCourse";
+import {PopupService} from "../services/popup/popup.service";
 
 @Component({
   selector: 'app-update-course-form',
@@ -19,6 +20,7 @@ export class UpdateCourseFormComponent implements OnInit {
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly router: Router = inject(Router);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
+  private readonly popupService: PopupService = inject(PopupService);
   public formControlNames: string[] = ['name'];
   public isFormInvalid: boolean = true;
   public updateCourseNameError?: string;
@@ -66,6 +68,7 @@ export class UpdateCourseFormComponent implements OnInit {
     this.courseService.updateCourseName(this.courseId, updateCourse).subscribe(
       (response) => {
         this.router.navigate(['']);
+        this.popupService.showPopup('The course has been successfully updated');
       },
       (error) => {
         this.updateCourseNameError = JSON.parse(error.error).message;

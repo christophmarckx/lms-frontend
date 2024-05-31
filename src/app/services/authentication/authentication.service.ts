@@ -4,6 +4,7 @@ import {BehaviorSubject} from "rxjs";
 import {environment} from "../../../environment/environment";
 import {AuthenticatedUser} from "../../model/authentication/AuthenticatedUser";
 import Keycloak from "keycloak-js";
+import {PopupService} from "../popup/popup.service";
 
 @Injectable({
   providedIn: 'root'

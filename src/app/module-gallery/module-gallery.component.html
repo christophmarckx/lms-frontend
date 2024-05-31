@@ -7,6 +7,7 @@
       }
     </ng-container>
   </div>
+<!-- TODO Change button to display on a line with a < and change it to ^  -->
   @for(module of modules; track module) {
     <app-module-card (stringEventEmitter)="changeModuleId(module.id)" [module]="module" [isPair]="$index % 2 === 0" [isModuleSelected]="selectedModule?.id === module.id">
     </app-module-card>
