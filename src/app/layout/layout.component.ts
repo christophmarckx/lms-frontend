@@ -23,5 +23,8 @@ export class LayoutComponent implements OnInit {
       this.isErrorPopup = isErrorPopup;
       setTimeout(() => this.popupMessage = null, duration);
     });
+    if (localStorage.getItem('loginErrorPopup') !== null) {
+      this.popupService.showPopup(localStorage.getItem('loginErrorPopup')!, true);
+    }
   }
 }

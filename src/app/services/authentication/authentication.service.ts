@@ -12,6 +12,7 @@ import {PopupService} from "../popup/popup.service";
 export class AuthenticationService {
   private keycloak;
 
+  private readonly popupService: PopupService = inject(PopupService);
   http = inject(HttpClient);
   session = new BehaviorSubject<any>({});
   backendUrl: string;
@@ -47,8 +48,12 @@ export class AuthenticationService {
    return this.keycloak.login({redirectUri: 'http://localhost:4200'});
   }
 
-  logoutUser() {
-    return this.keycloak.logout({redirectUri: 'http://localhost:4200'});
+  logoutUser(errorMessage?: string) {
+    return this.keycloak.logout({redirectUri: 'http://localhost:4200'}).then(() => {
+      if (errorMessage) {
+        localStorage.setItem('loginErrorPopup', errorMessage);
+      }
+    });
   }
 
   getToken() {
@@ -76,7 +81,7 @@ export class AuthenticationService {
       },
       error: err => {
         console.error('Login error:', err);
-        this.logoutUser()
+        this.logoutUser(err.error);
       }
     });
   }
