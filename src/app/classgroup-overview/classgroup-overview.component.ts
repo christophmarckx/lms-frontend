@@ -3,8 +3,8 @@ import {ClassgroupService} from "../services/classgroup/classgroup.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {ClassgroupWithMembers} from "../models/ClassgroupWithMembers";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {AuthenticationService} from "../service/authentication/authentication.service";
 import {UserRole} from "../model/authentication/AuthenticatedUser";
+import {AuthenticationService} from "../services/authentication/authentication.service";
 
 @Component({
   selector: 'app-classgroup-overview',

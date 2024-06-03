@@ -20,5 +20,5 @@ export const routes: Routes = [
   {path: 'modules', component: ModuleGalleryComponent},
   {path: 'update-course/:id', component: UpdateCourseFormComponent},
   {path: 'students/:id',component: ViewStudentProfileComponent },
-  {path: 'hello/:classgroupId', component: ClassgroupOverviewComponent}
+  {path: 'classgroup/:classgroupId', component: ClassgroupOverviewComponent}
 ];
