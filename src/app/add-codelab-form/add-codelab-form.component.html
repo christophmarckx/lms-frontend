@@ -32,9 +32,7 @@
           </div>
         }
         @if (createCodelabError) {
-          <div class="backend-error">
-            {{ createCodelabError }}
-          </div>
+          <div class="backend-error" [innerHTML]="createCodelabError | processError"> </div>
         }
         <button class="btn btn-create"
                 type="submit"

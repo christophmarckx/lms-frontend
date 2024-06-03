@@ -49,7 +49,8 @@ export class AddModuleFormComponent implements OnInit {
         this.popupService.showPopup('The module has been successfully added');
       },
       (error) => {
-        this.createModuleError = JSON.parse(error.error).message;
+        console.log(error)
+        this.createModuleError = JSON.parse(error.errors).message;
       }
     );
   }
