@@ -17,7 +17,7 @@
           <li>
             {{student.displayName}}
             @if(authenticatedUser.role === UserRole.COACH){
-              <a class="btn btn-create" type="button" routerLink='students/{{student.id}}'></a>
+              <a routerLink='/students/{{student.id}}' class="btn btn-create" >View</a>
             }
           </li>
         }
