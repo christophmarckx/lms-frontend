@@ -1,31 +1,36 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ModuleService} from "../services/module.service";
+import {ModuleService} from "../services/module/module.service";
 import {Module} from "../models/module";
 import {NgForOf} from "@angular/common";
 import {CreateModule} from "../models/CreateModule";
 import {Router} from "@angular/router";
+import {PopupService} from "../services/popup/popup.service";
+import {ProcessErrorPipe} from "../pipe/process-error.pipe";
 
 @Component({
   selector: 'app-add-module-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgForOf
+    NgForOf,
+    ProcessErrorPipe
   ],
   templateUrl: './add-module-form.component.html',
   styleUrl: './add-module-form.component.css'
 })
-export class AddModuleFormComponent implements OnInit{
+export class AddModuleFormComponent implements OnInit {
+  private readonly popupService: PopupService = inject(PopupService);
+  private readonly moduleService: ModuleService = inject(ModuleService);
+  private readonly formBuilder: FormBuilder = inject(FormBuilder);
+  private readonly router: Router = inject(Router);
   modules : Module[];
   selectedParentModule : string;
   public isFormInvalid: boolean = true;
   public formControlNames : string[] = ['name', 'parentModuleId'];
   public createModuleError?: string;
 
-  constructor(private moduleService : ModuleService,
-              private formBuilder: FormBuilder,
-              private router : Router) {
+  constructor() {
     this.createModuleForm.valueChanges.subscribe(() => this.onFormUpdate());
   }
 
@@ -42,10 +47,11 @@ export class AddModuleFormComponent implements OnInit{
 
     this.moduleService.createModule(createModule).subscribe(
       (response) => {
-        this.router.navigate(["modules"])
+        this.router.navigate(["modules"]);
+        this.popupService.showPopup('The module has been successfully added');
       },
-      (error) => {
-        this.createModuleError = JSON.parse(error.error).message;
+      (response) => {
+        this.createModuleError = response.error.errors;
       }
     );
   }

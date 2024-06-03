@@ -26,9 +26,7 @@
       </div>
     }
     @if (createClassgroupError) {
-      <div class="backend-error">
-        {{ createClassgroupError }}
-      </div>
+      <div class="backend-error" [innerHTML]="createClassgroupError | processError"> </div>
     }
     <div class="btn-container">
       <button class="btn"

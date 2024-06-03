@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
-import {AuthenticationService} from "../../service/authentication/authentication.service";
+import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {UserRole} from "../../model/authentication/AuthenticatedUser";
 

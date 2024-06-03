@@ -1,6 +1,6 @@
 import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {Module} from "../../models/module";
-import {ModuleService} from "../../services/module.service";
+import {ModuleService} from "../../services/module/module.service";
 import {ModuleWithCourses} from "../../models/ModuleWithCourses";
 
 @Component({

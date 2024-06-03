@@ -7,6 +7,8 @@ import {AsyncPipe} from "@angular/common";
 import {CreateClassgroup} from "../models/CreateClassgroup";
 import {ClassgroupService} from "../services/classgroup/classgroup.service";
 import {Router} from "@angular/router";
+import {PopupService} from "../services/popup/popup.service";
+import {ProcessErrorPipe} from "../pipe/process-error.pipe";
 
 
 @Component({
@@ -14,7 +16,8 @@ import {Router} from "@angular/router";
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    AsyncPipe
+    AsyncPipe,
+    ProcessErrorPipe
   ],
   templateUrl: './add-classgroup-form.component.html',
   styleUrl: './add-classgroup-form.component.css'
@@ -25,6 +28,7 @@ export class AddClassgroupFormComponent {
   private readonly courseService: CourseService = inject(CourseService);
   private readonly classgroupService: ClassgroupService = inject(ClassgroupService);
   private readonly router: Router = inject(Router);
+  private readonly popupService: PopupService = inject(PopupService);
   public formControlNames: string[] = ['name','courseId'];
   public isFormInvalid: boolean = true;
   public createClassgroupError?: string;
@@ -70,9 +74,10 @@ export class AddClassgroupFormComponent {
     this.classgroupService.addClassgroup(createClassgroup).subscribe(
       (response) => {
         this.router.navigate(['']);
+        this.popupService.showPopup('The classgroup has been successfully added');
       },
-      (error) => {
-        this.createClassgroupError = JSON.parse(error.error).message;
+      (response) => {
+        this.createClassgroupError = response.error.errors;
       }
     );
   }

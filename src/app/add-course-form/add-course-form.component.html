@@ -19,8 +19,7 @@
       </div>
     }
     @if (createCourseError) {
-      <div class="backend-error">
-        {{ createCourseError }}
+      <div class="backend-error" [innerHTML]="createCourseError | processError">
       </div>
     }
     <div class="btn-container">
