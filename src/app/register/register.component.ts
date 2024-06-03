@@ -6,10 +6,11 @@ import {
   ReactiveFormsModule,
   Validators
 } from "@angular/forms";
-import {StudentService} from "../service/student/student.service";
+import {StudentService} from "../services/student/student.service";
 import {catchError, throwError} from "rxjs";
 import {Router, RouterLink} from "@angular/router";
 import {repeatPasswordValidator} from "../utility/RepeatPasswordValidator";
+import {PopupService} from "../services/popup/popup.service";
 
 @Component({
   selector: 'app-register',
