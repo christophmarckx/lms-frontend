@@ -8,6 +8,7 @@ import {CreateClassgroup} from "../models/CreateClassgroup";
 import {ClassgroupService} from "../services/classgroup/classgroup.service";
 import {Router} from "@angular/router";
 import {PopupService} from "../services/popup/popup.service";
+import {ProcessErrorPipe} from "../pipe/process-error.pipe";
 
 
 @Component({
@@ -15,7 +16,8 @@ import {PopupService} from "../services/popup/popup.service";
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    AsyncPipe
+    AsyncPipe,
+    ProcessErrorPipe
   ],
   templateUrl: './add-classgroup-form.component.html',
   styleUrl: './add-classgroup-form.component.css'
@@ -74,8 +76,8 @@ export class AddClassgroupFormComponent {
         this.router.navigate(['']);
         this.popupService.showPopup('The classgroup has been successfully added');
       },
-      (error) => {
-        this.createClassgroupError = JSON.parse(error.error).message;
+      (response) => {
+        this.createClassgroupError = response.error.errors;
       }
     );
   }

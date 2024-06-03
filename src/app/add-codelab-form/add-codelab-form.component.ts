@@ -70,7 +70,8 @@ export class AddCodelabFormComponent implements OnInit {
     }
     this.codelabService.createCodelab(createCodelab).subscribe(
       (response) => {
-        this.popupService.showPopup("Codelab created!");
+        this.popupService.showPopup("Codelab created!")
+        ;
         this.router.navigate(['']);
       },
       (response) => {

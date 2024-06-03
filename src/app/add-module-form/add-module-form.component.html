@@ -3,13 +3,13 @@
     <div class="form-group">
       <form (ngSubmit)="addModule()" [formGroup]="createModuleForm">
         <h1>Add a new module!</h1>
-        <label class="form-label" for="name" >
+        <label class="form-label" for="name">
           Module name
           <input class="form-control" formControlName="name" id="name" type="text" placeholder="Enter name... :)"/>
         </label>
-        <label class="form-label" for="parentModule" >
+        <label class="form-label" for="parentModule">
           Parent module
-          <select id="parentModule" formControlName="parentModuleId" >
+          <select id="parentModule" formControlName="parentModuleId">
             <option *ngFor="let module of modules" value="{{module.id}}">{{ module.name }}</option>
           </select>
         </label>
@@ -30,9 +30,7 @@
           </div>
         }
         @if (createModuleError) {
-          <div class="backend-error">
-            {{ createModuleError }}
-          </div>
+          <div class="backend-error" [innerHTML]="createModuleError | processError"></div>
         }
         <div class="btn-container">
           <button class="btn"
