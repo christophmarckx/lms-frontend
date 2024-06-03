@@ -6,13 +6,15 @@ import {NgForOf} from "@angular/common";
 import {CreateModule} from "../models/CreateModule";
 import {Router} from "@angular/router";
 import {PopupService} from "../services/popup/popup.service";
+import {ProcessErrorPipe} from "../pipe/process-error.pipe";
 
 @Component({
   selector: 'app-add-module-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgForOf
+    NgForOf,
+    ProcessErrorPipe
   ],
   templateUrl: './add-module-form.component.html',
   styleUrl: './add-module-form.component.css'
@@ -48,8 +50,8 @@ export class AddModuleFormComponent implements OnInit {
         this.router.navigate(["modules"]);
         this.popupService.showPopup('The module has been successfully added');
       },
-      (error) => {
-        this.createModuleError = JSON.parse(error.error).message;
+      (response) => {
+        this.createModuleError = response.error.errors;
       }
     );
   }

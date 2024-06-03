@@ -4,12 +4,14 @@ import {CourseService} from "../services/course/course.service";
 import {Router} from "@angular/router";
 import {CreateCourse} from "../models/CreateCourse";
 import {PopupService} from "../services/popup/popup.service";
+import {ProcessErrorPipe} from "../pipe/process-error.pipe";
 
 @Component({
   selector: 'app-add-course-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ProcessErrorPipe
   ],
   templateUrl: './add-course-form.component.html',
   styleUrl: './add-course-form.component.css'
@@ -54,8 +56,8 @@ export class AddCourseFormComponent implements OnInit{
         this.router.navigate(['']);
         this.popupService.showPopup('The course has been successfully added');
       },
-      (error) => {
-        this.createCourseError = JSON.parse(error.error).message;
+      (response) => {
+        this.createCourseError = response.error.errors;
       }
     );
   }
