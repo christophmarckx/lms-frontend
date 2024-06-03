@@ -1,24 +1,29 @@
 import {Component, OnInit} from '@angular/core';
 import {ClassgroupService} from "../services/classgroup/classgroup.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {ClassgroupWithMembers} from "../models/ClassgroupWithMembers";
-import {NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
+import {AuthenticationService} from "../service/authentication/authentication.service";
+import {UserRole} from "../model/authentication/AuthenticatedUser";
 
 @Component({
   selector: 'app-classgroup-overview',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    AsyncPipe,
+    NgIf,
+    RouterLink
   ],
   templateUrl: './classgroup-overview.component.html',
   styleUrl: './classgroup-overview.component.css'
 })
 export class ClassgroupOverviewComponent implements OnInit{
-  classgroupWithMembers : ClassgroupWithMembers;
-
+  classgroupWithMembers! : ClassgroupWithMembers;
   constructor(
       private classgroupService : ClassgroupService,
-      private route: ActivatedRoute
+      private route: ActivatedRoute,
+      public authenticationService : AuthenticationService
     ) {
 
   }
@@ -31,4 +36,6 @@ export class ClassgroupOverviewComponent implements OnInit{
       )
     }
   }
+
+  protected readonly UserRole = UserRole;
 }

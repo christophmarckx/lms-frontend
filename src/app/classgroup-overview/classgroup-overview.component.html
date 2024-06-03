@@ -12,9 +12,16 @@
   @if(classgroupWithMembers.students.length > 0){
     <h3>Students</h3>
     <ul>
-      @for(student of classgroupWithMembers.students; track student) {
-        <li>{{student.displayName}}</li>
-      }
+      <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+        @for(student of classgroupWithMembers.students; track student) {
+          <li>
+            {{student.displayName}}
+            @if(authenticatedUser.role === UserRole.COACH){
+              <a class="btn btn-create" type="button" routerLink='students/{{student.id}}'></a>
+            }
+          </li>
+        }
+      </ng-container>
     </ul>
   }
 </div>

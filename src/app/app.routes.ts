@@ -7,6 +7,7 @@ import {UpdateCourseFormComponent} from "./update-course-form/update-course-form
 import {ModuleGalleryComponent} from "./module-gallery/module-gallery.component";
 import {AddModuleFormComponent} from "./add-module-form/add-module-form.component";
 import {ViewStudentProfileComponent} from "./view-student-profile/view-student-profile.component";
+import {ClassgroupOverviewComponent} from "./classgroup-overview/classgroup-overview.component";
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -16,5 +17,6 @@ export const routes: Routes = [
   {path: 'add-classgroup', component: AddClassgroupFormComponent},
   {path: 'modules', component: ModuleGalleryComponent},
   {path: 'update-course/:id', component: UpdateCourseFormComponent},
-  {path: 'students/:id',component: ViewStudentProfileComponent }
+  {path: 'students/:id',component: ViewStudentProfileComponent },
+  {path: 'hello/:classgroupId', component: ClassgroupOverviewComponent}
 ];
