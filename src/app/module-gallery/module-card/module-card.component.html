@@ -1,7 +1,20 @@
-<div>
-  <p>{{module.id}}</p>
-  <p>{{module.name}}</p>
-  @if(module.parentModule){
-    <p>parentmodule: {{module.parentModule?.name}}</p>
-  }
+<div class="module-card-root" [class.different-bg]="!isPair">
+  <div>
+    <p>Module name: {{module.name}}</p>
+  </div>
+  <div>
+    @if(module.parentModule){
+      <p>Parent module: {{module.parentModule!.name}}</p>
+    } @else {
+      <p>No parent module</p>
+    }
+  </div>
+  <button
+    class="btn"
+    [class.btn]="!isModuleSelected"
+    [class.btn-disabled]="isModuleSelected"
+    (click)="changeSelectedModuleId()"
+  >
+    {{ btnTextToDisplay() }}
+  </button>
 </div>

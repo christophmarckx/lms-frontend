@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
       .pipe(
         catchError(error => {
           console.error('There was an error!', error);
-          this.errorMessage = error.error.errorMessage;
+          this.errorMessage = error.error;
           return throwError(() => new Error());
         }))
       .subscribe(data => {

@@ -1,11 +1,17 @@
-@for(module of modules; track module) {
-  <app-module-card [module]="module">
-
-  </app-module-card>
-}
-<br>
-<hr>
-
-<button routerLink="add-module"> Create module</button>
-
-
+<div class="modules-gallery">
+  <div class="page-header">
+    <h1>View all modules</h1>
+    <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+      @if (authenticatedUser.role === UserRole.COACH) {
+        <button class="btn" routerLink="add-module">Create module</button>
+      }
+    </ng-container>
+  </div>
+  @for(module of modules; track module) {
+    <app-module-card (stringEventEmitter)="changeModuleId(module.id)" [module]="module" [isPair]="$index % 2 === 0" [isModuleSelected]="selectedModule?.id === module.id">
+    </app-module-card>
+  }
+  @if (selectedModule){
+    <app-module-with-courses [moduleWithCourses]="selectedModule"></app-module-with-courses>
+  }
+</div>

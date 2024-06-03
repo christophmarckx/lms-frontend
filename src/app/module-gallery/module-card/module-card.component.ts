@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {Module} from "../../models/module";
+import {ModuleService} from "../../services/module.service";
+import {ModuleWithCourses} from "../../models/ModuleWithCourses";
 
 @Component({
   selector: 'app-module-card',
@@ -9,7 +11,19 @@ import {Module} from "../../models/module";
   styleUrl: './module-card.component.css'
 })
 export class ModuleCardComponent {
+  @Input() module!: Module;
+  @Input() isPair!: boolean;
+  @Output() stringEventEmitter = new EventEmitter<string>();
+  @Input() isModuleSelected!: boolean;
 
-  @Input() module: Module;
+  changeSelectedModuleId() {
+    this.stringEventEmitter.emit(this.module.id);
+  }
 
+  btnTextToDisplay(): string {
+    if (this.isModuleSelected) {
+      return 'Hide courses';
+    }
+    return 'Display courses';
+  }
 }

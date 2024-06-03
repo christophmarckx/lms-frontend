@@ -1,39 +1,53 @@
-
-<div class="col-3">
-  <h1>{{title}}</h1>
-</div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <ng-container *ngIf="authenticationService.getUserFromLocalStorage() | async as authenticatedUser">
-            @if (authenticatedUser.id) {
-              <li class="nav-item">
-                <a class="nav-link" href="#" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="modules" class="nav-link">Modules</a>
-              </li>
-            }
-            @else {
-              <li class="nav-item">
-                <a class="nav-link" [routerLink]="['login']">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" [routerLink]="['register']">Register</a>
-              </li>
-            }
-          </ng-container>
+<div id="header-container">
+  <div class="title-container">
+    <img id="logo" src="assets/images/switchfully-logo.jpg" alt="Switchfully Logo">
+    <h1>{{title}}</h1>
+  </div>
+<!-- TODO Check for the burger menu -->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="header-btn" routerLink="/" routerLinkActive="header-btn-active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+            </li>
+            <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+              @if (authenticatedUser.id) {
+                @if (authenticatedUser.role === UserRole.STUDENT) {
+                  <li class="nav-item">
+                    <a routerLink="modules" class="header-btn" routerLinkActive="header-btn-active">Modules</a>
+                  </li>
+                }
+                @if (authenticatedUser.role === UserRole.COACH) {
+                  <li class="nav-item">
+                    <a routerLink="add-classgroup" class="header-btn" routerLinkActive="header-btn-active">Add
+                      classgroup</a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="add-course" class="header-btn" routerLinkActive="header-btn-active">Add course</a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="modules" class="header-btn" routerLinkActive="header-btn-active">Modules</a>
+                  </li>
+                }
+                <li class="nav-item">
+                  <a class="header-btn" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
+                </li>
+              }
+              @else {
+                <li class="nav-item">
+                  <a class="header-btn" (click)="authenticationService.loginUser()">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="header-btn" [routerLink]="['register']" routerLinkActive="header-btn-active">Register</a>
+                </li>
+              }
+            </ng-container>
         </ul>
       </div>
-  </div>
-</nav>
+    </div>
+  </nav>
+</div>
