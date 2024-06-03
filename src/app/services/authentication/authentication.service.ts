@@ -44,8 +44,8 @@ export class AuthenticationService {
       this.refreshToken()
     }
   }
-  loginUser() {
-   return this.keycloak.login({redirectUri: 'http://localhost:4200'});
+  loginUser(url?: string) {
+    return this.keycloak.login({redirectUri: url ? "http://localhost:4200/" + url : "http://localhost:4200"});
   }
 
   logoutUser(errorMessage?: string) {
@@ -58,6 +58,23 @@ export class AuthenticationService {
 
   getToken() {
     return this.keycloak.token;
+  }
+
+  getTokenAsPromise() {
+    return new Promise((resolve, reject) => {
+      if (this.keycloak.token) {
+        resolve(this.keycloak.token);
+      } else {
+        this.keycloak.onReady = (authenticated) => {
+          if (authenticated) {
+            resolve(this.keycloak.token)
+          }
+          else {
+            reject()
+          }
+        }
+      }
+    });
   }
 
   private clearUser() {
