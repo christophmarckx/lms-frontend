@@ -51,7 +51,7 @@ export class AuthenticationService {
   logoutUser(errorMessage?: string) {
     return this.keycloak.logout({redirectUri: 'http://localhost:4200'}).then(() => {
       if (errorMessage) {
-        localStorage.setItem('loginErrorPopup', errorMessage);
+        localStorage.setItem('loginErrorPopup', "Logout: Consistency error with backend");
       }
     });
   }
@@ -81,6 +81,7 @@ export class AuthenticationService {
       },
       error: err => {
         console.error('Login error:', err);
+        console.log(err);
         this.logoutUser(err.error);
       }
     });
