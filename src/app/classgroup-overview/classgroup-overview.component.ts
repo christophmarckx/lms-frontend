@@ -5,6 +5,7 @@ import {ClassgroupWithMembers} from "../models/ClassgroupWithMembers";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {UserRole} from "../model/authentication/AuthenticatedUser";
 import {AuthenticationService} from "../services/authentication/authentication.service";
+import {UserCardComponent} from "./user-card/user-card.component";
 
 @Component({
   selector: 'app-classgroup-overview',
@@ -13,7 +14,8 @@ import {AuthenticationService} from "../services/authentication/authentication.s
     NgForOf,
     AsyncPipe,
     NgIf,
-    RouterLink
+    RouterLink,
+    UserCardComponent
   ],
   templateUrl: './classgroup-overview.component.html',
   styleUrl: './classgroup-overview.component.css'

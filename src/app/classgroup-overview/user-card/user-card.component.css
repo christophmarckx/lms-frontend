@@ -1,27 +1,4 @@
-.class-overview{
-  width: 100%;
-}
-
-.list-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  width: 800px;
-}
-
-#second-list {
-  margin-top: 20px;
-}
-
-h1 {
-  font-size: 1.7em;
-  font-weight: bold;
-  color: #489ccc;
-}
-
-.list-root {
+.user-card-root {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -49,7 +26,7 @@ p {
   background-color: #FFFFFF50;
 }
 
-.module-card-root div {
+.user-card-root div {
   flex:1;
   margin-right: 10px;
 }
