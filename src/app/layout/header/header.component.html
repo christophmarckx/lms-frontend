@@ -16,26 +16,21 @@
             </li>
             <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
               @if (authenticatedUser.id) {
-                @if (authenticatedUser.role === UserRole.STUDENT) {
-                  <li class="nav-item">
-                    <a routerLink="modules" class="header-btn" routerLinkActive="header-btn-active">Modules</a>
-                  </li>
-                }
                 @if (authenticatedUser.role === UserRole.COACH) {
                   <li class="nav-item">
                     <a routerLink="add-classgroup" class="header-btn" routerLinkActive="header-btn-active">Add
                       classgroup</a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="courses" class="header-btn" routerLinkActive="header-btn-active">Courses</a>
-                  </li>
-                  <li class="nav-item">
                     <a routerLink="codelabs/add-codelabs" class="header-btn" routerLinkActive="header-btn-active">Add Codelab</a>
                   </li>
-                  <li class="nav-item">
-                    <a routerLink="modules" class="header-btn" routerLinkActive="header-btn-active">Modules</a>
-                  </li>
                 }
+                <li class="nav-item">
+                  <a routerLink="courses" class="header-btn" routerLinkActive="header-btn-active">Courses</a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="modules" class="header-btn" routerLinkActive="header-btn-active">Modules</a>
+                </li>
                 <li class="nav-item">
                   <a class="header-btn" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
                 </li>
