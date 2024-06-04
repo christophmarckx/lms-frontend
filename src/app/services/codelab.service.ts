@@ -15,4 +15,8 @@ export class CodelabService {
   createCodelab(createCodelab: CreateCodelab): Observable<CreateCodelab> {
     return this.http.post<CreateCodelab>(this.urlString, createCodelab);
   }
+
+  getCodelab(codelabId: string): Observable<Codelab> {
+    return this.http.get<Codelab>(this.urlString + '/' + codelabId);
+  }
 }

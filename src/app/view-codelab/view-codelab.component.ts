@@ -2,11 +2,14 @@ import {Component, inject, Input, OnInit} from '@angular/core';
 import {CodelabService} from "../services/codelab.service";
 import {Codelab} from "../models/Codelab";
 import {Course} from "../models/Course";
+import {AddCodelabCommentComponent} from "./add-codelab-comment/add-codelab-comment.component";
 
 @Component({
   selector: 'app-view-codelab',
   standalone: true,
-  imports: [],
+  imports: [
+    AddCodelabCommentComponent
+  ],
   templateUrl: './view-codelab.component.html',
   styleUrl: './view-codelab.component.css'
 })

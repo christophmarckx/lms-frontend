@@ -10,6 +10,7 @@ import {ViewStudentProfileComponent} from "./view-student-profile/view-student-p
 import {AddCodelabFormComponent} from "./add-codelab-form/add-codelab-form.component";
 import {authGuard} from "./authentication/auth.guard";
 import {ViewCoursesComponent} from "./course-gallery/view-courses.component";
+import {ViewCodelabComponent} from "./view-codelab/view-codelab.component";
 
 export const routes: Routes = [
   {
@@ -53,6 +54,11 @@ export const routes: Routes = [
   {
     path: 'students',
     component: ViewStudentProfileComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'codelabs/:id',
+    component: ViewCodelabComponent,
     canActivate: [authGuard]
   }
 ];
