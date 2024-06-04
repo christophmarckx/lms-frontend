@@ -9,6 +9,7 @@ import {AddModuleFormComponent} from "./add-module-form/add-module-form.componen
 import {ViewStudentProfileComponent} from "./view-student-profile/view-student-profile.component";
 import {AddCodelabFormComponent} from "./add-codelab-form/add-codelab-form.component";
 import {authGuard} from "./authentication/auth.guard";
+import {ViewCoursesComponent} from "./course-gallery/view-courses.component";
 
 export const routes: Routes = [
   {
@@ -20,8 +21,13 @@ export const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'add-course',
+    path: 'courses/add-course',
     component: AddCourseFormComponent
+  },
+  {
+    path: 'courses',
+    component: ViewCoursesComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'modules/add-module',
