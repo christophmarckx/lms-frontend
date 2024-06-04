@@ -3,17 +3,17 @@
     <h1>Add a new course!</h1>
     <label class="form-label" for="name">Name<input class="form-control" formControlName="name" id="name" type="text"/></label>
     <label class="form-label" for="description">Description<input class="form-control" formControlName="description" id="description" type="text"/></label>
-    <div style='display: flex;flex-direction: row'>
-      <div style='display: flex;flex-direction: column'>
+    <div class="modules-container">
+      <div class="available-modules">
         MODULES
         @for (module of modules; track module) {
-          <div (click)="addModuleToCreationList(module)" style='display: flex;flex-direction: row'>{{module.name}}</div>
+          <div (click)="addModuleToCreationList(module)" class="single-module-container">{{module.name}}</div>
         }
       </div>
-      <div style='display: flex;flex-direction: column'>
+      <div class="added-modules">
         MODULES TO ADD
         @for (moduleToAdd of modulesToAdd; track moduleToAdd) {
-          <div (click)="removeModuleFromCreationList(moduleToAdd)" style='display: flex;flex-direction: row'>{{moduleToAdd.name}}</div>
+          <div (click)="removeModuleFromCreationList(moduleToAdd)" class="single-module-container">{{moduleToAdd.name}}</div>
         }
       </div>
     </div>

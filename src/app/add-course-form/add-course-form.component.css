@@ -1,0 +1,9 @@
+.modules-container, .single-module-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.available-modules, .added-modules {
+  display: flex;
+  flex-direction: column;
+}
