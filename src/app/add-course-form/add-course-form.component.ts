@@ -5,13 +5,17 @@ import {Router} from "@angular/router";
 import {CreateCourse} from "../models/CreateCourse";
 import {PopupService} from "../services/popup/popup.service";
 import {ProcessErrorPipe} from "../pipe/process-error.pipe";
+import {ModuleService} from "../services/module/module.service";
+import {AsyncPipe} from "@angular/common";
+import {Module} from "../models/module";
 
 @Component({
   selector: 'app-add-course-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    ProcessErrorPipe
+    ProcessErrorPipe,
+    AsyncPipe
   ],
   templateUrl: './add-course-form.component.html',
   styleUrl: './add-course-form.component.css'
@@ -20,11 +24,14 @@ export class AddCourseFormComponent implements OnInit{
 
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly courseService: CourseService = inject(CourseService);
+  private readonly moduleService = inject(ModuleService);
   private readonly router: Router = inject(Router);
   private readonly popupService: PopupService = inject(PopupService);
   public formControlNames : string[] = ['name', 'description'];
   public isFormInvalid: boolean = true;
   public createCourseError?: string;
+  public modules: Module[];
+  public modulesToAdd: Module[] = [];
 
   createCourseForm = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(255)]],
@@ -36,6 +43,7 @@ export class AddCourseFormComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.getModules();
   }
   onFormUpdate() {
     this.isFormInvalid = this.createCourseForm.invalid || !this.createCourseForm.touched;
@@ -49,17 +57,23 @@ export class AddCourseFormComponent implements OnInit{
     const rawValues = this.createCourseForm.getRawValue();
     const createCourse: CreateCourse = {
       name: rawValues.name!,
-      description: rawValues.description ? rawValues.description : undefined
+      description: rawValues.description ? rawValues.description : undefined,
+      moduleIds: this.modulesToAdd.map(module => module.id)
     }
-    this.courseService.addCourse(createCourse).subscribe(
-      (response) => {
-        this.router.navigate(['']);
+    this.courseService.addCourse(createCourse).subscribe({
+      next: response => {
+        this.router.navigate(['/']);
         this.popupService.showPopup('The course has been successfully added');
       },
-      (response) => {
-        this.createCourseError = response.error.errors;
+      error: err => {
+        this.createCourseError = err.error.errors;
       }
-    );
+    });
+  }
+
+  getModules() {
+    return this.moduleService.getAllModules()
+      .subscribe(modules => this.modules = modules);
   }
 
   hasError(controlName: string, errorName: string): boolean {
@@ -72,5 +86,15 @@ export class AddCourseFormComponent implements OnInit{
       return errors[errorName];
     }
     return '';
+  }
+
+  addModuleToCreationList(moduleToAdd: Module) {
+    this.modulesToAdd.push(moduleToAdd);
+    this.modules = this.modules.filter(module => module.id !== moduleToAdd.id);
+  }
+
+  removeModuleFromCreationList(moduleToRemove: Module) {
+    this.modules.push(moduleToRemove);
+    this.modulesToAdd = this.modulesToAdd.filter(module => module.id !== moduleToRemove.id);
   }
 }

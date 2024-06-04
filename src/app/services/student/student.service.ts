@@ -24,6 +24,6 @@ export class StudentService {
   }
 
   getStudentById(studentId: string): Observable<any> {
-    return this.http.get<Student>(this.url /*+ '/' + studentId*/);
+    return this.http.get<Student>(this.url);
   }
 }

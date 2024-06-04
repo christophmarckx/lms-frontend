@@ -3,6 +3,20 @@
     <h1>Add a new course!</h1>
     <label class="form-label" for="name">Name<input class="form-control" formControlName="name" id="name" type="text"/></label>
     <label class="form-label" for="description">Description<input class="form-control" formControlName="description" id="description" type="text"/></label>
+    <div style='display: flex;flex-direction: row'>
+      <div style='display: flex;flex-direction: column'>
+        MODULES
+        @for (module of modules; track module) {
+          <div (click)="addModuleToCreationList(module)" style='display: flex;flex-direction: row'>{{module.name}}</div>
+        }
+      </div>
+      <div style='display: flex;flex-direction: column'>
+        MODULES TO ADD
+        @for (moduleToAdd of modulesToAdd; track moduleToAdd) {
+          <div (click)="removeModuleFromCreationList(moduleToAdd)" style='display: flex;flex-direction: row'>{{moduleToAdd.name}}</div>
+        }
+      </div>
+    </div>
     @if (isFormInvalid) {
       <div class="form-errors">
         @for (controlName of formControlNames; track controlName) {
