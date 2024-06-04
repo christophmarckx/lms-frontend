@@ -8,15 +8,45 @@ import {ModuleGalleryComponent} from "./module-gallery/module-gallery.component"
 import {AddModuleFormComponent} from "./add-module-form/add-module-form.component";
 import {ViewStudentProfileComponent} from "./view-student-profile/view-student-profile.component";
 import {AddCodelabFormComponent} from "./add-codelab-form/add-codelab-form.component";
+import {authGuard} from "./authentication/auth.guard";
 
 export const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'add-course', component: AddCourseFormComponent},
-  {path: 'modules/add-module', component: AddModuleFormComponent},
-  {path: 'codelabs/add-codelabs', component: AddCodelabFormComponent},
-  {path: 'add-classgroup', component: AddClassgroupFormComponent},
-  {path: 'modules', component: ModuleGalleryComponent},
-  {path: 'update-course/:id', component: UpdateCourseFormComponent},
-  {path: 'students/:id',component: ViewStudentProfileComponent }
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'add-course',
+    component: AddCourseFormComponent
+  },
+  {
+    path: 'modules/add-module',
+    component: AddModuleFormComponent
+  },
+  {
+    path: 'codelabs/add-codelabs',
+    component: AddCodelabFormComponent
+  },
+  {
+    path: 'add-classgroup',
+    component: AddClassgroupFormComponent
+  },
+  {
+    path: 'modules',
+    component: ModuleGalleryComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'update-course/:id',
+    component: UpdateCourseFormComponent
+  },
+  {
+    path: 'students',
+    component: ViewStudentProfileComponent,
+    canActivate: [authGuard]
+  }
 ];

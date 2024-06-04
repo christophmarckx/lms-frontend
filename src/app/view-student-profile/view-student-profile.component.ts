@@ -20,9 +20,9 @@ export class ViewStudentProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.studentId = params.get('id');
-    })
+    // this.route.paramMap.subscribe(params => {
+    //   this.studentId = params.get('id');
+    // })
     this.getStudentById();
 
   }
