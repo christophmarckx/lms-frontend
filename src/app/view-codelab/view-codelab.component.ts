@@ -1,7 +1,6 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import {CodelabService} from "../services/codelab.service";
 import {Codelab} from "../models/Codelab";
-import {Course} from "../models/Course";
 import {AddCodelabCommentComponent} from "./add-codelab-comment/add-codelab-comment.component";
 
 @Component({
@@ -13,10 +12,9 @@ import {AddCodelabCommentComponent} from "./add-codelab-comment/add-codelab-comm
   templateUrl: './view-codelab.component.html',
   styleUrl: './view-codelab.component.css'
 })
-export class ViewCodelabComponent implements OnInit{
+export class ViewCodelabComponent implements OnInit {
 
   codelabService: CodelabService = inject(CodelabService);
-
   codelab: Codelab;
 
   @Input() id!: string;

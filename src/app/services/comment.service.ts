@@ -12,5 +12,4 @@ export class CommentService {
   createCodelabComment(createComment: CreateComment): void {
     console.log("implement me ", createComment.comment);
   }
-
 }

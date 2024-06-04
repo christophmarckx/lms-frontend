@@ -34,10 +34,10 @@ export class AddCodelabCommentComponent implements OnInit{
   @Input() id: string;
 
   ngOnInit(): void {
-    this.createCodelabCommentForm.valueChanges.subscribe(() => this.onFormUpdate());
     this.createCodelabCommentForm = this.formBuilder.group({
       comment: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(255)]]
     })
+    this.createCodelabCommentForm.valueChanges.subscribe(() => this.onFormUpdate());
   }
 
   addComment(): void {
@@ -50,6 +50,7 @@ export class AddCodelabCommentComponent implements OnInit{
       comment: rawValues.comment!,
     }
 
+    console.log(this.id)
     this.commentService.createCodelabComment(createComment);
   }
 
