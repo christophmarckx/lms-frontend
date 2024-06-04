@@ -10,6 +10,20 @@
         }
       </select>
     </label>
+    <div class="coaches-container">
+      <div class="available-coaches">
+        COACHES
+        @for (coach of coaches; track coach) {
+          <div (click)="addCoachToCreationList(coach)" class="single-coach-container">{{coach.displayName}}</div>
+        }
+      </div>
+      <div class="added-coaches">
+        COACHES TO ADD
+        @for (coachToAdd of coachesToAdd; track coachToAdd) {
+          <div (click)="removeCoachFromCreationList(coachToAdd)" class="single-coach-container">{{coachToAdd.displayName}}</div>
+        }
+      </div>
+    </div>
     @if (isFormInvalid) {
       <div class="form-errors">
         @for (controlName of formControlNames; track controlName) {

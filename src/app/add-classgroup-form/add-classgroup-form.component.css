@@ -1,0 +1,9 @@
+.coaches-container, .single-coach-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.available-coaches, .added-coaches {
+  display: flex;
+  flex-direction: column;
+}

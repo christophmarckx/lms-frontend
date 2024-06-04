@@ -9,6 +9,7 @@ import {ClassgroupService} from "../services/classgroup/classgroup.service";
 import {Router} from "@angular/router";
 import {PopupService} from "../services/popup/popup.service";
 import {ProcessErrorPipe} from "../pipe/process-error.pipe";
+import {Coach} from "../model/coach/Coach";
 
 
 @Component({
@@ -34,6 +35,8 @@ export class AddClassgroupFormComponent {
   public createClassgroupError?: string;
   public courseOptions$: Observable<Course[]>;
   public selectedCourseId: string;
+  public coaches: Coach[];
+  public coachesToAdd: Coach[];
 
   getCourses(): Observable<Course[]> {
     return this.courseService.getAllCourses();
