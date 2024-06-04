@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {CreateClassgroup} from "../../models/CreateClassgroup";
+import {Classgroup} from "../../models/Classgroup";
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,9 @@ export class ClassgroupService {
 
   getClassgroup(id : string) : Observable<any> {
     return this.http.get(this.urlString + '/' + id)
+  }
+
+  getAllClassgroupsForUserId(userId: string) {
+    return this.http.get<Classgroup[]>(this.urlString + '?userId=' + userId)
   }
 }

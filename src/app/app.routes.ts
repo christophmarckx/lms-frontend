@@ -6,10 +6,10 @@ import {AddClassgroupFormComponent} from "./add-classgroup-form/add-classgroup-f
 import {UpdateCourseFormComponent} from "./update-course-form/update-course-form.component";
 import {ModuleGalleryComponent} from "./module-gallery/module-gallery.component";
 import {AddModuleFormComponent} from "./add-module-form/add-module-form.component";
-import {ViewStudentProfileComponent} from "./view-student-profile/view-student-profile.component";
 import {AddCodelabFormComponent} from "./add-codelab-form/add-codelab-form.component";
 import {authGuard} from "./authentication/auth.guard";
 import {ClassgroupOverviewComponent} from "./classgroup-overview/classgroup-overview.component";
+import {UserProfileComponent} from "./user-profile/user-profile.component";
 
 export const routes: Routes = [
   {
@@ -46,12 +46,12 @@ export const routes: Routes = [
     component: UpdateCourseFormComponent
   },
   {
-    path: 'students',
-    component: ViewStudentProfileComponent,
+    path: 'profile',
+    component: UserProfileComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'classgroup/:classgroupId',
+    path: 'classgroups/:classgroupId',
     component: ClassgroupOverviewComponent,
     canActivate: [authGuard]
   }

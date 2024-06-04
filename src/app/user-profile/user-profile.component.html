@@ -1,0 +1,14 @@
+@if (user) {
+  <p><b>User ID:</b> {{user.id}}</p>
+  <p><b>Displayname:</b>  {{user.displayName}}</p>
+  <div>
+    @if (user.role === UserRole.COACH) {
+      <p><b>Classgroup(s):</b></p>
+    } @else {
+      <p><b>Classgroup:</b></p>
+    }
+    @for (classgroup of classgroups; track classgroup.id) {
+      <a routerLink='/classgroups/{{classgroup.id}}'>{{ classgroup.name }}</a>
+    }
+  </div>
+}
