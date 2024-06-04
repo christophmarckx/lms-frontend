@@ -46,7 +46,7 @@ export class AddCourseFormComponent implements OnInit{
     this.getModules();
   }
   onFormUpdate() {
-    this.isFormInvalid = this.createCourseForm.invalid || !this.createCourseForm.touched;
+    this.isFormInvalid = this.createCourseForm.invalid;
   }
 
   addCourse() {
@@ -62,7 +62,7 @@ export class AddCourseFormComponent implements OnInit{
     }
     this.courseService.addCourse(createCourse).subscribe({
       next: response => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/courses']);
         this.popupService.showPopup('The course has been successfully added');
       },
       error: err => {
