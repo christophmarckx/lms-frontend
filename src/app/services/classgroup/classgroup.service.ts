@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {CreateClassgroup} from "../../models/CreateClassgroup";
 import {Classgroup} from "../../models/Classgroup";
+import {ClassgroupWithMembers} from "../../models/ClassgroupWithMembers";
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class ClassgroupService {
     return this.http.post(this.urlString, classgroup);
   }
 
-  getClassgroup(id : string) : Observable<any> {
-    return this.http.get(this.urlString + '/' + id)
+  getClassgroup(id : string) : Observable<ClassgroupWithMembers> {
+    return this.http.get<ClassgroupWithMembers>(this.urlString + '/' + id)
   }
 
   getAllClassgroupsForUserId(userId: string) {
