@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {AuthenticationService} from "../authentication/authentication.service";
 import {environment} from "../../../environment/environment";
 import {Observable} from "rxjs";
-import {Coach} from "../../model/coach/Coach";
+import {Coach} from "../../models/coach/coach";
 
 @Injectable({
   providedIn: 'root'

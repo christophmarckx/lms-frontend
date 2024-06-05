@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {CreateClassgroup} from "../../models/CreateClassgroup";
-import {Classgroup} from "../../models/Classgroup";
-import {ClassgroupWithMembers} from "../../models/ClassgroupWithMembers";
+import {CreateClassgroup} from "../../models/classgroup/create-classgroup";
+import {ClassgroupWithMembers} from "../../models/classgroup/classgroup-with-members";
+import {Classgroup} from "../../models/classgroup/classgroup";
+
 
 @Injectable({
   providedIn: 'root'

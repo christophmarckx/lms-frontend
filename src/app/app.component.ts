@@ -1,10 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {LayoutComponent} from "./layout/layout.component";
-import {FooterComponent} from "./layout/footer/footer.component";
-import {HeaderComponent} from "./layout/header/header.component";
-import {PopupComponent} from "./popup/popup.component";
 import {PopupService} from "./services/popup/popup.service";
+import {LayoutComponent} from "./component/layout/layout.component";
+import {FooterComponent} from "./component/layout/footer/footer.component";
+import {HeaderComponent} from "./component/layout/header/header.component";
+import {PopupComponent} from "./component/popup/popup.component";
 
 @Component({
   selector: 'app-root',
