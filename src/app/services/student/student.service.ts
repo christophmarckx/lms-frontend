@@ -23,7 +23,7 @@ export class StudentService {
     return this.http.post<Student>(this.url, createStudent);
   }
 
-  getStudentById(studentId?: string): Observable<any> {
+  getStudentById(studentId?: string): Observable<Student> {
     if (studentId) {
       return this.http.get<Student>(this.url + '/' + studentId);
     }
