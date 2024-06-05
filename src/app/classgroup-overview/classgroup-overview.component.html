@@ -1,0 +1,28 @@
+@if(classgroupWithMembers){
+  <div class="class-overview">
+    <h2>{{classgroupWithMembers.name}}</h2>
+    <p>{{classgroupWithMembers.course.name}}</p>
+    <div class="list-header">
+      <h3>Coaches</h3>
+    </div>
+    @for(coach of classgroupWithMembers.coaches; track coach) {
+      <app-user-card [user]="coach" [isPair]="$index % 2 === 0"></app-user-card>
+    }
+    <div class="list-header" id="second-list">
+      <h3>Students</h3>
+    </div>
+    @if(classgroupWithMembers.students.length > 0){
+      <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+        @for(student of classgroupWithMembers.students; track student) {
+          <app-user-card
+            [user]="student"
+            [isPair]="$index % 2 === 0"
+            [showProfileLink]="authenticatedUser.role === UserRole.COACH">
+          </app-user-card>
+        }
+      </ng-container>
+    } @else {
+      <p>No student are attending this class</p>
+    }
+  </div>
+}

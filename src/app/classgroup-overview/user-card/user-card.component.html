@@ -1,0 +1,9 @@
+<div class="user-card-root" [class.different-bg]="!isPair">
+  <div>
+    <p>{{user.displayName}}</p>
+  </div>
+
+  @if(showProfileLink){
+    <button class="btn" routerLink='/students/{{user.id}}'>View profile</button>
+  }
+</div>

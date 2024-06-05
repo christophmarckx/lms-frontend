@@ -36,10 +36,10 @@ export class ModuleGalleryComponent implements OnInit{
     return this.moduleService.getModuleById(moduleId).subscribe(module => this.selectedModule = module);
   }
 
-
   ngOnInit() {
     this.moduleService.getAllModules().subscribe(modules => this.modules = modules);
   }
 
   protected readonly UserRole = UserRole;
+
 }

@@ -1,0 +1,32 @@
+.user-card-root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #9bccd850;
+}
+
+p {
+  padding: 20px 15px;
+  margin: 0;
+}
+
+.different-bg {
+  background-color: #489ccc50;
+}
+
+.btn, .btn-disabled {
+  width: 160px;
+  height: fit-content;
+  margin-right: 15px;
+}
+
+.btn-disabled:hover {
+  background-color: #FFFFFF50;
+}
+
+.user-card-root div {
+  flex:1;
+  margin-right: 10px;
+}
