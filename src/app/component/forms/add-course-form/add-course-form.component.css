@@ -6,11 +6,6 @@
   padding: 1rem 0;
 }
 
-.available-modules-container, .added-modules-container{
-  max-width: 50%;
-  width: 500px;
-}
-
 .available-modules, .added-modules {
   display: flex;
   height: 100%;
@@ -20,6 +15,13 @@
   width:100%;
   flex-direction: column;
   background-color: white;
+}
+
+.available-modules-container, .added-modules-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 48%;
+  width: 300px;
 }
 
 .available-modules p, .added-modules p {
@@ -34,12 +36,6 @@
   transition: all;
 }
 
-.available-modules-container, .added-modules-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 45%;
-  width: 300px;
-}
 
 .added-modules-container{
   text-align: right;
