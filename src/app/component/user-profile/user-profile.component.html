@@ -1,14 +1,16 @@
 @if (user) {
-  <p><b>User ID:</b> {{user.id}}</p>
-  <p><b>Displayname:</b>  {{user.displayName}}</p>
+  <h2>Welcome, {{ user.displayName }}!</h2>
+  <div>
+    <p>Email address: {{user.email}}</p>
+  </div>
   <div>
     @if (user.role === UserRole.COACH) {
-      <p><b>Classgroup(s):</b></p>
+      <h3>Your classgroups:</h3>
     } @else {
-      <p><b>Classgroup:</b></p>
+      <h3>Your classgroup:</h3>
     }
-    @for (classgroup of classgroups; track classgroup.id) {
-      <a routerLink='/classgroups/{{classgroup.id}}'>{{ classgroup.name }}</a>
-    }
+      @for (classgroup of classgroups; track classgroup) {
+        <app-classgroup-card [classGroup]="classgroup" [isPair]="$index % 2 === 0"> </app-classgroup-card>
+      }
   </div>
 }

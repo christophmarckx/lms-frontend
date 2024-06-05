@@ -1,25 +1,28 @@
-.modules-container, .single-module-container {
+.modules-container {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 5rem;
   padding: 1rem 0;
+}
+
+.available-modules-container, .added-modules-container{
+  max-width: 50%;
+  width: 500px;
 }
 
 .available-modules, .added-modules {
   display: flex;
-  width: 35rem;
+  height: 100%;
   padding: 1rem;
   border-radius: 0.25rem;
   border: 1px solid #ced4da;
-  max-width: 40%;
+  width:100%;
   flex-direction: column;
   background-color: white;
 }
 
 .available-modules p, .added-modules p {
-  margin: 0;
   cursor: pointer;
   margin: 0.2rem 0;
 }
@@ -29,6 +32,24 @@
   font-weight: bold;
   color: #489ccc;
   transition: all;
+}
+
+.available-modules-container, .added-modules-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 45%;
+  width: 300px;
+}
+
+.added-modules-container{
+  text-align: right;
+}
+
+ .available-modules-container h3, .added-modules-container h3 {
+  color: #489ccc;
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
 }
 
 h1 {
@@ -41,4 +62,5 @@ h3 {
   font-size: 1.5rem;
   font-weight: bold;
   color: #489ccc;
+  width: fit-content;
 }

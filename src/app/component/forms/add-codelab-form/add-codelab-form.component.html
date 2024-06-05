@@ -33,12 +33,14 @@
     @if (createCodelabError) {
       <div class="backend-error" [innerHTML]="createCodelabError | processError"></div>
     }
-    <button class="btn btn-create"
-            type="submit"
-            [class.btn]="!isFormInvalid"
-            [class.btn-disabled]="isFormInvalid"
-            [disabled]="isFormInvalid">
-      CREATE
-    </button>
+    <div class="btn-container">
+      <button class="btn btn-create"
+              type="submit"
+              [class.btn]="!isFormInvalid"
+              [class.btn-disabled]="isFormInvalid"
+              [disabled]="isFormInvalid">
+        Validate
+      </button>
+    </div>
   </form>
 </div>

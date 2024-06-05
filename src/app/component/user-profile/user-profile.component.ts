@@ -5,12 +5,14 @@ import {AuthenticationService} from "../../services/authentication/authenticatio
 import {ClassgroupService} from "../../services/classgroup/classgroup.service";
 import {Classgroup} from "../../models/classgroup/classgroup";
 import { UserRole } from '../../models/authentication/authenticated-user';
+import {ClassgroupCardComponent} from "./classgroup-card/classgroup-card.component";
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    ClassgroupCardComponent
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'

@@ -5,21 +5,25 @@
     <label class="form-label" for="description">Description<input class="form-control" formControlName="description"
                                                                   id="description" type="text"/></label>
     <div class="modules-container">
-      <div class="available-modules">
+      <div class="available-modules-container">
         <h3>Available modules</h3>
-        @for (module of modules; track module) {
-          <p (click)="addModuleToCreationList(module)">
-            {{ module.name }}
-          </p>
-        }
+        <div class="available-modules">
+          @for (module of modules; track module) {
+            <p (click)="addModuleToCreationList(module)">
+              {{ module.name }}
+            </p>
+          }
+        </div>
       </div>
-      <div class="added-modules">
+      <div class="added-modules-container">
         <h3>Added Modules</h3>
-        @for (moduleToAdd of modulesToAdd; track moduleToAdd) {
-          <p (click)="removeModuleFromCreationList(moduleToAdd)">
-            {{ moduleToAdd.name }}
-          </p>
-        }
+        <div class="added-modules">
+          @for (moduleToAdd of modulesToAdd; track moduleToAdd) {
+            <p (click)="removeModuleFromCreationList(moduleToAdd)">
+              {{ moduleToAdd.name }}
+            </p>
+          }
+        </div>
       </div>
     </div>
     @if (isFormInvalid) {

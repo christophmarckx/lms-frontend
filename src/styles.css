@@ -90,6 +90,7 @@ select {
   justify-content: flex-end;
 }
 
+
 .btn-disabled {
   color: #489ccc;
   text-decoration: none;
@@ -109,6 +110,28 @@ select {
   color: #fff;
   border: 2px solid #2f6d91;
   background-color: #2f6d91;
+}
+
+.btn-add {
+  background: #08c400;
+  border: 2px solid #08c400;
+}
+
+.btn-add:hover {
+  background: #ffffff;
+  color: #08c400;
+  border: 2px solid #08c400;
+}
+
+.btn-redirect {
+  background: #2f6d91;
+  border: 2px solid #2f6d91;
+}
+
+.btn-redirect:hover {
+  background: #ffffff;
+  color: #2f6d91;
+  border: 2px solid #2f6d91;
 }
 
 .btn-cancel {
