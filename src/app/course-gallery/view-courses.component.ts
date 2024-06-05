@@ -1,13 +1,10 @@
-import {Component, inject, Inject, OnInit} from '@angular/core';
+import {Component, inject,  OnInit} from '@angular/core';
 import {AsyncPipe, NgIf} from "@angular/common";
-import {ModuleCardComponent} from "../module-gallery/module-card/module-card.component";
-import {ModuleWithCoursesComponent} from "../module-gallery/module-with-courses/module-with-courses.component";
 import {RouterLink} from "@angular/router";
 import {AuthenticationService} from "../services/authentication/authentication.service";
 import {UserRole} from "../model/authentication/AuthenticatedUser";
 import {CourseService} from "../services/course/course.service";
 import {Course} from "../models/Course";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import {CourseCardComponent} from "./course-card/course-card.component";
 
 @Component({

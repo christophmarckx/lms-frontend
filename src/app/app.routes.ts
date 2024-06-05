@@ -11,6 +11,7 @@ import {authGuard} from "./authentication/auth.guard";
 import {ClassgroupOverviewComponent} from "./classgroup-overview/classgroup-overview.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {ViewCoursesComponent} from "./course-gallery/view-courses.component";
+import {ViewCodelabComponent} from "./view-codelab/view-codelab.component";
 
 export const routes: Routes = [
   {
@@ -59,6 +60,11 @@ export const routes: Routes = [
   {
     path: 'classgroups/:classgroupId',
     component: ClassgroupOverviewComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'codelabs/:id',
+    component: ViewCodelabComponent,
     canActivate: [authGuard]
   }
 ];

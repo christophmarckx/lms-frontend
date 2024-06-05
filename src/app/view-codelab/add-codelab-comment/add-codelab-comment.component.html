@@ -1,0 +1,41 @@
+<main>
+  <section>
+    <div class="form-group">
+      <form (ngSubmit)="addComment()" [formGroup]="createCodelabCommentForm">
+        <label class="form-label" for="comment">
+          <input class="form-control" formControlName="comment" id="comment" type="text" placeholder="Comment here... :)"/>
+        </label>
+
+        @if (isFormInvalid) {
+          <div class="form-errors">
+            @for (controlName of formControlNames; track controlName) {
+              <div>
+                @if (hasError(controlName, 'required')) {
+                  - {{ controlName }} is required.
+                } @else if (hasError(controlName, 'minlength')) {
+                  - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
+                } @else if (hasError(controlName, 'maxlength')) {
+                  - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
+                }
+              </div>
+            }
+          </div>
+        }
+        @if (createCodelabCommentError) {
+          <div class="backend-error" [innerHTML]="createCodelabCommentError | processError"></div>
+        }
+        <div class="btn-container">
+          <button class="btn"
+                  type="submit"
+                  [class.btn]="!isFormInvalid"
+                  [class.btn-disabled]="isFormInvalid"
+                  [disabled]="isFormInvalid"
+          >
+            Add comment
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
