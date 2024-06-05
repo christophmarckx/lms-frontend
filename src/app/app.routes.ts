@@ -12,6 +12,7 @@ import {UpdateCourseFormComponent} from "./component/forms/update-course-form/up
 import {UserProfileComponent} from "./component/user-profile/user-profile.component";
 import {ClassgroupOverviewComponent} from "./component/classgroup-overview/classgroup-overview.component";
 import {ViewCodelabComponent} from "./component/view-codelab/view-codelab.component";
+import {CourseOverviewComponent} from "./component/course-overview/course-overview.component";
 
 
 export const routes: Routes = [
@@ -30,6 +31,11 @@ export const routes: Routes = [
   {
     path: 'courses',
     component: ViewCoursesComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'courses/:courseId',
+    component: CourseOverviewComponent,
     canActivate: [authGuard]
   },
   {

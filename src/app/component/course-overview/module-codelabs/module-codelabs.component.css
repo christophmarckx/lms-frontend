@@ -1,0 +1,14 @@
+.title-module{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  /*background-color: #9bccd850;*/
+  background-color: #489ccc50;
+}
+
+p {
+  padding: 10px 15px;
+  margin: 0;
+}

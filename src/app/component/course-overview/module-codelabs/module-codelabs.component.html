@@ -1,0 +1,11 @@
+@if (moduleWithCodelabs) {
+  @for (moduleWithCodelabs of moduleWithCodelabs.modules; track moduleWithCodelabs) {
+    <div class ="title-module" >
+      <p style="{{getMargin(level)}}">{{moduleWithCodelabs.name}}</p>
+    </div>
+    <app-codelabs-card [codelabs]="moduleWithCodelabs.codelabs"></app-codelabs-card>
+    <app-module-codelabs [level]="level+1" [moduleWithCodelabs]="moduleWithCodelabs"></app-module-codelabs>
+
+  }
+
+}

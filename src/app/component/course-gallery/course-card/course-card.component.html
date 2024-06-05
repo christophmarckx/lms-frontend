@@ -1,6 +1,11 @@
 <div class="course-card-root" [class.different-bg]="!isPair">
   <div>
-    <p>Course name: {{course.name}}</p>
+    <p>{{course.name}}</p>
   </div>
-  </div>
-
+  <button
+    class="btn"
+    [routerLink]="['/courses', course.id]"
+  >
+    View detail
+  </button>
+</div>

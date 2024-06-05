@@ -1,0 +1,12 @@
+@if (courseWithModules) {
+    <div class="page-header">
+      <h1>Codelabs of: {{ courseWithModules.name }}</h1>
+    </div>
+    @for (moduleWithCodelabs of courseWithModules.modules; track moduleWithCodelabs) {
+      <div class="course-root-module" >
+        <p>{{ moduleWithCodelabs.name }}</p>
+      </div>
+      <app-codelabs-card [codelabs]="moduleWithCodelabs.codelabs"></app-codelabs-card>
+      <app-module-codelabs [level]="1" [moduleWithCodelabs]="moduleWithCodelabs"></app-module-codelabs>
+    }
+}
