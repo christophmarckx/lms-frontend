@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CourseService} from "../services/course/course.service";
 import {Course} from "../models/Course";
@@ -9,6 +9,9 @@ import {ClassgroupService} from "../services/classgroup/classgroup.service";
 import {Router} from "@angular/router";
 import {PopupService} from "../services/popup/popup.service";
 import {ProcessErrorPipe} from "../pipe/process-error.pipe";
+import {Coach} from "../model/coach/Coach";
+import {CoachService} from "../services/coach/coach.service";
+import {AuthenticationService} from "../services/authentication/authentication.service";
 
 
 @Component({
@@ -22,27 +25,37 @@ import {ProcessErrorPipe} from "../pipe/process-error.pipe";
   templateUrl: './add-classgroup-form.component.html',
   styleUrl: './add-classgroup-form.component.css'
 })
-export class AddClassgroupFormComponent {
+export class AddClassgroupFormComponent implements OnInit {
 
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly courseService: CourseService = inject(CourseService);
   private readonly classgroupService: ClassgroupService = inject(ClassgroupService);
   private readonly router: Router = inject(Router);
   private readonly popupService: PopupService = inject(PopupService);
-  public formControlNames: string[] = ['name','courseId'];
+  private readonly coachService: CoachService = inject(CoachService);
+  private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
+  public formControlNames: string[] = ['name', 'courseId'];
   public isFormInvalid: boolean = true;
   public createClassgroupError?: string;
   public courseOptions$: Observable<Course[]>;
   public selectedCourseId: string;
-
-  getCourses(): Observable<Course[]> {
-    return this.courseService.getAllCourses();
-  }
+  public coaches: Coach[];
+  public coachesToAdd: Coach[] = [];
+  private authenticatedCoachId: string;
 
   constructor() {
     this.createClassgroupForm.valueChanges.subscribe(() => this.onFormUpdate());
     this.courseOptions$ = this.getCourses();
     this.selectedCourseId = "";
+  }
+
+  ngOnInit() {
+    this.getCoaches();
+    this.authenticationService.getAuthenticatedUser().subscribe(user => this.authenticatedCoachId = user.id);
+  }
+
+  getCourses(): Observable<Course[]> {
+    return this.courseService.getAllCourses();
   }
 
   createClassgroupForm = this.formBuilder.group({
@@ -69,8 +82,10 @@ export class AddClassgroupFormComponent {
     const rawValues = this.createClassgroupForm.getRawValue();
     const createClassgroup: CreateClassgroup = {
       name: rawValues.name!,
-      courseId: rawValues.courseId!
+      courseId: rawValues.courseId!,
+      coaches: this.coachesToAdd.map(coach => coach.id)
     }
+    console.log(createClassgroup.coaches);
     this.classgroupService.addClassgroup(createClassgroup).subscribe(
       (response) => {
         this.router.navigate(['']);
@@ -92,5 +107,30 @@ export class AddClassgroupFormComponent {
       return errors[errorName];
     }
     return '';
+  }
+
+  private getCoaches() {
+    return this.coachService.getAllCoaches()
+      .subscribe(coaches => {
+        const connectedCoach = coaches.filter(coach => coach.id === this.authenticatedCoachId)[0];
+        this.coachesToAdd.push(connectedCoach);
+        this.coaches = coaches.filter(coach => coach.id !== this.authenticatedCoachId);
+      });
+  }
+
+  addCoachToCreationList(coachToAdd: Coach) {
+    console.log(coachToAdd);
+    this.coachesToAdd.push(coachToAdd);
+    this.coaches = this.coaches.filter(coach => coach.id !== coachToAdd.id);
+  }
+
+  removeCoachFromCreationList(coachToRemove: Coach) {
+    if (this.coachesToAdd.length !== 1) {
+      this.coaches.push(coachToRemove);
+      this.coachesToAdd = this.coachesToAdd.filter(coach => coach.id !== coachToRemove.id);
+    }
+    else {
+      this.popupService.showPopup("Unable to remove coach : we need at least one coach to create a Class.", true);
+    }
   }
 }
