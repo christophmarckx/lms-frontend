@@ -1,9 +1,44 @@
 .modules-container, .single-module-container {
+  width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  gap: 5rem;
+  padding: 1rem 0;
 }
 
 .available-modules, .added-modules {
   display: flex;
+  width: 35rem;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+  max-width: 40%;
   flex-direction: column;
+  background-color: white;
+}
+
+.available-modules p, .added-modules p {
+  margin: 0;
+  cursor: pointer;
+  margin: 0.2rem 0;
+}
+
+.available-modules p:hover, .added-modules  p:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: #489ccc;
+  transition: all;
+}
+
+h1 {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #489ccc;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #489ccc;
 }

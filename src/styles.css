@@ -29,19 +29,30 @@ form {
 }
 
 label {
-  display: flex;
+  display: block;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin: 1rem 0;
   width: 100%;
+  color: #489ccc;
+  font-weight: bold;
 }
 
 input {
-  margin-left: 10px;
   padding: 0 5px;
   border-radius: 5px;
-  width: 250px;
+  width: 10px;
+  border: none;
   height: 35px;
+}
+
+select {
+  padding: 0 5px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  width: 100%;
+  height: 35px;
+  background-color: white;
 }
 
 .form-errors {
@@ -109,12 +120,6 @@ input {
   color: #f46546;
 }
 
-select {
-  height: 35px;
-  width: 250px;
-  color: #212934;
-}
-
 form h1 {
   font-size: 1.7em;
   font-weight: bold;
@@ -124,4 +129,5 @@ form h1 {
 
 .form-group {
   width: 100%;
+  padding: 1rem;
 }
