@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
-import {Module} from "../../models/module";
-import {CreateModule} from "../../models/CreateModule";
-import {ModuleWithCourses} from "../../models/ModuleWithCourses";
+import {Module} from "../../models/module/module";
+import {ModuleWithCourses} from "../../models/module/module-with-courses";
 
 @Injectable({
   providedIn: 'root'

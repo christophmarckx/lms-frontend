@@ -1,17 +1,18 @@
 import {Routes} from '@angular/router';
-import {HomeComponent} from "./home/home.component";
-import {RegisterComponent} from "./register/register.component";
-import {AddCourseFormComponent} from "./add-course-form/add-course-form.component";
-import {AddClassgroupFormComponent} from "./add-classgroup-form/add-classgroup-form.component";
-import {UpdateCourseFormComponent} from "./update-course-form/update-course-form.component";
-import {ModuleGalleryComponent} from "./module-gallery/module-gallery.component";
-import {AddModuleFormComponent} from "./add-module-form/add-module-form.component";
-import {AddCodelabFormComponent} from "./add-codelab-form/add-codelab-form.component";
 import {authGuard} from "./authentication/auth.guard";
-import {ClassgroupOverviewComponent} from "./classgroup-overview/classgroup-overview.component";
-import {UserProfileComponent} from "./user-profile/user-profile.component";
-import {ViewCoursesComponent} from "./course-gallery/view-courses.component";
-import {ViewCodelabComponent} from "./view-codelab/view-codelab.component";
+import {HomeComponent} from "./component/home/home.component";
+import {RegisterComponent} from "./component/register/register.component";
+import {AddCourseFormComponent} from "./component/forms/add-course-form/add-course-form.component";
+import {ViewCoursesComponent} from "./component/course-gallery/view-courses.component";
+import {AddModuleFormComponent} from "./component/forms/add-module-form/add-module-form.component";
+import {AddCodelabFormComponent} from "./component/forms/add-codelab-form/add-codelab-form.component";
+import {AddClassgroupFormComponent} from "./component/forms/add-classgroup-form/add-classgroup-form.component";
+import {ModuleGalleryComponent} from "./component/module-gallery/module-gallery.component";
+import {UpdateCourseFormComponent} from "./component/forms/update-course-form/update-course-form.component";
+import {UserProfileComponent} from "./component/user-profile/user-profile.component";
+import {ClassgroupOverviewComponent} from "./component/classgroup-overview/classgroup-overview.component";
+import {ViewCodelabComponent} from "./component/view-codelab/view-codelab.component";
+
 
 export const routes: Routes = [
   {
