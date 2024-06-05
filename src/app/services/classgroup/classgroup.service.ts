@@ -17,8 +17,8 @@ export class ClassgroupService {
     this.urlString = `${environment.backendUrl}/classgroups`
   }
 
-  addClassgroup(classgroup: CreateClassgroup): Observable<any> {
-    return this.http.post(this.urlString, classgroup);
+  addClassgroup(classgroup: CreateClassgroup): Observable<CreateClassgroup> {
+    return this.http.post<CreateClassgroup>(this.urlString, classgroup);
   }
 
   getClassgroup(id : string) : Observable<ClassgroupWithMembers> {
