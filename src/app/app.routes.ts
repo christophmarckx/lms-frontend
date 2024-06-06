@@ -14,6 +14,7 @@ import {ClassgroupOverviewComponent} from "./component/classgroup-overview/class
 import {ViewCodelabComponent} from "./component/view-codelab/view-codelab.component";
 import {CodelabGalleryComponent} from "./component/codelab-gallery/codelab-gallery.component";
 import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgroup-gallery.component";
+import {LoadingSpinnerComponent} from "./component/shared/loading-spinner/loading-spinner.component";
 
 
 export const routes: Routes = [
@@ -85,4 +86,8 @@ export const routes: Routes = [
     component: UserProfileComponent,
     canActivate: [authGuard]
   },
+  {
+    path: 'test',
+    component: LoadingSpinnerComponent
+  }
 ];
