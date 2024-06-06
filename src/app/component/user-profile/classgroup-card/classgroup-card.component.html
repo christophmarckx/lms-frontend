@@ -1,0 +1,7 @@
+<div class="classgroup-card-root" [class.different-bg]="!isPair">
+  <a routerLink="/classgroups/{{classGroup.id}}">{{ classGroup.name }}</a>
+
+  <button class="btn btn-redirect" routerLink="/classgroups/{{classGroup.id}}">
+    Check it out!
+  </button>
+</div>

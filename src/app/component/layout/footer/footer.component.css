@@ -5,6 +5,7 @@ footer {
   align-items: center;
   justify-content: center;
   border-top: 2px solid #489ccc;
+  margin-top: 1rem;
 }
 
 p {

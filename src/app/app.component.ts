@@ -2,8 +2,8 @@ import {Component, inject, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {PopupService} from "./services/popup/popup.service";
 import {LayoutComponent} from "./component/layout/layout.component";
-import {FooterComponent} from "./component/layout/footer/footer.component";
 import {HeaderComponent} from "./component/layout/header/header.component";
+import {FooterComponent} from "./component/layout/footer/footer.component";
 import {PopupComponent} from "./component/popup/popup.component";
 
 @Component({

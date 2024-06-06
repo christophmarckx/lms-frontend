@@ -68,7 +68,7 @@ export class AddModuleFormComponent implements OnInit {
   ngOnInit(): void {
     this.moduleService.getAllModules().subscribe(module => {
       this.modules = module;
-      this.modules.unshift({id: "", name: "<No parent module>", parentModule: null})
+      // this.modules.unshift({id: "", name: "<No parent module>", parentModule: null})
     });
   }
 

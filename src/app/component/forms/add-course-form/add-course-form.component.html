@@ -1,20 +1,29 @@
+<h1>Add a new course!</h1>
 <div class="form-group">
   <form (ngSubmit)="addCourse()" [formGroup]="createCourseForm">
-    <h1>Add a new course!</h1>
     <label class="form-label" for="name">Name<input class="form-control" formControlName="name" id="name" type="text"/></label>
-    <label class="form-label" for="description">Description<input class="form-control" formControlName="description" id="description" type="text"/></label>
+    <label class="form-label" for="description">Description<input class="form-control" formControlName="description"
+                                                                  id="description" type="text"/></label>
     <div class="modules-container">
-      <div class="available-modules">
-        MODULES
-        @for (module of modules; track module) {
-          <div (click)="addModuleToCreationList(module)" class="single-module-container">{{module.name}}</div>
-        }
+      <div class="available-modules-container">
+        <h3>Available modules</h3>
+        <div class="available-modules">
+          @for (module of modules; track module) {
+            <p (click)="addModuleToCreationList(module)">
+              {{ module.name }}
+            </p>
+          }
+        </div>
       </div>
-      <div class="added-modules">
-        MODULES TO ADD
-        @for (moduleToAdd of modulesToAdd; track moduleToAdd) {
-          <div (click)="removeModuleFromCreationList(moduleToAdd)" class="single-module-container">{{moduleToAdd.name}}</div>
-        }
+      <div class="added-modules-container">
+        <h3>Added Modules</h3>
+        <div class="added-modules">
+          @for (moduleToAdd of modulesToAdd; track moduleToAdd) {
+            <p (click)="removeModuleFromCreationList(moduleToAdd)">
+              {{ moduleToAdd.name }}
+            </p>
+          }
+        </div>
       </div>
     </div>
     @if (isFormInvalid) {

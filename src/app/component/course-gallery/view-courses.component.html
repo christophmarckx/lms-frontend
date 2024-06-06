@@ -3,7 +3,7 @@
     <h1>View all courses</h1>
     <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
       @if (authenticatedUser.role === UserRole.COACH) {
-        <button class="btn" routerLink="add-course">Create course</button>
+        <button class="btn btn-add" routerLink="add-course">Create course</button>
       }
     </ng-container>
   </div>

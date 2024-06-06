@@ -1,9 +1,50 @@
-.coaches-container, .single-coach-container {
+.coaches-container {
+  width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem 0;
 }
 
 .available-coaches, .added-coaches {
   display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
   flex-direction: column;
+  background-color: white;
+}
+
+.available-coaches-container, .added-coaches-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 48%;
+  width: 500px;
+}
+
+.available-coaches p, .added-coaches p {
+  margin: 0;
+  cursor: pointer;
+  margin: 0.2rem 0;
+}
+
+.available-coaches p:hover, .added-coaches p:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: #489ccc;
+  transition: all;
+}
+
+h1 {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #489ccc;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #489ccc;
 }

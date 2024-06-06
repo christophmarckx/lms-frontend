@@ -1,48 +1,44 @@
-<main>
-  <section>
-    <div class="form-group">
-      <form (ngSubmit)="addModule()" [formGroup]="createModuleForm">
-        <h1>Add a new module!</h1>
-        <label class="form-label" for="name">
-          Module name
-          <input class="form-control" formControlName="name" id="name" type="text" placeholder="Enter name... :)"/>
-        </label>
-        <label class="form-label" for="parentModule">
-          Parent module
-          <select id="parentModule" formControlName="parentModuleId">
-            <option *ngFor="let module of modules" value="{{module.id}}">{{ module.name }}</option>
-          </select>
-        </label>
+<h1>Add a new module!</h1>
+<div class="form-group">
+  <form (ngSubmit)="addModule()" [formGroup]="createModuleForm">
+    <label class="form-label" for="name">
+      Module name
+      <input class="form-control" formControlName="name" id="name" type="text">
+    </label>
+    <label class="form-label" for="parentModule">
+      Parent module
+      <select id="parentModule" formControlName="parentModuleId">
+        <option *ngFor="let module of modules" value="{{module.id}}">{{ module.name }}</option>
+      </select>
+    </label>
 
-        @if (isFormInvalid) {
-          <div class="form-errors">
-            @for (controlName of formControlNames; track controlName) {
-              <div>
-                @if (hasError(controlName, 'required')) {
-                  - {{ controlName }} is required.
-                } @else if (hasError(controlName, 'minlength')) {
-                  - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
-                } @else if (hasError(controlName, 'maxlength')) {
-                  - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
-                }
-              </div>
+    @if (isFormInvalid) {
+      <div class="form-errors">
+        @for (controlName of formControlNames; track controlName) {
+          <div>
+            @if (hasError(controlName, 'required')) {
+              - {{ controlName }} is required.
+            } @else if (hasError(controlName, 'minlength')) {
+              - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
+            } @else if (hasError(controlName, 'maxlength')) {
+              - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
             }
           </div>
         }
-        @if (createModuleError) {
-          <div class="backend-error" [innerHTML]="createModuleError | processError"></div>
-        }
-        <div class="btn-container">
-          <button class="btn"
-                  type="submit"
-                  [class.btn]="!isFormInvalid"
-                  [class.btn-disabled]="isFormInvalid"
-                  [disabled]="isFormInvalid"
-          >
-            Validate
-          </button>
-        </div>
-      </form>
+      </div>
+    }
+    @if (createModuleError) {
+      <div class="backend-error" [innerHTML]="createModuleError | processError"></div>
+    }
+    <div class="btn-container">
+      <button class="btn"
+              type="submit"
+              [class.btn]="!isFormInvalid"
+              [class.btn-disabled]="isFormInvalid"
+              [disabled]="isFormInvalid"
+      >
+        Validate
+      </button>
     </div>
-  </section>
-</main>
+  </form>
+</div>

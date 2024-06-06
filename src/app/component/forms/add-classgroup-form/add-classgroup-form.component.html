@@ -1,27 +1,34 @@
+<h1>Add a new classgroup!</h1>
 <div class="form-group">
   <form (ngSubmit)="addClassgroup()" [formGroup]="createClassgroupForm">
-    <h1>Add a new classgroup!</h1>
-    <label class="form-label" for="name">Name<input class="form-control" formControlName="name" id="name" type="text" /></label>
-    <label class="form-label" for="courseId">
-      Course
-      <select formControlName="courseId" (change)="onCourseChange($event)">
-        @for (course of courseOptions$ | async; track course.id) {
-          <option [value]="course.id">{{course.name}}</option>
-        }
-      </select>
-    </label>
+    <label class="form-label" for="name">Name </label>
+    <input class="form-control" formControlName="name" id="name" type="text"/>
+    <label class="form-label" for="courseId">Course </label>
+    <select formControlName="courseId" (change)="onCourseChange($event)">
+      @for (course of courseOptions$ | async; track course.id) {
+        <option [value]="course.id">{{ course.name }}</option>
+      }
+    </select>
     <div class="coaches-container">
-      <div class="available-coaches">
-        COACHES
-        @for (coach of coaches; track coach) {
-          <div (click)="addCoachToCreationList(coach)" class="single-coach-container">{{coach.displayName}}</div>
-        }
+      <div class="available-coaches-container">
+        <h3>Available coaches</h3>
+        <div class="available-coaches">
+          @for (coach of coaches; track coach) {
+            <p (click)="addCoachToCreationList(coach)">
+              {{ coach.displayName }}
+            </p>
+          }
+        </div>
       </div>
-      <div class="added-coaches">
-        COACHES TO ADD
-        @for (coachToAdd of coachesToAdd; track coachToAdd) {
-          <div (click)="removeCoachFromCreationList(coachToAdd)" class="single-coach-container">{{coachToAdd.displayName}}</div>
-        }
+      <div class="added-coaches-container">
+        <h3>Added coaches</h3>
+        <div class="added-coaches">
+          @for (coachToAdd of coachesToAdd; track coachToAdd) {
+            <p (click)="removeCoachFromCreationList(coachToAdd)">
+              {{ coachToAdd.displayName }}
+            </p>
+          }
+        </div>
       </div>
     </div>
     @if (isFormInvalid) {
@@ -40,7 +47,7 @@
       </div>
     }
     @if (createClassgroupError) {
-      <div class="backend-error" [innerHTML]="createClassgroupError | processError"> </div>
+      <div class="backend-error" [innerHTML]="createClassgroupError | processError"></div>
     }
     <div class="btn-container">
       <button class="btn"
