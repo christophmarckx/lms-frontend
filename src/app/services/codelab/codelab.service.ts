@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {CreateCodelab} from "../../models/codelab/create-codelab";
-import {environment} from "../../../environment/environment";
+import {environment} from "../../../environments/environment";
 import {Codelab} from "../../models/codelab/codelab";
 
 @Injectable({
