@@ -8,6 +8,15 @@
   font-weight: bold;
 }
 
+.empty-module {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #9bccd850;
+}
+
 p {
   padding: 10px 15px;
   margin: 0;

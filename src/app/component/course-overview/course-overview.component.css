@@ -2,7 +2,7 @@
   margin-bottom: 20px;
 }
 
-.course-root-module{
+.course-root-module {
   font-weight: bold;
   display: flex;
   flex-direction: row;
@@ -12,6 +12,25 @@
   background-color: #489CCC;
   margin-top: 20px;
   color: white;
+}
+
+.title-module{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #489ccc50;
+  font-weight: bold;
+}
+
+.empty-module {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #9bccd850;
 }
 
 .codelabs-title {

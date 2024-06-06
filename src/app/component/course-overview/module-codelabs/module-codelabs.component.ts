@@ -16,6 +16,6 @@ export class ModuleCodelabsComponent {
   @Input() level: number;
 
   getMargin(level: number) {
-    return 'margin-left:' + 10 * level + 'px';
+    return 'margin-left:' + 20 * level + 'px';
   }
 }
