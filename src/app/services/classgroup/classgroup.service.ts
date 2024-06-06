@@ -29,6 +29,10 @@ export class ClassgroupService {
   getAllClassgroupsForUserId(userId: string) {
     return this.http.get<Classgroup[]>(this.urlString + '?userId=' + userId)
   }
+
+  getAllClassgroups() {
+    return this.http.get<Classgroup[]>(this.urlString);
+  }
   enrollStudent(classgroupId : string): Observable<any>  {
     return this.http.put(this.urlString + '/' + classgroupId +"/add-student", null);
   }

@@ -1,0 +1,41 @@
+@defer (when classgroups) {
+  <div class="form-group">
+    <form (ngSubmit)="registerToClassGroup()" [formGroup]="enrollClassgroupForm">
+      <label class="form-label" for="classgroup-select">Enroll in a class! </label>
+
+      <select id="classgroup-select" formControlName="classgroup" (change)="onFormUpdate()">
+        @for (classgroup of classgroups; track classgroup) {
+          <option [value]="classgroup.id">{{ classgroup.name }}</option>
+        }
+      </select>
+
+
+
+      @if (isFormInvalid) {
+        <div class="form-errors">
+          @for (controlName of formControlNames; track controlName) {
+            <div>
+              @if (hasError(controlName, 'required')) {
+                - {{ controlName }} is required.
+              }
+            </div>
+          }
+        </div>
+      }
+      @if (enrollFormError) {
+        <div class="backend-error" [innerHTML]="enrollFormError | processError"></div>
+      }
+      <div class="btn-container">
+        <button class="btn btn-create"
+                type="submit"
+                [class.btn]="!isFormInvalid"
+                [class.btn-disabled]="isFormInvalid"
+                [disabled]="isFormInvalid">
+          Validate
+        </button>
+      </div>
+    </form>
+  </div>
+} @placeholder {
+  coucouuuuuu
+}

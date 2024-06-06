@@ -1,16 +1,19 @@
 @if (user) {
   <h2>Welcome, {{ user.displayName }}!</h2>
   <div>
-    <p>Email address: {{user.email}}</p>
+    <p>Email address: {{ user.email }}</p>
   </div>
   <div>
     @if (user.role === UserRole.COACH) {
       <h3>Your classgroups:</h3>
+      @for (classgroup of classgroups; track classgroup) {
+        <app-classgroup-card [classGroup]="classgroup" [isPair]="$index % 2 === 0"></app-classgroup-card>
+      }
     } @else {
       <h3>Your classgroup:</h3>
-    }
-      @for (classgroup of classgroups; track classgroup) {
-        <app-classgroup-card [classGroup]="classgroup" [isPair]="$index % 2 === 0"> </app-classgroup-card>
+      @if (classgroups !== undefined){
+        <app-enroll-student-form [enrolledClassGroup]="classgroups[0]"></app-enroll-student-form>
       }
+    }
   </div>
 }

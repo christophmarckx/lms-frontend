@@ -36,6 +36,7 @@ export class AddCodelabFormComponent implements OnInit {
   getModules(): void {
     this.moduleService.getAllModules().subscribe(module => this.modules = module);
   }
+
   ngOnInit() {
     this.getModules();
     this.createCodelabForm = this.formBuilder.group({
