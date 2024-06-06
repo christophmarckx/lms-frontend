@@ -55,11 +55,12 @@ export class UpdateCodelabFormComponent implements OnInit{
     if (!this.codelabId) return;
     this.codelabService.getCodelab(this.codelabId).subscribe(
         codelab => {
+          console.log(codelab)
           this.codelab = codelab;
           this.updateCodelabForm.controls["name"].setValue(codelab.name);
           this.updateCodelabForm.controls["description"].setValue(codelab.description);
-          //this.updateCodelabForm.controls["moduleId"].setValue(codelab.module.id);
-          console.log(codelab)
+          this.updateCodelabForm.controls["moduleId"].setValue(codelab.module.id);
+
         });
   }
 

@@ -1,9 +1,10 @@
 <main class="codelab-card-root different-bg">
-  <a routerLink="/update-codelab/{{codelab.id}}" class="btn">Edit codelab</a>
+
   @if (codelab) {
+    <a routerLink="/update-codelab/{{codelab.id}}" class="btn">Edit codelab</a>
     <h2>{{ codelab.name }}</h2>
     <div class="different-different-bg">
-      <p>{{ codelab.description }}</p>
+      <p>Description: {{ codelab.description }}</p>
     </div>
     <app-add-codelab-comment [id]="codelab.id"></app-add-codelab-comment>
     <div class="different-different-bg">

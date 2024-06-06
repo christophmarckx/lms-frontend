@@ -21,7 +21,7 @@ export class CodelabService {
     return this.http.get<Codelab>(this.urlString + '/' + codelabId);
   }
 
-  updateCodelab(codelabId: string, updateCodelab : UpdateCodelab) : Observable<Codelab> {
+  updateCodelab(codelabId: string, updateCodelab: UpdateCodelab): Observable<Codelab> {
     return this.http.put<Codelab>(this.urlString + '/' + codelabId, updateCodelab);
   }
 }
