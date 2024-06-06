@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {CreateCodelab} from "../../models/codelab/create-codelab";
 import {environment} from "../../../environment/environment";
 import {Codelab} from "../../models/codelab/codelab";
+import {UpdateCodelab} from "../../models/codelab/update-codelab";
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,9 @@ export class CodelabService {
 
   getCodelab(codelabId: string): Observable<Codelab> {
     return this.http.get<Codelab>(this.urlString + '/' + codelabId);
+  }
+
+  updateCodelab(codelabId: string, updateCodelab : UpdateCodelab) : Observable<Codelab> {
+    return this.http.put<Codelab>(this.urlString + '/' + codelabId, updateCodelab);
   }
 }

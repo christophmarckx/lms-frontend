@@ -1,5 +1,5 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
-import {AddCodelabCommentComponent} from "./add-codelab-comment/add-codelab-comment.component";
+import {AddCodelabCommentComponent} from "../forms/add-codelab-comment/add-codelab-comment.component";
 import {CodelabService} from "../../services/codelab/codelab.service";
 import {Codelab} from "../../models/codelab/codelab";
 
