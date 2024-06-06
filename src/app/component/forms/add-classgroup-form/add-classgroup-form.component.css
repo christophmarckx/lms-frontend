@@ -1,21 +1,27 @@
-.coaches-container, .single-coach-container {
+.coaches-container {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 5rem;
   padding: 1rem 0;
 }
 
 .available-coaches, .added-coaches {
   display: flex;
-  width: 35rem;
+  width: 100%;
+  height: 100%;
   padding: 1rem;
   border-radius: 0.25rem;
   border: 1px solid #ced4da;
-  max-width: 40%;
   flex-direction: column;
   background-color: white;
+}
+
+.available-coaches-container, .added-coaches-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 48%;
+  width: 500px;
 }
 
 .available-coaches p, .added-coaches p {

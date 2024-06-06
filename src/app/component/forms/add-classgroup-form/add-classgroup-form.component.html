@@ -10,21 +10,25 @@
       }
     </select>
     <div class="coaches-container">
-      <div class="available-coaches">
+      <div class="available-coaches-container">
         <h3>Available coaches</h3>
-        @for (coach of coaches; track coach) {
-          <p (click)="addCoachToCreationList(coach)">
-            {{ coach.displayName }}
-          </p>
-        }
+        <div class="available-coaches">
+          @for (coach of coaches; track coach) {
+            <p (click)="addCoachToCreationList(coach)">
+              {{ coach.displayName }}
+            </p>
+          }
+        </div>
       </div>
-      <div class="added-coaches">
+      <div class="added-coaches-container">
         <h3>Added coaches</h3>
-        @for (coachToAdd of coachesToAdd; track coachToAdd) {
-          <p (click)="removeCoachFromCreationList(coachToAdd)">
-            {{ coachToAdd.displayName }}
-          </p>
-        }
+        <div class="added-coaches">
+          @for (coachToAdd of coachesToAdd; track coachToAdd) {
+            <p (click)="removeCoachFromCreationList(coachToAdd)">
+              {{ coachToAdd.displayName }}
+            </p>
+          }
+        </div>
       </div>
     </div>
     @if (isFormInvalid) {
