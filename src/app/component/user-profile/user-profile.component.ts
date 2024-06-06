@@ -28,7 +28,7 @@ export class UserProfileComponent implements OnInit {
     // this.route.paramMap.subscribe(params => {
     //   this.userId = params.get('id');
     // })
-    this.authenticationService.getAuthenticatedUser().subscribe(user => this.user = user);
+    this.authenticationService.getAuthenticatedUserAsObservable().subscribe(user => this.user = user);
     this.getClassgroupsForUser(this.user.id);
   }
 

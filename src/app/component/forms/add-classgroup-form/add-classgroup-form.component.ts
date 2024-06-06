@@ -52,7 +52,7 @@ export class AddClassgroupFormComponent implements OnInit {
 
   ngOnInit() {
     this.getCoaches();
-    this.authenticationService.getAuthenticatedUser().subscribe(user => this.authenticatedCoachId = user.id);
+    this.authenticationService.getAuthenticatedUserAsObservable().subscribe(user => this.authenticatedCoachId = user.id);
   }
 
   getCourses(): Observable<Course[]> {

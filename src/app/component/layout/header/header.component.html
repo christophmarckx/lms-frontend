@@ -14,7 +14,7 @@
             <li class="nav-item">
               <a class="header-btn" routerLink="/" routerLinkActive="header-btn-active" [routerLinkActiveOptions]="{exact: true}">Home</a>
             </li>
-            <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+            <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
               @if (authenticatedUser.id) {
                 @if (authenticatedUser.role === UserRole.COACH) {
                   <li class="nav-item">

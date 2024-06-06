@@ -1,12 +1,20 @@
 @if (courseWithModules) {
+  <div class="course-container">
     <div class="page-header">
-      <h1>Codelabs of: {{ courseWithModules.name }}</h1>
+      <h1>Course {{ courseWithModules.name }}</h1>
     </div>
+    @if(courseWithModules.modules.length === 0) {
+      <p>No module in this course</p>
+    } @else {
+      <div class="module-overview">Overview of modules</div>
+    }
     @for (moduleWithCodelabs of courseWithModules.modules; track moduleWithCodelabs) {
       <div class="course-root-module" >
-        <p>{{ moduleWithCodelabs.name }}</p>
+        <div><p>{{moduleWithCodelabs.name }}</p></div>
+        <div class="codelabs-title"><p>Codelabs</p></div>
       </div>
       <app-codelabs-card [codelabs]="moduleWithCodelabs.codelabs"></app-codelabs-card>
       <app-module-codelabs [level]="1" [moduleWithCodelabs]="moduleWithCodelabs"></app-module-codelabs>
     }
+  </div>
 }

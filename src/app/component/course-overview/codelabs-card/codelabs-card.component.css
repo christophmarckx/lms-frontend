@@ -7,6 +7,15 @@
   background-color: #9bccd850;
 }
 
+a {
+  color: #000000;
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: bold;
+}
+
 p {
   padding: 10px 15px;
   margin: 0;

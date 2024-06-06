@@ -1,3 +1,7 @@
+.course-container {
+  margin-bottom: 20px;
+}
+
 .course-root-module{
   font-weight: bold;
   display: flex;
@@ -5,12 +9,13 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: #2F6D91;
-  margin-top: 10px;
+  background-color: #489CCC;
+  margin-top: 20px;
   color: white;
 }
-.course-root-root {
-  margin-bottom: 10px;
+
+.codelabs-title {
+  color: #212934;
 }
 
 p {
@@ -26,4 +31,10 @@ h1 {
 }
 .page-header {
   margin: 0px 0px 15px;
+}
+
+.module-overview {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 20px;
 }

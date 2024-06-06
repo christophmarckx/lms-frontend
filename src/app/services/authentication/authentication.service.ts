@@ -104,7 +104,7 @@ export class AuthenticationService {
     });
   }
 
-  getAuthenticatedUser() {
+  getAuthenticatedUserAsObservable() {
     let authenticatedUser = localStorage.getItem('authenticatedUser')
     if (authenticatedUser) {
       this.session.next(JSON.parse(authenticatedUser));
@@ -114,6 +114,12 @@ export class AuthenticationService {
     }
 
     return this.session.asObservable();
+  }
+
+  getAuthenticatedUser():AuthenticatedUser|undefined {
+    if (localStorage.getItem('authenticatedUser'))
+      return JSON.parse(localStorage.getItem('authenticatedUser')!);
+    return undefined
   }
 
   private refreshToken() {

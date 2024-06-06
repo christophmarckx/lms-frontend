@@ -5,6 +5,7 @@ import {environment} from "../../../environment/environment";
 import {Observable} from "rxjs";
 import {Student} from "../../models/student/student";
 import {CreateStudent} from "../../models/student/create-student";
+import {Course} from "../../models/course/course";
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class StudentService {
       return this.http.get<Student>(this.url + '/' + studentId);
     }
     return this.http.get<Student>(this.url);
+  }
+
+  getFollowedCourseByStudentId(studentId: string): Observable<Course> {
+    return this.http.get<Course>(this.url + '/' + studentId + '/course');
   }
 }

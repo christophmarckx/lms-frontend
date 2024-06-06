@@ -12,7 +12,7 @@
       <h3>Students</h3>
     </div>
     @if(classgroupWithMembers.students.length > 0){
-      <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+      <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
         @for(student of classgroupWithMembers.students; track student) {
           <app-user-card
             [user]="student"

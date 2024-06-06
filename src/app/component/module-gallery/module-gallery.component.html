@@ -1,7 +1,7 @@
 <div class="modules-gallery">
   <div class="page-header">
     <h1>View all modules</h1>
-    <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+    <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
       @if (authenticatedUser.role === UserRole.COACH) {
         <button class="btn" routerLink="add-module">Create module</button>
       }

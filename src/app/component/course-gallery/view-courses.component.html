@@ -2,12 +2,22 @@
   <div class="courses-gallery">
     <div class="page-header">
       <h1>View all courses</h1>
-      <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+      <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
         @if (authenticatedUser.role === UserRole.COACH) {
           <button class="btn" routerLink="add-course">Create course</button>
         }
       </ng-container>
     </div>
+    @if (courseFollowed) {
+      <div class="followed-course">
+        <h2>My course</h2>
+        <app-course-card [course]="courseFollowed" [isPair]="false">
+        </app-course-card>
+      </div>
+      <h2>Other courses</h2>
+    } @else {
+      <h2>All courses</h2>
+    }
     @for(course of courses; track course) {
       <app-course-card [course]="course" [isPair]="$index % 2 === 0">
       </app-course-card>
