@@ -12,9 +12,13 @@
     <label class="form-label" for="moduleId">
       Module
       <select class="form-control" formControlName="moduleId" id="moduleId" type="text">
-        @for (module of modules; track module) {
-          <option value="{{module.id}}">{{module.name}}</option>
-        }
+<!--        @for (module of modules; track module) {-->
+<!--&lt;!&ndash;          @if (module.id === this.codelab.module.id){&ndash;&gt;-->
+<!--&lt;!&ndash;            <option value="{{module.id}}" selected="selected" >{{module.name}}</option>&ndash;&gt;-->
+<!--&lt;!&ndash;          } @else {&ndash;&gt;-->
+<!--            <option value="{{module.id}}" selected="" >{{module.name}}</option>-->
+<!--&lt;!&ndash;          }&ndash;&gt;-->
+<!--        }-->
       </select>
     </label>
     @if (isFormInvalid) {
@@ -46,4 +50,4 @@
   </form>
 </div>
 
-<button [routerLink]=""></button>
+

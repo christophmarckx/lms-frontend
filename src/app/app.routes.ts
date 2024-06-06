@@ -12,6 +12,8 @@ import {UpdateCourseFormComponent} from "./component/forms/update-course-form/up
 import {UserProfileComponent} from "./component/user-profile/user-profile.component";
 import {ClassgroupOverviewComponent} from "./component/classgroup-overview/classgroup-overview.component";
 import {ViewCodelabComponent} from "./component/view-codelab/view-codelab.component";
+import {coachGuard} from "./authentication/coach.guard";
+import {UpdateCodelabFormComponent} from "./component/forms/update-codelab-form/update-codelab-form.component";
 
 
 export const routes: Routes = [
@@ -67,5 +69,10 @@ export const routes: Routes = [
     path: 'codelabs/:id',
     component: ViewCodelabComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'update-codelab/:id',
+    component: UpdateCodelabFormComponent,
+    canActivate: [coachGuard]
   }
 ];

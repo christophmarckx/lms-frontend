@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, ElementRef, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CodelabService} from "../../../services/codelab/codelab.service";
 import {Codelab} from "../../../models/codelab/codelab";
@@ -26,7 +26,7 @@ export class UpdateCodelabFormComponent implements OnInit{
   private readonly moduleService: ModuleService = inject(ModuleService);
   public isFormInvalid: boolean = true;
   private codelabId!: string;
-  private codelab!: Codelab;
+  public codelab!: Codelab;
   public formControlNames: string[] = ['name', 'description', 'moduleId'];
   modules: Module[] = [];
   public updateCodelabError?: string;
@@ -53,7 +53,14 @@ export class UpdateCodelabFormComponent implements OnInit{
 
   private getCodelabById(s: string) {
     if (!this.codelabId) return;
-    this.codelabService.getCodelab(this.codelabId).subscribe(codelab => this.codelab = codelab);
+    this.codelabService.getCodelab(this.codelabId).subscribe(
+        codelab => {
+          this.codelab = codelab;
+          this.updateCodelabForm.controls["name"].setValue(codelab.name);
+          this.updateCodelabForm.controls["description"].setValue(codelab.description);
+          //this.updateCodelabForm.controls["moduleId"].setValue(codelab.module.id);
+          console.log(codelab)
+        });
   }
 
   updateCodelabForm = this.formBuilder.group({
