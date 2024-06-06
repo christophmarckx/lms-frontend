@@ -7,15 +7,17 @@ import {PopupService} from "../../../services/popup/popup.service";
 import {ModuleService} from "../../../services/module/module.service";
 import {Module} from "../../../models/module/module";
 import {CreateModule} from "../../../models/module/create-module";
+import {LoadingSpinnerComponent} from "../../shared/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-add-module-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    NgForOf,
-    ProcessErrorPipe
-  ],
+    imports: [
+        ReactiveFormsModule,
+        NgForOf,
+        ProcessErrorPipe,
+        LoadingSpinnerComponent
+    ],
   templateUrl: './add-module-form.component.html',
   styleUrl: './add-module-form.component.css'
 })

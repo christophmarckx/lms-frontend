@@ -126,6 +126,13 @@ select {
 .btn-redirect {
   background: #2f6d91;
   border: 2px solid #2f6d91;
+  font-weight: normal;
+  font-size: 1em;
+}
+
+.btn-details {
+  font-weight: normal;
+  font-size: 1em;
 }
 
 .btn-redirect:hover {

@@ -5,14 +5,16 @@ import {AuthenticationService} from "../../services/authentication/authenticatio
 import {ClassgroupService} from "../../services/classgroup/classgroup.service";
 import {Classgroup} from "../../models/classgroup/classgroup";
 import { UserRole } from '../../models/authentication/authenticated-user';
-import {ClassgroupCardComponent} from "./classgroup-card/classgroup-card.component";
+import {ClassgroupCardComponent} from "../classgroup-gallery/classgroup-card/classgroup-card.component";
+import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
   imports: [
     RouterLink,
-    ClassgroupCardComponent
+    ClassgroupCardComponent,
+    LoadingSpinnerComponent
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
@@ -24,18 +26,18 @@ export class UserProfileComponent implements OnInit {
   private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
   private readonly classgroupService: ClassgroupService = inject(ClassgroupService);
   user: any;
-  classgroups: Classgroup[] = [];
+  classgroups: Classgroup[];
 
   ngOnInit() {
     // this.route.paramMap.subscribe(params => {
     //   this.userId = params.get('id');
     // })
     this.authenticationService.getAuthenticatedUser().subscribe(user => this.user = user);
-    this.getClassgroupsForUser(this.user.id);
+    this.getClassgroupsForUser(this.user.id).subscribe(classgroups => this.classgroups = classgroups);
   }
 
   private getClassgroupsForUser(userId: string) {
-    this.classgroupService.getAllClassgroupsForUserId(userId).subscribe(classgroups => this.classgroups = classgroups);
+    return this.classgroupService.getAllClassgroupsForUserId(userId);
   }
 
   private getStudentById() {

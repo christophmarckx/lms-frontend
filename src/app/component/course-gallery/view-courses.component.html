@@ -1,14 +1,18 @@
-<div class="courses-gallery">
-  <div class="page-header">
-    <h1>View all courses</h1>
-    <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
-      @if (authenticatedUser.role === UserRole.COACH) {
-        <button class="btn btn-add" routerLink="add-course">Create course</button>
-      }
-    </ng-container>
+@defer(when courses) {
+  <div class="courses-gallery">
+    <div class="page-header">
+      <h1>View all courses</h1>
+      <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+        @if (authenticatedUser.role === UserRole.COACH) {
+          <button class="btn btn-add" routerLink="/courses/add-course">Create course</button>
+        }
+      </ng-container>
+    </div>
+    @for (course of courses; track course) {
+      <app-course-card [course]="course" [isPair]="$index % 2 === 0">
+      </app-course-card>
+    }
   </div>
-  @for(course of courses; track course) {
-    <app-course-card [course]="course" [isPair]="$index % 2 === 0">
-    </app-course-card>
-  }
-</div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+}

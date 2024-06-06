@@ -9,11 +9,12 @@ import {ModuleService} from "../../services/module/module.service";
 import { UserRole } from '../../models/authentication/authenticated-user';
 import {Module} from "../../models/module/module";
 import {ModuleWithCourses} from "../../models/module/module-with-courses";
+import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-module-gallery',
   standalone: true,
-  imports: [ModuleCardComponent, AddModuleFormComponent, RouterLink, ModuleWithCoursesComponent, AsyncPipe, NgIf],
+  imports: [ModuleCardComponent, AddModuleFormComponent, RouterLink, ModuleWithCoursesComponent, AsyncPipe, NgIf, LoadingSpinnerComponent],
   templateUrl: './module-gallery.component.html',
   styleUrl: './module-gallery.component.css'
 })

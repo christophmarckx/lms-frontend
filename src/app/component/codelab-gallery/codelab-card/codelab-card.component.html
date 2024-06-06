@@ -1,0 +1,11 @@
+<div class="codelab-card-root" [class.different-bg]="!isPair">
+  <div>
+    <p>{{codelab.name}}</p>
+  </div>
+  <button
+    class="btn btn-redirect"
+    routerLink="/codelabs/{{codelab.id}}"
+  >
+    View details
+  </button>
+</div>

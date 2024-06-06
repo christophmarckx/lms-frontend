@@ -12,6 +12,8 @@ import {UpdateCourseFormComponent} from "./component/forms/update-course-form/up
 import {UserProfileComponent} from "./component/user-profile/user-profile.component";
 import {ClassgroupOverviewComponent} from "./component/classgroup-overview/classgroup-overview.component";
 import {ViewCodelabComponent} from "./component/view-codelab/view-codelab.component";
+import {CodelabGalleryComponent} from "./component/codelab-gallery/codelab-gallery.component";
+import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgroup-gallery.component";
 
 
 export const routes: Routes = [
@@ -24,38 +26,13 @@ export const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'courses/add-course',
-    component: AddCourseFormComponent
-  },
-  {
-    path: 'courses',
-    component: ViewCoursesComponent,
+    path: 'classgroups',
+    component: ClassgroupGalleryComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'modules/add-module',
-    component: AddModuleFormComponent
-  },
-  {
-    path: 'codelabs/add-codelabs',
-    component: AddCodelabFormComponent
-  },
-  {
-    path: 'add-classgroup',
-    component: AddClassgroupFormComponent
-  },
-  {
-    path: 'modules',
-    component: ModuleGalleryComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'update-course/:id',
-    component: UpdateCourseFormComponent
-  },
-  {
-    path: 'profile',
-    component: UserProfileComponent,
+    path: 'classgroups/add-classgroup',
+    component: AddClassgroupFormComponent,
     canActivate: [authGuard]
   },
   {
@@ -64,8 +41,48 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'courses',
+    component: ViewCoursesComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'courses/add-course',
+    component: AddCourseFormComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'courses/update-course/:id',
+    component: UpdateCourseFormComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'modules',
+    component: ModuleGalleryComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'modules/add-module',
+    component: AddModuleFormComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'codelabs',
+    component: CodelabGalleryComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'codelabs/add-codelab',
+    component: AddCodelabFormComponent,
+    canActivate: [authGuard]
+  },
+  {
     path: 'codelabs/:id',
     component: ViewCodelabComponent,
     canActivate: [authGuard]
-  }
+  },
+  {
+    path: 'profile',
+    component: UserProfileComponent,
+    canActivate: [authGuard]
+  },
 ];

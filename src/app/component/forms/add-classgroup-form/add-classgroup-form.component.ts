@@ -12,8 +12,7 @@ import {CoachService} from "../../../services/coach/coach.service";
 import {Coach} from "../../../models/coach/coach";
 import {CreateClassgroup} from "../../../models/classgroup/create-classgroup";
 import {Course} from "../../../models/course/course";
-
-
+import {LoadingSpinnerComponent} from "../../shared/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-add-classgroup-form',
@@ -21,7 +20,8 @@ import {Course} from "../../../models/course/course";
   imports: [
     ReactiveFormsModule,
     AsyncPipe,
-    ProcessErrorPipe
+    ProcessErrorPipe,
+    LoadingSpinnerComponent
   ],
   templateUrl: './add-classgroup-form.component.html',
   styleUrl: './add-classgroup-form.component.css'
@@ -38,25 +38,22 @@ export class AddClassgroupFormComponent implements OnInit {
   public formControlNames: string[] = ['name', 'courseId'];
   public isFormInvalid: boolean = true;
   public createClassgroupError?: string;
-  public courseOptions$: Observable<Course[]>;
+  public courseOptions: Course[];
   public selectedCourseId: string;
   public coaches: Coach[];
   public coachesToAdd: Coach[] = [];
   private authenticatedCoachId: string;
 
-  constructor() {
-    this.createClassgroupForm.valueChanges.subscribe(() => this.onFormUpdate());
-    this.courseOptions$ = this.getCourses();
-    this.selectedCourseId = "";
-  }
-
   ngOnInit() {
+    this.createClassgroupForm.valueChanges.subscribe(() => this.onFormUpdate());
+    this.getCourses();
+    this.selectedCourseId = "";
     this.getCoaches();
     this.authenticationService.getAuthenticatedUser().subscribe(user => this.authenticatedCoachId = user.id);
   }
 
-  getCourses(): Observable<Course[]> {
-    return this.courseService.getAllCourses();
+  getCourses() {
+    this.courseService.getAllCourses().subscribe(courses => this.courseOptions = courses);
   }
 
   createClassgroupForm = this.formBuilder.group({
@@ -86,7 +83,6 @@ export class AddClassgroupFormComponent implements OnInit {
       courseId: rawValues.courseId!,
       coaches: this.coachesToAdd.map(coach => coach.id)
     }
-    console.log(createClassgroup.coaches);
     this.classgroupService.addClassgroup(createClassgroup).subscribe(
       (response) => {
         this.router.navigate(['']);
@@ -111,7 +107,7 @@ export class AddClassgroupFormComponent implements OnInit {
   }
 
   private getCoaches() {
-    return this.coachService.getAllCoaches()
+    this.coachService.getAllCoaches()
       .subscribe(coaches => {
         const connectedCoach = coaches.filter(coach => coach.id === this.authenticatedCoachId)[0];
         this.coachesToAdd.push(connectedCoach);

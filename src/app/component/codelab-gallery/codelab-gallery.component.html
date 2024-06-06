@@ -1,0 +1,18 @@
+@defer(when codelabs) {
+  <div class="codelabs-gallery">
+    <div class="page-header">
+      <h1>View all codelabs</h1>
+      <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+        @if (authenticatedUser.role === UserRole.COACH) {
+          <button class="btn btn-add" routerLink="/codelabs/add-codelab">Create codelab</button>
+        }
+      </ng-container>
+    </div>
+    @for(codelab of codelabs; track codelab) {
+      <app-codelab-card [codelab]="codelab" [isPair]="$index % 2 === 0">
+      </app-codelab-card>
+    }
+  </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+}

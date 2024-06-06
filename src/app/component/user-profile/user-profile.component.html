@@ -1,4 +1,4 @@
-@if (user) {
+@defer(when classgroups) {
   <h2>Welcome, {{ user.displayName }}!</h2>
   <div>
     <p>Email address: {{user.email}}</p>
@@ -9,8 +9,10 @@
     } @else {
       <h3>Your classgroup:</h3>
     }
-      @for (classgroup of classgroups; track classgroup) {
-        <app-classgroup-card [classGroup]="classgroup" [isPair]="$index % 2 === 0"> </app-classgroup-card>
-      }
+    @for (classgroup of classgroups; track classgroup) {
+      <app-classgroup-card [classGroup]="classgroup" [isPair]="$index % 2 === 0"> </app-classgroup-card>
+    }
   </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
 }

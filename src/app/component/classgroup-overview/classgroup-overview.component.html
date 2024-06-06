@@ -1,4 +1,4 @@
-@if(classgroupWithMembers){
+@defer (when classgroupWithMembers){
   <div class="class-overview">
     <h2>{{classgroupWithMembers.name}}</h2>
     <p>{{classgroupWithMembers.course.name}}</p>
@@ -25,4 +25,6 @@
       <p>No student are attending this class</p>
     }
   </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
 }
