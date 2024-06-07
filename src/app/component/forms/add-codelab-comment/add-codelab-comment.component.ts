@@ -39,7 +39,7 @@ export class AddCodelabCommentComponent implements OnInit{
 
   addComment(): void {
     if (this.isFormInvalid) {
-      alert('The data you inserted is invalid. Try again!');
+      this.popupService.showPopup('Data is not valid');
       return;
     }
     const rawValues = this.createCodelabCommentForm.getRawValue();

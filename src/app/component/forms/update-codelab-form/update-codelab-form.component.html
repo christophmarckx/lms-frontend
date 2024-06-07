@@ -5,7 +5,7 @@
     <input class="form-control" formControlName="name" id="name" type="text"/>
     <label class="form-label" for="description">Description</label><input class="form-control" formControlName="description" id="description" type="text"/>
     <label class="form-label" for="moduleId">Module</label>
-    <select class="form-control" formControlName="moduleId" id="moduleId" type="text">
+    <select formControlName="moduleId" id="moduleId" type="text">
       @if (codelab) {
         @for (module of modules; track module) {
           @if (module.id === this.codelab.module.id) {

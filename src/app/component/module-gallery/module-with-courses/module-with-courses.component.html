@@ -1,8 +1,10 @@
-<div class="module-with-courses-container">
-  <h3>{{selectedModuleWithCourses.courses.length <= 0 ? 'No courses ' : 'Courses '}} linked with the module {{selectedModuleWithCourses.name}}</h3>
-  <ul>
-    @for (moduleCourse of selectedModuleWithCourses.courses; track moduleCourse){
-      <li>{{moduleCourse.name}}</li>
-    }
-  </ul>
-</div>
+@if (selectedModuleWithCourses) {
+  <div class="module-with-courses-container">
+    <h3>{{selectedModuleWithCourses.courses.length <= 0 ? 'No courses ' : 'Courses '}} linked with the module {{selectedModuleWithCourses.name}}</h3>
+    <ul>
+      @for (moduleCourse of selectedModuleWithCourses.courses; track moduleCourse){
+        <li>{{moduleCourse.name}}</li>
+      }
+    </ul>
+  </div>
+}

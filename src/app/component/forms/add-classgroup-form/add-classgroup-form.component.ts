@@ -74,7 +74,7 @@ export class AddClassgroupFormComponent implements OnInit {
 
   addClassgroup() {
     if (this.isFormInvalid) {
-      alert('The data that you inserted is not valid. Try again!');
+      this.popupService.showPopup('Data is not valid');
       return;
     }
     const rawValues = this.createClassgroupForm.getRawValue();
@@ -85,7 +85,7 @@ export class AddClassgroupFormComponent implements OnInit {
     }
     this.classgroupService.addClassgroup(createClassgroup).subscribe(
       (response) => {
-        this.router.navigate(['']);
+        this.router.navigate(['/classgroups']);
         this.popupService.showPopup('The classgroup has been successfully added');
       },
       (response) => {
