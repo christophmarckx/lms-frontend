@@ -4,6 +4,8 @@ import {CodelabService} from "../../services/codelab/codelab.service";
 import {Codelab} from "../../models/codelab/codelab";
 import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner.component";
 import {RouterLink} from "@angular/router";
+import {AuthenticationService} from "../../services/authentication/authentication.service";
+import {UserRole} from "../../models/authentication/authenticated-user";
 
 @Component({
   selector: 'app-view-codelab',
@@ -19,12 +21,16 @@ import {RouterLink} from "@angular/router";
 export class ViewCodelabComponent implements OnInit {
 
   codelabService: CodelabService = inject(CodelabService);
+  authenticationService: AuthenticationService = inject(AuthenticationService);
+  authenticatedUser: any;
   codelab: Codelab;
 
   @Input() id!: string;
 
   ngOnInit() {
     this.codelabService.getCodelab(this.id).subscribe(codelab => this.codelab = codelab);
+    this.authenticatedUser = this.authenticationService.getAuthenticatedUser();
   }
 
+  protected readonly UserRole = UserRole;
 }

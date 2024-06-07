@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, OnInit} from '@angular/core';
+import {Component, ElementRef, inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CodelabService} from "../../../services/codelab/codelab.service";
 import {Codelab} from "../../../models/codelab/codelab";
@@ -25,21 +25,15 @@ export class UpdateCodelabFormComponent implements OnInit{
   private readonly popupService: PopupService = inject(PopupService);
   private readonly moduleService: ModuleService = inject(ModuleService);
   public isFormInvalid: boolean = true;
-  private codelabId!: string;
   public codelab!: Codelab;
   public formControlNames: string[] = ['name', 'description', 'moduleId'];
+  @Input() id: string;
   modules: Module[] = [];
   public updateCodelabError?: string;
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      if (params.get('id') === null) {
-        this.router.navigate(['']);
-      }
-      this.codelabId = params.get('id')!;
-      this.getCodelabById(params.get('id')!);
-      this.getModules();
-    })
+    this.getCodelabById(this.id);
+    this.getModules();
   }
 
   constructor() {
@@ -52,8 +46,8 @@ export class UpdateCodelabFormComponent implements OnInit{
 
 
   private getCodelabById(s: string) {
-    if (!this.codelabId) return;
-    this.codelabService.getCodelab(this.codelabId).subscribe(
+    if (!this.id) return;
+    this.codelabService.getCodelab(this.id).subscribe(
         codelab => {
           console.log(codelab)
           this.codelab = codelab;
@@ -81,7 +75,7 @@ export class UpdateCodelabFormComponent implements OnInit{
       description: rawValues.description === undefined ? null : rawValues.description,
       moduleId: rawValues.moduleId!
     }
-    this.codelabService.updateCodelab(this.codelabId, updateCodelab).subscribe(
+    this.codelabService.updateCodelab(this.id, updateCodelab).subscribe(
       (response) => {
         this.router.navigate(['']);
         this.popupService.showPopup('The codelab has been successfully updated');

@@ -49,7 +49,7 @@ export class AddClassgroupFormComponent implements OnInit {
     this.getCourses();
     this.selectedCourseId = "";
     this.getCoaches();
-    this.authenticationService.getAuthenticatedUser().subscribe(user => this.authenticatedCoachId = user.id);
+    this.authenticationService.getAuthenticatedUserAsObservable().subscribe(user => this.authenticatedCoachId = user.id);
   }
 
   getCourses() {

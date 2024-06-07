@@ -17,6 +17,7 @@ import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgr
 import {LoadingSpinnerComponent} from "./component/shared/loading-spinner/loading-spinner.component";
 import {coachGuard} from "./authentication/coach.guard";
 import {UpdateCodelabFormComponent} from "./component/forms/update-codelab-form/update-codelab-form.component";
+import {CourseOverviewComponent} from "./component/course-overview/course-overview.component";
 
 
 export const routes: Routes = [
@@ -54,7 +55,12 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'courses/update-course/:id',
+    path: 'courses/:id',
+    component: CourseOverviewComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'courses/:id/update-course',
     component: UpdateCourseFormComponent,
     canActivate: [authGuard]
   },
@@ -84,7 +90,7 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'codelabs/update-codelab/:id',
+    path: 'codelabs/:id/update-codelab',
     component: UpdateCodelabFormComponent,
     canActivate: [coachGuard]
   },

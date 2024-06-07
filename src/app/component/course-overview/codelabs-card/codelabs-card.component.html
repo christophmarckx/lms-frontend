@@ -1,0 +1,6 @@
+@for (codelab of codelabs; track codelab) {
+  <div class="title-codelab">
+    <p><a [routerLink]="['/codelabs', codelab.id]">{{ codelab.name }}</a></p>
+<!--    <p>{{ codelab.description }}</p>-->
+  </div>
+}

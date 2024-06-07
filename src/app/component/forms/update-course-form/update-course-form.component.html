@@ -1,11 +1,9 @@
 @defer(when courseName != '') {
   <div class="form-group">
+    <h1>Update the course name</h1>
     <form (ngSubmit)="updateCourseName()" [formGroup]="updateCourseNameForm">
-      <h1>Update the course name</h1>
-      <label class="form-label" for="name">
-        Name
-        <input class="form-control" formControlName="name" id="name" type="text"/>
-      </label>
+      <label class="form-label" for="name">Name</label>
+      <input class="form-control" formControlName="name" id="name" type="text"/>
       @if (isFormInvalid) {
         <div class="form-errors">
           @for (controlName of formControlNames; track controlName) {
@@ -26,13 +24,15 @@
           {{ updateCourseNameError }}
         </div>
       }
-      <button class="btn btn-create"
-              type="submit"
-              [class.btn]="!isFormInvalid"
-              [class.btn-disabled]="isFormInvalid"
-              [disabled]="isFormInvalid">
-        Validate
-      </button>
+      <div class="btn-container">
+        <button class="btn btn-create"
+                type="submit"
+                [class.btn]="!isFormInvalid"
+                [class.btn-disabled]="isFormInvalid"
+                [disabled]="isFormInvalid">
+          Validate
+        </button>
+      </div>
     </form>
   </div>
 } @placeholder {

@@ -5,7 +5,7 @@
       <label class="form-label" for="name">Name </label>
       <input class="form-control" formControlName="name" id="name" type="text"/>
       <label class="form-label" for="courseId">Course </label>
-      <select formControlName="courseId" (change)="onCourseChange($event)">
+      <select id="courseId" formControlName="courseId" (change)="onCourseChange($event)">
         @for (course of courseOptions; track course.id) {
           <option [value]="course.id">{{ course.name }}</option>
         }

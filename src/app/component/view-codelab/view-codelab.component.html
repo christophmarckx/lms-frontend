@@ -2,7 +2,9 @@
   <div>
     <div class="codelab-header">
       <h1>{{ codelab.name }}</h1>
-      <a routerLink="/codelabs/update-codelab/{{codelab.id}}" class="btn btn-redirect">Edit codelab</a>
+      @if (authenticatedUser.role === UserRole.COACH) {
+        <a routerLink="/codelabs/{{codelab.id}}/update-codelab" class="btn btn-redirect">Edit codelab</a>
+      }
     </div>
     <div class="different-different-bg">
       <div class="description-container">

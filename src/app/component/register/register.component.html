@@ -66,14 +66,16 @@
       @if (errorMessage) {
         <div class="backend-error">{{ errorMessage }}</div>
       }
-      <button class="btn"
-              type="submit"
-              [class.btn]="createStudentForm.valid"
-              [class.btn-disabled]="!createStudentForm.valid"
-              [disabled]="!createStudentForm.valid"
-      >
-        Validate
-      </button>
+      <div class="btn-container">
+        <button class="btn"
+                type="submit"
+                [class.btn]="createStudentForm.valid"
+                [class.btn-disabled]="!createStudentForm.valid"
+                [disabled]="!createStudentForm.valid"
+        >
+          Validate
+        </button>
+      </div>
     </form>
   </div>
 </section>

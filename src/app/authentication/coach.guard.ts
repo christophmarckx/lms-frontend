@@ -7,7 +7,7 @@ import {resolve} from "@angular/compiler-cli";
 
 export const coachGuard: CanActivateFn = (route, state) => {
   const authenticationService = inject(AuthenticationService);
-  return firstValueFrom(authenticationService.getAuthenticatedUser())
+  return firstValueFrom(authenticationService.getAuthenticatedUserAsObservable())
     .then(user => user.role === UserRole.COACH)
     .catch(() => false)
 };

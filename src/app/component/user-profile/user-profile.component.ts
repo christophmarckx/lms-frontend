@@ -35,7 +35,7 @@ export class UserProfileComponent implements OnInit {
   classgroups: Classgroup[];
 
   ngOnInit() {
-    this.authenticationService.getAuthenticatedUser().subscribe(user => this.user = user);
+    this.authenticationService.getAuthenticatedUserAsObservable().subscribe(user => this.user = user);
     this.getClassgroupsForUser(this.user.id).subscribe(classgroups => this.classgroups = classgroups);
   }
 

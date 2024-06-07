@@ -6,6 +6,7 @@ import {ClassgroupService} from "../../../services/classgroup/classgroup.service
 import {Classgroup} from "../../../models/classgroup/classgroup";
 import {Observable} from "rxjs";
 import {ProcessErrorPipe} from "../../../pipe/process-error.pipe";
+import {LoadingSpinnerComponent} from "../../shared/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-enroll-student-form',
@@ -13,7 +14,8 @@ import {ProcessErrorPipe} from "../../../pipe/process-error.pipe";
   imports: [
     FormsModule,
     ProcessErrorPipe,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingSpinnerComponent
   ],
   templateUrl: './enroll-student-form.component.html',
   styleUrl: './enroll-student-form.component.css'
