@@ -1,5 +1,6 @@
 @defer (when codelab) {
   <main class="codelab-card-root different-bg">
+    <a routerLink="/codelabs/update-codelab/{{codelab.id}}" class="btn">Edit codelab</a>
       <h2>{{ codelab.name }}</h2>
       <div class="different-different-bg">
         <p>{{ codelab.description }}</p>

@@ -27,9 +27,9 @@ p {
   background-color: #fff;
 }
 
-.different-different-bg > p::before {
+/*.different-different-bg > p::before {
   content: "Description: ";
-}
+}*/
 
 .btn, .btn-disabled {
   width: 160px;

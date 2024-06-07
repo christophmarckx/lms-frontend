@@ -15,6 +15,8 @@ import {ViewCodelabComponent} from "./component/view-codelab/view-codelab.compon
 import {CodelabGalleryComponent} from "./component/codelab-gallery/codelab-gallery.component";
 import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgroup-gallery.component";
 import {LoadingSpinnerComponent} from "./component/shared/loading-spinner/loading-spinner.component";
+import {coachGuard} from "./authentication/coach.guard";
+import {UpdateCodelabFormComponent} from "./component/forms/update-codelab-form/update-codelab-form.component";
 
 
 export const routes: Routes = [
@@ -82,12 +84,13 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'codelabs/update-codelab/:id',
+    component: UpdateCodelabFormComponent,
+    canActivate: [coachGuard]
+  },
+  {
     path: 'profile',
     component: UserProfileComponent,
     canActivate: [authGuard]
-  },
-  {
-    path: 'test',
-    component: LoadingSpinnerComponent
   }
 ];
