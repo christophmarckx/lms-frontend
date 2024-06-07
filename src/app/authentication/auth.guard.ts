@@ -4,7 +4,7 @@ import {inject} from "@angular/core";
 
 export const authGuard: CanActivateFn = (route, state) => {
   const authenticationService = inject(AuthenticationService);
-  console.log("ici");
+
   return authenticationService.getTokenAsPromise()
     .then(token => {
       return !!token

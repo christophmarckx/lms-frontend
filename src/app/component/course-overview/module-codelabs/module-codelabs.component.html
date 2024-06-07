@@ -4,13 +4,13 @@
       <p style="{{getMargin(level)}}">{{moduleWithCodelabs.name}}</p>
     </div>
     @if (moduleWithCodelabs.codelabs.length !== 0) {
-      <app-codelabs-card [codelabs]="moduleWithCodelabs.codelabs"></app-codelabs-card>
+      @for(codelab of moduleWithCodelabs.codelabs; track codelab) {
+        <app-codelabs-card [codelab]="codelab"></app-codelabs-card>
+      }
     }
     @if(moduleWithCodelabs.codelabs.length === 0 && moduleWithCodelabs.modules.length === 0) {
       <div class="empty-module"><p>No codelabs in this module</p></div>
     }
     <app-module-codelabs [level]="level+1" [moduleWithCodelabs]="moduleWithCodelabs"></app-module-codelabs>
-
   }
-
 }
