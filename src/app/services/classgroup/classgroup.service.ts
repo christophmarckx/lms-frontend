@@ -15,7 +15,7 @@ export class ClassgroupService {
   private urlString: string;
 
   constructor(private http: HttpClient) {
-    this.urlString = `${environment.backendUrl}/classgroups`
+    this.urlString = `${environment.backendUrl}/classgroups`;
   }
 
   addClassgroup(classgroup: CreateClassgroup): Observable<CreateClassgroup> {
@@ -23,10 +23,21 @@ export class ClassgroupService {
   }
 
   getClassgroup(id : string) : Observable<ClassgroupWithMembers> {
-    return this.http.get<ClassgroupWithMembers>(this.urlString + '/' + id)
+    return this.http.get<ClassgroupWithMembers>(this.urlString + '/' + id);
   }
 
   getAllClassgroupsForUserId(userId: string) {
-    return this.http.get<Classgroup[]>(this.urlString + '?userId=' + userId)
+    return this.http.get<Classgroup[]>(this.urlString + '?userId=' + userId);
+  }
+
+  getAllCourses() {
+    return this.http.get<Classgroup[]>(this.urlString);
+  }
+
+  getAllClassgroups() {
+    return this.http.get<Classgroup[]>(this.urlString);
+  }
+  enrollStudent(classgroupId : string): Observable<any>  {
+    return this.http.put(this.urlString + '/' + classgroupId +"/add-student", null);
   }
 }

@@ -1,0 +1,15 @@
+<div class="title-codelab">
+  <div>&nbsp;</div>
+  <div class="sub-div-center">
+    <p><a [routerLink]="['/codelabs', codelab.id]">{{ codelab.name }}</a></p>
+  </div>
+  <div class="sub-div-right">
+    @if(codelab.progress) {
+      <select [(ngModel)]="selectedCodelabProgress" (change)="updateProgress(codelab.id)" class="select-progress">
+        @for(progress of CodelabProgress | keyvalue: sortProgressCodelabByOriginalOrder; track progress) {
+          <option [value]="progress.key" [selected]="progress.key === codelab.progress">{{progress.value}}</option>
+        }
+      </select>
+    }
+  </div>
+</div>

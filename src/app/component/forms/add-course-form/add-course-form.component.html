@@ -1,59 +1,64 @@
-<h1>Add a new course!</h1>
-<div class="form-group">
-  <form (ngSubmit)="addCourse()" [formGroup]="createCourseForm">
-    <label class="form-label" for="name">Name<input class="form-control" formControlName="name" id="name" type="text"/></label>
-    <label class="form-label" for="description">Description<input class="form-control" formControlName="description"
-                                                                  id="description" type="text"/></label>
-    <div class="modules-container">
-      <div class="available-modules-container">
-        <h3>Available modules</h3>
-        <div class="available-modules">
-          @for (module of modules; track module) {
-            <p (click)="addModuleToCreationList(module)">
-              {{ module.name }}
-            </p>
-          }
-        </div>
-      </div>
-      <div class="added-modules-container">
-        <h3>Added Modules</h3>
-        <div class="added-modules">
-          @for (moduleToAdd of modulesToAdd; track moduleToAdd) {
-            <p (click)="removeModuleFromCreationList(moduleToAdd)">
-              {{ moduleToAdd.name }}
-            </p>
-          }
-        </div>
-      </div>
-    </div>
-    @if (isFormInvalid) {
-      <div class="form-errors">
-        @for (controlName of formControlNames; track controlName) {
-          <div>
-            @if (hasError(controlName, 'required')) {
-              - {{ controlName }} is required.
-            } @else if (hasError(controlName, 'minlength')) {
-              - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
-            } @else if (hasError(controlName, 'maxlength')) {
-              - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
+@defer(when modules) {
+  <h1>Add a new course!</h1>
+  <div class="form-group">
+    <form (ngSubmit)="addCourse()" [formGroup]="createCourseForm">
+      <label class="form-label" for="name">Name<input class="form-control" formControlName="name" id="name"
+                                                      type="text"/></label>
+      <label class="form-label" for="description">Description<input class="form-control" formControlName="description"
+                                                                    id="description" type="text"/></label>
+      <div class="modules-container">
+        <div class="available-modules-container">
+          <h3>Available modules</h3>
+          <div class="available-modules">
+            @for (module of modules; track module) {
+              <p (click)="addModuleToCreationList(module)">
+                {{ module.name }}
+              </p>
             }
           </div>
-        }
+        </div>
+        <div class="added-modules-container">
+          <h3>Added Modules</h3>
+          <div class="added-modules">
+            @for (moduleToAdd of modulesToAdd; track moduleToAdd) {
+              <p (click)="removeModuleFromCreationList(moduleToAdd)">
+                {{ moduleToAdd.name }}
+              </p>
+            }
+          </div>
+        </div>
       </div>
-    }
-    @if (createCourseError) {
-      <div class="backend-error" [innerHTML]="createCourseError | processError">
+      @if (isFormInvalid) {
+        <div class="form-errors">
+          @for (controlName of formControlNames; track controlName) {
+            <div>
+              @if (hasError(controlName, 'required')) {
+                - {{ controlName }} is required.
+              } @else if (hasError(controlName, 'minlength')) {
+                - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
+              } @else if (hasError(controlName, 'maxlength')) {
+                - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
+              }
+            </div>
+          }
+        </div>
+      }
+      @if (createCourseError) {
+        <div class="backend-error" [innerHTML]="createCourseError | processError">
+        </div>
+      }
+      <div class="btn-container">
+        <button class="btn"
+                type="submit"
+                [class.btn]="!isFormInvalid"
+                [class.btn-disabled]="isFormInvalid"
+                [disabled]="isFormInvalid"
+        >
+          Validate
+        </button>
       </div>
-    }
-    <div class="btn-container">
-      <button class="btn"
-              type="submit"
-              [class.btn]="!isFormInvalid"
-              [class.btn-disabled]="isFormInvalid"
-              [disabled]="isFormInvalid"
-      >
-        Validate
-      </button>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+}

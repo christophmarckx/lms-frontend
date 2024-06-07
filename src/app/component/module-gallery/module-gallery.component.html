@@ -1,18 +1,20 @@
-<div class="modules-gallery">
-  <div class="page-header">
-    <h1>View all modules</h1>
-    <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
-      @if (authenticatedUser.role === UserRole.COACH) {
-        <button class="btn btn-add" routerLink="add-module">Create module</button>
-      }
-    </ng-container>
+@defer (when moduleHierarchy) {
+  <div class="modules-gallery">
+    <div class="page-header">
+      <h1>View all modules</h1>
+      <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
+        @if (authenticatedUser.role === UserRole.COACH) {
+          <button class="btn btn-add" routerLink="/modules/add-module">Create module</button>
+        }
+      </ng-container>
+    </div>
+    @for(module of moduleHierarchy; track module) {
+      <div class="root-module">
+        <app-module-card [level]="0" [moduleHierarchy]="module" [isPair]="($index+1) % 2 === 0">
+        </app-module-card>
+      </div>
+    }
   </div>
-<!-- TODO Change button to display on a line with a < and change it to ^  -->
-  @for(module of modules; track module) {
-    <app-module-card (stringEventEmitter)="changeModuleId(module.id)" [module]="module" [isPair]="$index % 2 === 0" [isModuleSelected]="selectedModule?.id === module.id">
-    </app-module-card>
-  }
-  @if (selectedModule){
-    <app-module-with-courses [moduleWithCourses]="selectedModule"></app-module-with-courses>
-  }
-</div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+}

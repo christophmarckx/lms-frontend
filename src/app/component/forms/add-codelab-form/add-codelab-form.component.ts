@@ -8,15 +8,17 @@ import {ModuleService} from "../../../services/module/module.service";
 import {PopupService} from "../../../services/popup/popup.service";
 import {CreateCodelab} from "../../../models/codelab/create-codelab";
 import {Module} from "../../../models/module/module";
+import {LoadingSpinnerComponent} from "../../shared/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-add-codelab-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    AsyncPipe,
-    ProcessErrorPipe
-  ],
+    imports: [
+        ReactiveFormsModule,
+        AsyncPipe,
+        ProcessErrorPipe,
+        LoadingSpinnerComponent
+    ],
   templateUrl: './add-codelab-form.component.html',
   styleUrl: './add-codelab-form.component.css'
 })
@@ -36,6 +38,7 @@ export class AddCodelabFormComponent implements OnInit {
   getModules(): void {
     this.moduleService.getAllModules().subscribe(module => this.modules = module);
   }
+
   ngOnInit() {
     this.getModules();
     this.createCodelabForm = this.formBuilder.group({

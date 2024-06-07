@@ -1,12 +1,22 @@
-<main class="codelab-card-root different-bg">
-  @if (codelab) {
-    <h2>{{ codelab.name }}</h2>
+@defer (when codelab) {
+  <div>
+    <div class="codelab-header">
+      <h1>{{ codelab.name }}</h1>
+      @if (authenticatedUser.role === UserRole.COACH) {
+        <a routerLink="/codelabs/{{codelab.id}}/update-codelab" class="btn btn-redirect">Edit codelab</a>
+      }
+    </div>
     <div class="different-different-bg">
-      <p>{{ codelab.description }}</p>
+      <div class="description-container">
+        <h2>Description:</h2>
+        <p>{{ codelab.description }}</p>
+      </div>
     </div>
     <app-add-codelab-comment [id]="codelab.id"></app-add-codelab-comment>
-    <div class="different-different-bg">
+    <div class="comments-container">
       <p>Comments will go there</p>
     </div>
-  }
-</main>
+  </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+}

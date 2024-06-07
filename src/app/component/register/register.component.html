@@ -1,11 +1,9 @@
 <section>
   <div class="dialog-create-student">
+    <h1>Register a new student</h1>
     <form [formGroup]="createStudentForm" (ngSubmit)="onSubmit()">
-      <h1>Register a new student</h1>
-      <label>
-        Email
-        <input type="text" class="form-control" formControlName="email" placeholder="Email">
-      </label>
+      <label>Email</label>
+      <input type="text" class="form-control" formControlName="email" placeholder="Email">
       @if (
         createStudentForm.controls["email"].invalid &&
         createStudentForm.controls["email"].touched &&
@@ -20,10 +18,8 @@
           }
         </div>
       }
-      <label>
-        Display Name
-        <input type="text" class="form-control" formControlName="displayName" placeholder="Display Name">
-      </label>
+      <label>Display Name</label>
+      <input type="text" class="form-control" formControlName="displayName" placeholder="Display Name">
       @if (
         createStudentForm.controls["displayName"].invalid &&
         createStudentForm.controls["displayName"].touched &&
@@ -35,10 +31,8 @@
           }
         </div>
       }
-      <label>
-        Password
-        <input type="password" class="form-control" formControlName="password" placeholder="Password">
-      </label>
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Password">
       @if (
         createStudentForm.controls["password"].invalid &&
         createStudentForm.controls["password"].touched &&
@@ -53,10 +47,8 @@
           }
         </div>
       }
-      <label>
-        Confirm Password
-        <input type="password" class="form-control" formControlName="repeatPassword" placeholder="Repeat Password">
-      </label>
+      <label>Confirm Password</label>
+      <input type="password" class="form-control" formControlName="repeatPassword" placeholder="Repeat Password">
       @if (
         createStudentForm.controls["repeatPassword"].invalid &&
         createStudentForm.controls["repeatPassword"].touched &&
@@ -74,14 +66,16 @@
       @if (errorMessage) {
         <div class="backend-error">{{ errorMessage }}</div>
       }
-      <button class="btn"
-              type="submit"
-              [class.btn]="createStudentForm.valid"
-              [class.btn-disabled]="!createStudentForm.valid"
-              [disabled]="!createStudentForm.valid"
-      >
-        Validate
-      </button>
+      <div class="btn-container">
+        <button class="btn"
+                type="submit"
+                [class.btn]="createStudentForm.valid"
+                [class.btn-disabled]="!createStudentForm.valid"
+                [disabled]="!createStudentForm.valid"
+        >
+          Validate
+        </button>
+      </div>
     </form>
   </div>
 </section>

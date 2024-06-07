@@ -1,0 +1,40 @@
+.title-codelab{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #9bccd850;
+}
+
+.title-codelab div {
+  width: 250px;
+}
+
+.sub-div-center {
+  text-align: center;
+}
+
+.sub-div-right {
+  padding-right: 10px;
+  text-align: right;
+}
+
+.select-progress {
+  text-align: center;
+  width: 150px;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: bold;
+}
+
+p {
+  padding: 10px 15px;
+  margin: 0;
+}

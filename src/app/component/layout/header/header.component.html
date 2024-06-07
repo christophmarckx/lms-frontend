@@ -3,7 +3,6 @@
     <img id="logo" src="assets/images/switchfully-logo.jpg" alt="Switchfully Logo">
     <h1>{{title}}</h1>
   </div>
-<!-- TODO Check for the burger menu -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid container-fluid-breakpoint">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,15 +13,11 @@
             <li class="nav-item">
               <a class="header-btn" routerLink="/" routerLinkActive="header-btn-active" [routerLinkActiveOptions]="{exact: true}">Home</a>
             </li>
-            <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+            <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
               @if (authenticatedUser.id) {
                 @if (authenticatedUser.role === UserRole.COACH) {
                   <li class="nav-item">
-                    <a routerLink="add-classgroup" class="header-btn" routerLinkActive="header-btn-active">Add
-                      classgroup</a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="codelabs/add-codelabs" class="header-btn" routerLinkActive="header-btn-active">Add Codelab</a>
+                    <a routerLink="classgroups" class="header-btn" routerLinkActive="header-btn-active">Classgroups</a>
                   </li>
                 }
                 <li class="nav-item">
@@ -31,6 +26,11 @@
                 <li class="nav-item">
                   <a routerLink="modules" class="header-btn" routerLinkActive="header-btn-active">Modules</a>
                 </li>
+                @if (authenticatedUser.role === UserRole.COACH) {
+                  <li class="nav-item">
+                    <a routerLink="codelabs" class="header-btn" routerLinkActive="header-btn-active">Codelabs</a>
+                  </li>
+                }
                 <li class="nav-item">
                   <a routerLink="profile" class="header-btn" routerLinkActive="header-btn-active">Profile</a>
                 </li><li class="nav-item">

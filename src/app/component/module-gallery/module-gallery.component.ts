@@ -9,17 +9,19 @@ import {ModuleService} from "../../services/module/module.service";
 import { UserRole } from '../../models/authentication/authenticated-user';
 import {Module} from "../../models/module/module";
 import {ModuleWithCourses} from "../../models/module/module-with-courses";
+import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner.component";
+import {ModuleHierarchy} from "../../models/module/module-hierarchy";
 
 @Component({
   selector: 'app-module-gallery',
   standalone: true,
-  imports: [ModuleCardComponent, AddModuleFormComponent, RouterLink, ModuleWithCoursesComponent, AsyncPipe, NgIf],
+  imports: [ModuleCardComponent, AddModuleFormComponent, RouterLink, ModuleWithCoursesComponent, AsyncPipe, NgIf, LoadingSpinnerComponent],
   templateUrl: './module-gallery.component.html',
   styleUrl: './module-gallery.component.css'
 })
 export class ModuleGalleryComponent implements OnInit{
   authenticationService: AuthenticationService = inject(AuthenticationService);
-  modules: Module[];
+  moduleHierarchy: ModuleHierarchy[];
   selectedModule: ModuleWithCourses | null;
   moduleService: ModuleService = inject(ModuleService);
   @ViewChild('module-card') moduleId: string = '';
@@ -37,7 +39,7 @@ export class ModuleGalleryComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.moduleService.getAllModules().subscribe(modules => this.modules = modules);
+    this.moduleService.getModuleHierarchy().subscribe(moduleHierarchy => this.moduleHierarchy = moduleHierarchy);
   }
 
   protected readonly UserRole = UserRole;

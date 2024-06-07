@@ -1,4 +1,4 @@
-.classgroup-card-root {
+.codelab-card-root {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -6,26 +6,27 @@
   width: 100%;
   background-color: #9bccd850;
 }
-.btn{
-  margin-right: 15px;
-}
 
-.classgroup-card-root > a {
+p {
   padding: 20px 15px;
   margin: 0;
-  color: black;
-  text-decoration: none;
-}
-
-.classgroup-card-root > a:hover {
-  font-weight: bold;
 }
 
 .different-bg {
   background-color: #489ccc50;
 }
 
-.module-card-root div {
+.btn, .btn-disabled {
+  width: 160px;
+  height: fit-content;
+  margin-right: 15px;
+}
+
+.btn-disabled:hover {
+  background-color: #FFFFFF50;
+}
+
+.codelab-card-root div {
   flex:1;
   margin-right: 10px;
 }

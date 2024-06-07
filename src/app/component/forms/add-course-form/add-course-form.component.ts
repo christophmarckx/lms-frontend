@@ -8,15 +8,17 @@ import {ModuleService} from "../../../services/module/module.service";
 import {PopupService} from "../../../services/popup/popup.service";
 import {Module} from "../../../models/module/module";
 import {CreateCourse} from "../../../models/course/create-course";
+import {LoadingSpinnerComponent} from "../../shared/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-add-course-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    ProcessErrorPipe,
-    AsyncPipe
-  ],
+    imports: [
+        ReactiveFormsModule,
+        ProcessErrorPipe,
+        AsyncPipe,
+        LoadingSpinnerComponent
+    ],
   templateUrl: './add-course-form.component.html',
   styleUrl: './add-course-form.component.css'
 })

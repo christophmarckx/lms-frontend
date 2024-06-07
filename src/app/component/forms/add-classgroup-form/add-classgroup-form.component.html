@@ -1,63 +1,67 @@
-<h1>Add a new classgroup!</h1>
-<div class="form-group">
-  <form (ngSubmit)="addClassgroup()" [formGroup]="createClassgroupForm">
-    <label class="form-label" for="name">Name </label>
-    <input class="form-control" formControlName="name" id="name" type="text"/>
-    <label class="form-label" for="courseId">Course </label>
-    <select formControlName="courseId" (change)="onCourseChange($event)">
-      @for (course of courseOptions$ | async; track course.id) {
-        <option [value]="course.id">{{ course.name }}</option>
-      }
-    </select>
-    <div class="coaches-container">
-      <div class="available-coaches-container">
-        <h3>Available coaches</h3>
-        <div class="available-coaches">
-          @for (coach of coaches; track coach) {
-            <p (click)="addCoachToCreationList(coach)">
-              {{ coach.displayName }}
-            </p>
-          }
-        </div>
-      </div>
-      <div class="added-coaches-container">
-        <h3>Added coaches</h3>
-        <div class="added-coaches">
-          @for (coachToAdd of coachesToAdd; track coachToAdd) {
-            <p (click)="removeCoachFromCreationList(coachToAdd)">
-              {{ coachToAdd.displayName }}
-            </p>
-          }
-        </div>
-      </div>
-    </div>
-    @if (isFormInvalid) {
-      <div class="form-errors">
-        @for (controlName of formControlNames; track controlName) {
-          <div>
-            @if (hasError(controlName, 'required')) {
-              - {{ controlName }} is required.
-            } @else if (hasError(controlName, 'minlength')) {
-              - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
-            } @else if (hasError(controlName, 'maxlength')) {
-              - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
+@defer (when courseOptions && coaches) {
+  <h1>Add a new classgroup!</h1>
+  <div class="form-group">
+    <form (ngSubmit)="addClassgroup()" [formGroup]="createClassgroupForm">
+      <label class="form-label" for="name">Name </label>
+      <input class="form-control" formControlName="name" id="name" type="text"/>
+      <label class="form-label" for="courseId">Course </label>
+      <select id="courseId" formControlName="courseId" (change)="onCourseChange($event)">
+        @for (course of courseOptions; track course.id) {
+          <option [value]="course.id">{{ course.name }}</option>
+        }
+      </select>
+      <div class="coaches-container">
+        <div class="available-coaches-container">
+          <h3>Available coaches</h3>
+          <div class="available-coaches">
+            @for (coach of coaches; track coach) {
+              <p (click)="addCoachToCreationList(coach)">
+                {{ coach.displayName }}
+              </p>
             }
           </div>
-        }
+        </div>
+        <div class="added-coaches-container">
+          <h3>Added coaches</h3>
+          <div class="added-coaches">
+            @for (coachToAdd of coachesToAdd; track coachToAdd) {
+              <p (click)="removeCoachFromCreationList(coachToAdd)">
+                {{ coachToAdd.displayName }}
+              </p>
+            }
+          </div>
+        </div>
       </div>
-    }
-    @if (createClassgroupError) {
-      <div class="backend-error" [innerHTML]="createClassgroupError | processError"></div>
-    }
-    <div class="btn-container">
-      <button class="btn"
-              type="submit"
-              [class.btn]="!isFormInvalid"
-              [class.btn-disabled]="isFormInvalid"
-              [disabled]="isFormInvalid"
-      >
-        Validate
-      </button>
-    </div>
-  </form>
-</div>
+      @if (isFormInvalid) {
+        <div class="form-errors">
+          @for (controlName of formControlNames; track controlName) {
+            <div>
+              @if (hasError(controlName, 'required')) {
+                - {{ controlName }} is required.
+              } @else if (hasError(controlName, 'minlength')) {
+                - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
+              } @else if (hasError(controlName, 'maxlength')) {
+                - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
+              }
+            </div>
+          }
+        </div>
+      }
+      @if (createClassgroupError) {
+        <div class="backend-error" [innerHTML]="createClassgroupError | processError"></div>
+      }
+      <div class="btn-container">
+        <button class="btn"
+                type="submit"
+                [class.btn]="!isFormInvalid"
+                [class.btn-disabled]="isFormInvalid"
+                [disabled]="isFormInvalid"
+        >
+          Validate
+        </button>
+      </div>
+    </form>
+  </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+}

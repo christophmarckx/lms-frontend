@@ -1,6 +1,6 @@
-@if(classgroupWithMembers){
+@defer (when classgroupWithMembers){
   <div class="class-overview">
-    <h2>{{classgroupWithMembers.name}}</h2>
+    <h1>{{classgroupWithMembers.name}}</h1>
     <p>{{classgroupWithMembers.course.name}}</p>
     <div class="list-header">
       <h3>Coaches</h3>
@@ -12,7 +12,7 @@
       <h3>Students</h3>
     </div>
     @if(classgroupWithMembers.students.length > 0){
-      <ng-container *ngIf="authenticationService.getAuthenticatedUser() | async as authenticatedUser">
+      <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
         @for(student of classgroupWithMembers.students; track student) {
           <app-user-card
             [user]="student"
@@ -25,4 +25,6 @@
       <p>No student are attending this class</p>
     }
   </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
 }

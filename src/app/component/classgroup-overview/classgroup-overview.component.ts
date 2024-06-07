@@ -6,17 +6,19 @@ import {ClassgroupWithMembers} from "../../models/classgroup/classgroup-with-mem
 import {ClassgroupService} from "../../services/classgroup/classgroup.service";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import { UserRole } from '../../models/authentication/authenticated-user';
+import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-classgroup-overview',
   standalone: true,
-  imports: [
-    NgForOf,
-    AsyncPipe,
-    NgIf,
-    RouterLink,
-    UserCardComponent
-  ],
+    imports: [
+        NgForOf,
+        AsyncPipe,
+        NgIf,
+        RouterLink,
+        UserCardComponent,
+        LoadingSpinnerComponent
+    ],
   templateUrl: './classgroup-overview.component.html',
   styleUrl: './classgroup-overview.component.css'
 })

@@ -1,0 +1,34 @@
+@defer (when courseWithModules) {
+  <div class="course-container">
+    <div class="page-header">
+      <h1>Course : {{ courseWithModules.name }}</h1>
+      @if (authenticatedUser.role === UserRole.COACH) {
+        <button class="btn btn-redirect" routerLink="/courses/{{courseWithModules.id}}/update-course">Update course</button>
+      }
+    </div>
+    @if(courseWithModules.modules.length === 0) {
+      <div class="course-root-module" >
+        <div><p>No module in this course</p></div>
+      </div>
+    }
+    @for (moduleWithCodelabs of courseWithModules.modules; track moduleWithCodelabs) {
+      <div class="course-root-module" >
+        <div><p>Codelabs</p></div>
+      </div>
+      <div class="title-module" >
+        <div><p>{{moduleWithCodelabs.name }}</p></div>
+      </div>
+      @if (moduleWithCodelabs.codelabs.length !== 0) {
+        @for(codelab of moduleWithCodelabs.codelabs; track codelab) {
+          <app-codelabs-card [codelab]="codelab"></app-codelabs-card>
+        }
+      }
+      @if(moduleWithCodelabs.codelabs.length === 0 && moduleWithCodelabs.modules.length === 0) {
+        <div class="empty-module"><p>No codelabs in this module</p></div>
+      }
+      <app-module-codelabs [level]="1" [moduleWithCodelabs]="moduleWithCodelabs"></app-module-codelabs>
+    }
+  </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+}

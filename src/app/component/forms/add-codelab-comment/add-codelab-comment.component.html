@@ -3,7 +3,7 @@
     <div class="form-group">
       <form (ngSubmit)="addComment()" [formGroup]="createCodelabCommentForm">
         <label class="form-label" for="comment">
-          <input class="form-control" formControlName="comment" id="comment" type="text" placeholder="Comment here... :)"/>
+          <input class="form-control" formControlName="comment" id="comment" type="text" placeholder="Write a comment"/>
         </label>
 
         @if (isFormInvalid) {

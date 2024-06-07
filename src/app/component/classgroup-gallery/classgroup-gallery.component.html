@@ -1,0 +1,18 @@
+@defer(when classgroups) {
+  <div class="classgroups-gallery">
+    <div class="page-header">
+      <h1>View all classgroups</h1>
+      <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
+        @if (authenticatedUser.role === UserRole.COACH) {
+          <button class="btn btn-add" routerLink="/classgroups/add-classgroup">Create classgroup</button>
+        }
+      </ng-container>
+    </div>
+    @for (classgroup of classgroups; track classgroup) {
+      <app-classgroup-card [classGroup]="classgroup" [isPair]="$index % 2 === 0">
+      </app-classgroup-card>
+    }
+  </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+}

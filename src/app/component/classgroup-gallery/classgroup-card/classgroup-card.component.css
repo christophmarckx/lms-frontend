@@ -1,0 +1,27 @@
+.classgroup-card-root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #9bccd850;
+}
+.btn{
+  margin-right: 15px;
+}
+
+.classgroup-card-root > a {
+  padding: 20px 15px;
+  margin: 0;
+  color: black;
+  text-decoration: none;
+}
+
+.different-bg {
+  background-color: #489ccc50;
+}
+
+.module-card-root div {
+  flex:1;
+  margin-right: 10px;
+}

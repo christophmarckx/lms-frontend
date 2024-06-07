@@ -2,5 +2,10 @@
   <div>
     <p>{{course.name}}</p>
   </div>
+  <button
+    class="btn"
+    [routerLink]="['/courses', course.id]"
+  >
+    View details
+  </button>
 </div>
-

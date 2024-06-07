@@ -1,0 +1,41 @@
+div {
+  width: 0px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  border: 5px solid #2f6d91;
+  border-radius: 50%;
+  transform: rotate(1deg);
+  animation:animate 1s linear infinite;
+}
+
+@keyframes animate {
+  0%
+  {
+    transform:translate(-50%,-50%) rotate(0deg);
+  }
+  100%
+  {
+    transform:translate(-50%,-50%) rotate(360deg);
+  }
+}
+
+
+/*.loader {*/
+/*  border: 8px solid #f3f3f3; !* Light grey *!*/
+/*  border-top: 8px solid #2f6d91; !* Blue *!*/
+/*  border-radius: 50%;*/
+/*  margin: 0 auto;*/
+/*  width: 80px;*/
+/*  height: 80px;*/
+/*  animation: spin 1s linear infinite;*/
+/*}*/
+
+/*@keyframes spin {*/
+/*  0% { transform: rotate(0deg); }*/
+/*  100% { transform: rotate(360deg); }*/
+/*}*/
