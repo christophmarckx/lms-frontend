@@ -2,6 +2,9 @@
   width: 100%;
 }
 
+.root-module {
+}
+
 .page-header {
   display: flex;
   flex-direction: row;

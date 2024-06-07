@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {Module} from "../../models/module/module";
 import {ModuleWithCourses} from "../../models/module/module-with-courses";
+import {ModuleHierarchy} from "../../models/module/module-hierarchy";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class ModuleService {
 
   getAllModules(): Observable<Module[]> {
     return this.http.get<Module[]>(this.urlString);
+  }
+
+  getModuleHierarchy(): Observable<ModuleHierarchy[]> {
+    return this.http.get<ModuleHierarchy[]>(this.urlString + "/hierarchy");
   }
 
   getModuleById(moduleId: string): Observable<ModuleWithCourses> {

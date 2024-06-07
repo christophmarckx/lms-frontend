@@ -1,20 +1,20 @@
 <div class="module-card-root" [class.different-bg]="!isPair">
   <div>
-    <p>Module name: {{module.name}}</p>
-  </div>
-  <div>
-    @if(module.parentModule){
-      <p>Parent module: {{module.parentModule!.name}}</p>
-    } @else {
-      <p>No parent module</p>
-    }
+    <p style="{{getMargin(level)}}">{{moduleHierarchy.name}}</p>
   </div>
   <button
     class="btn btn-details"
-    [class.btn]="!isModuleSelected"
-    [class.btn-disabled]="isModuleSelected"
+    [class.btn]="!selectedModule"
+    [class.btn-disabled]="selectedModule"
     (click)="changeSelectedModuleId()"
   >
     {{ btnTextToDisplay() }}
   </button>
 </div>
+@if (selectedModule){
+  <app-module-with-courses [selectedModule]="selectedModule"></app-module-with-courses>
+}
+@for(module of moduleHierarchy.modules; track module) {
+  <app-module-card [level]="level+1" [moduleHierarchy]="module" [isPair]="isPair">
+  </app-module-card>
+}

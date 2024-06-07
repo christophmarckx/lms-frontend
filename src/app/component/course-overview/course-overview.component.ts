@@ -8,6 +8,7 @@ import {CodelabsCardComponent} from "./codelabs-card/codelabs-card.component";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {UserRole} from "../../models/authentication/authenticated-user";
 import {RouterLink} from "@angular/router";
+import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-course-overview',
@@ -15,7 +16,8 @@ import {RouterLink} from "@angular/router";
   imports: [
     ModuleCodelabsComponent,
     CodelabsCardComponent,
-    RouterLink
+    RouterLink,
+    LoadingSpinnerComponent
   ],
   templateUrl: './course-overview.component.html',
   styleUrl: './course-overview.component.css'

@@ -53,3 +53,9 @@ p {
   flex:1;
   margin-right: 10px;
 }
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #489ccc;
+}
