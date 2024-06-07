@@ -33,4 +33,11 @@ export class ClassgroupService {
   getAllCourses() {
     return this.http.get<Classgroup[]>(this.urlString);
   }
+
+  getAllClassgroups() {
+    return this.http.get<Classgroup[]>(this.urlString);
+  }
+  enrollStudent(classgroupId : string): Observable<any>  {
+    return this.http.put(this.urlString + '/' + classgroupId +"/add-student", null);
+  }
 }
