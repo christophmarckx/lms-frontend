@@ -59,7 +59,6 @@ select {
   color: #f46546;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
 }
 
 .backend-error {
@@ -87,6 +86,7 @@ select {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-top: 1rem;
   justify-content: flex-end;
 }
 

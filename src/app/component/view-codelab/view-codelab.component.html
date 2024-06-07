@@ -1,15 +1,20 @@
 @defer (when codelab) {
-  <main class="codelab-card-root different-bg">
-    <a routerLink="/codelabs/update-codelab/{{codelab.id}}" class="btn">Edit codelab</a>
-      <h2>{{ codelab.name }}</h2>
-      <div class="different-different-bg">
+  <div>
+    <div class="codelab-header">
+      <h1>{{ codelab.name }}</h1>
+      <a routerLink="/codelabs/update-codelab/{{codelab.id}}" class="btn btn-redirect">Edit codelab</a>
+    </div>
+    <div class="different-different-bg">
+      <div class="description-container">
+        <h2>Description:</h2>
         <p>{{ codelab.description }}</p>
       </div>
-      <app-add-codelab-comment [id]="codelab.id"></app-add-codelab-comment>
-      <div class="different-different-bg">
-        <p>Comments will go there</p>
-      </div>
-  </main>
+    </div>
+    <app-add-codelab-comment [id]="codelab.id"></app-add-codelab-comment>
+    <div class="comments-container">
+      <p>Comments will go there</p>
+    </div>
+  </div>
 } @placeholder {
   <app-loading-spinner></app-loading-spinner>
 }
