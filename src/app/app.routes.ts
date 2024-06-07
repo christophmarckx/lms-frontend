@@ -12,12 +12,12 @@ import {UpdateCourseFormComponent} from "./component/forms/update-course-form/up
 import {UserProfileComponent} from "./component/user-profile/user-profile.component";
 import {ClassgroupOverviewComponent} from "./component/classgroup-overview/classgroup-overview.component";
 import {ViewCodelabComponent} from "./component/view-codelab/view-codelab.component";
-import {CodelabGalleryComponent} from "./component/codelab-gallery/codelab-gallery.component";
-import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgroup-gallery.component";
-import {LoadingSpinnerComponent} from "./component/shared/loading-spinner/loading-spinner.component";
 import {coachGuard} from "./authentication/coach.guard";
-import {UpdateCodelabFormComponent} from "./component/forms/update-codelab-form/update-codelab-form.component";
 import {CourseOverviewComponent} from "./component/course-overview/course-overview.component";
+import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgroup-gallery.component";
+import {CodelabGalleryComponent} from "./component/codelab-gallery/codelab-gallery.component";
+import {UpdateCodelabFormComponent} from "./component/forms/update-codelab-form/update-codelab-form.component";
+import {LoadingSpinnerComponent} from "./component/shared/loading-spinner/loading-spinner.component";
 
 
 export const routes: Routes = [
@@ -98,5 +98,9 @@ export const routes: Routes = [
     path: 'profile',
     component: UserProfileComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'test',
+    component: LoadingSpinnerComponent
   }
 ];
