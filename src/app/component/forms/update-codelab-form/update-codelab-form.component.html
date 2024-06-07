@@ -1,28 +1,21 @@
 <div class="form-group">
+  <h1>Update codelab</h1>
   <form (ngSubmit)="updateCodelab()" [formGroup]="updateCodelabForm">
-    <h1>Update codelab</h1>
-    <label class="form-label" for="name">
-      Name
-      <input class="form-control" formControlName="name" id="name" type="text"/>
-    </label>
-    <label class="form-label" for="description">
-      Description
-      <input class="form-control" formControlName="description" id="description" type="text"/>
-    </label>
-    <label class="form-label" for="moduleId">
-      Module
-      <select class="form-control" formControlName="moduleId" id="moduleId" type="text">
-        @if (codelab) {
-          @for (module of modules; track module) {
-            @if (module.id === this.codelab.module.id) {
-              <option value="{{module.id}}" selected="selected">{{ module.name }}</option>
-            } @else {
-              <option value="{{module.id}}" selected="">{{ module.name }}</option>
-            }
+    <label class="form-label" for="name">Name</label>
+    <input class="form-control" formControlName="name" id="name" type="text"/>
+    <label class="form-label" for="description">Description</label><input class="form-control" formControlName="description" id="description" type="text"/>
+    <label class="form-label" for="moduleId">Module</label>
+    <select class="form-control" formControlName="moduleId" id="moduleId" type="text">
+      @if (codelab) {
+        @for (module of modules; track module) {
+          @if (module.id === this.codelab.module.id) {
+            <option value="{{module.id}}" selected="selected">{{ module.name }}</option>
+          } @else {
+            <option value="{{module.id}}" selected="">{{ module.name }}</option>
           }
         }
-      </select>
-    </label>
+      }
+    </select>
     @if (isFormInvalid) {
       <div class="form-errors">
         @for (controlName of formControlNames; track controlName) {
@@ -43,13 +36,15 @@
         {{ updateCodelabError }}
       </div>
     }
-    <button class="btn btn-create"
-            type="submit"
-            [class.btn]="!isFormInvalid"
-            [class.btn-disabled]="isFormInvalid"
-            [disabled]="isFormInvalid">
-      UPDATE
-    </button>
+    <div class="btn-container">
+      <button class="btn btn-create"
+              type="submit"
+              [class.btn]="!isFormInvalid"
+              [class.btn-disabled]="isFormInvalid"
+              [disabled]="isFormInvalid">
+        Validate
+      </button>
+    </div>
   </form>
 </div>
 
