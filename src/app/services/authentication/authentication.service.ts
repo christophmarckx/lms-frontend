@@ -1,10 +1,10 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
-import {environment} from "../../../environments/environment";
 import Keycloak from "keycloak-js";
 import {PopupService} from "../popup/popup.service";
 import {AuthenticatedUser} from "../../models/authentication/authenticated-user";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
