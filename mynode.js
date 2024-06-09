@@ -1,22 +1,23 @@
 const fs = require('fs');
-const path = require('path');
-const successColor = '\x1b[32m%s\x1b[0m';
-const checkSign = '\u{2705}';
-const dotenv = require('dotenv').config({path: 'src/.env'}); ;
+const dotenv = require('dotenv');
 
-const envFile = `export const environment = {
-    backendUrl: '${process.env.backendUrl}',
-    keycloakUrl: '${process.env.keycloakUrl}',
-    realm: '${process.env.realm}',
-    clientId: '${process.env.clientId}',
+const env = process.env.NODE_ENV || 'development';
+const envFilePath = `src/.env.${env}`;
+
+dotenv.config({ path: envFilePath });
+
+const envConfig = `
+export const environment = {
+  backendUrl: '${process.env.backendUrl}',
+  keycloakUrl: '${process.env.keycloakUrl}',
+  realm: '${process.env.realm}',
+  clientId: '${process.env.clientId}',
+  keycloakRedirectUri: '${process.env.keycloakRedirectUri}',
 };
 `;
-const targetPath = path.join(__dirname, './src/environments/environment.development.ts');
-fs.writeFile(targetPath, envFile, (err) => {
-    if (err) {
-        console.error(err);
-        throw err;
-    } else {
-        console.log(successColor, `${checkSign} Successfully generated environment.development.ts`);
-    }
-});
+
+if (env === 'development'){
+  fs.writeFileSync('./src/environments/environment.development.ts', envConfig);
+} else {
+  fs.writeFileSync('./src/environments/environment.ts', envConfig);
+}
