@@ -4,5 +4,5 @@ export const environment = {
   keycloakUrl: '',
   realm: '',
   clientId: '',
-  redirectUri: '',
+  keycloakRedirectUri: '',
 };
