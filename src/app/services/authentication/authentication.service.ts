@@ -45,11 +45,11 @@ export class AuthenticationService {
     }
   }
   loginUser(url?: string) {
-    return this.keycloak.login({redirectUri: url ? "http://localhost:4200/" + url : "http://localhost:4200"});
+    return this.keycloak.login({redirectUri: url ? environment.keycloakRedirectUri + url : environment.keycloakRedirectUri});
   }
 
   logoutUser(errorMessage?: string) {
-    return this.keycloak.logout({redirectUri: 'http://localhost:4200'}).then(() => {
+    return this.keycloak.logout({redirectUri: environment.keycloakRedirectUri}).then(() => {
       if (errorMessage) {
         localStorage.setItem('loginErrorPopup', "Logout: Consistency error with backend");
       }
