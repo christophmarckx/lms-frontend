@@ -7,15 +7,18 @@ import {AuthenticationService} from "../../services/authentication/authenticatio
 import {UserRole} from "../../models/authentication/authenticated-user";
 import {CodelabWithComments} from "../../models/codelab/codelab-with-comments";
 import {Comment} from "../../models/comment/comment";
+import {AsyncPipe, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-view-codelab',
   standalone: true,
-    imports: [
-        AddCodelabCommentComponent,
-        LoadingSpinnerComponent,
-      RouterLink
-    ],
+  imports: [
+    AddCodelabCommentComponent,
+    LoadingSpinnerComponent,
+    RouterLink,
+    AsyncPipe,
+    NgIf
+  ],
   templateUrl: './view-codelab.component.html',
   styleUrl: './view-codelab.component.css'
 })
@@ -36,7 +39,6 @@ export class ViewCodelabComponent implements OnInit {
       }
     );
     this.authenticatedUser = this.authenticationService.getAuthenticatedUser();
-    //this.myEvent.subscribe(comment => this.addComment(comment))
   }
 
   addComment(comment: Comment) {

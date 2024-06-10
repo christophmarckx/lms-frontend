@@ -12,7 +12,13 @@
         <p>{{ codelab.description }}</p>
       </div>
     </div>
-    <app-add-codelab-comment #addCodeLabComment [codelabId]="codelab.id" (myEventEmitter)="addComment($event)" ></app-add-codelab-comment>
+    <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
+      @if (authenticatedUser.role === UserRole.STUDENT) {
+        <app-add-codelab-comment #addCodeLabComment [codelabId]="codelab.id" (myEventEmitter)="addComment($event)" ></app-add-codelab-comment>
+      } @else {
+        <hr class="mt-4  mb-4">
+      }
+    </ng-container>
     <div class="comments-container" >
 
       @if (codelab.comments.length > 0){
