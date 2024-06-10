@@ -1,22 +1,17 @@
 @defer (when classgroups) {
   <div class="enroll-student">
-    <!-- <form (ngSubmit)="registerToClassGroup()" [formGroup]="enrollClassgroupForm"> -->
     <div class="classgroup-dropdown">
-      <select id="classgroup-select" [(ngModel)]="enrolledClassGroup">
+      <select id="classgroup-select" [(ngModel)]="selectedClassgroupId">
         @for (classgroup of classgroups; track classgroup) {
-          <option [value]="classgroup" [selected]="classgroup.id === enrolledClassGroup.id">{{ classgroup.name }}</option>
+          <option [value]="classgroup.id" [selected]="classgroup.id === selectedClassgroupId">{{ classgroup.name }}</option>
         }
       </select>
     </div>
-
-    <div class="btn-container">
-      <button class="btn btn-create"
-              type="button"
-              (click)="registerToClassGroup()">
-        Save
-      </button>
-    </div>
-    <!--</form>-->
+    <button class="btn btn-redirect"
+            type="button"
+            (click)="registerToClassGroup()">
+      Save
+    </button>
   </div>
 
 

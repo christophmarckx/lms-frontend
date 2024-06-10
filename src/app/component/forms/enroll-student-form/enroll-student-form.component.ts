@@ -24,23 +24,19 @@ import {LoadingSpinnerComponent} from "../../shared/loading-spinner/loading-spin
 })
 export class EnrollStudentFormComponent implements OnInit {
   private readonly popupService: PopupService = inject(PopupService);
-  private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly route: Router = inject(Router);
   private readonly classgroupService: ClassgroupService = inject(ClassgroupService);
-  public isFormInvalid: boolean = true;
   public formControlNames: string[] = ['classgroup'];
   public enrollFormError?: string;
   @Input() enrolledClassGroup: Classgroup;
-  enrollClassgroupForm: FormGroup;
+  selectedClassgroupId: string;
   classgroups: Classgroup[];
   user: any;
-  selectedClassgroup: Classgroup;
 
   ngOnInit() {
-
     this.getClassGroups().subscribe(cg => {
       this.classgroups = cg;
-
+      this.selectedClassgroupId = this.enrolledClassGroup.id
     });
   }
 
@@ -50,9 +46,8 @@ export class EnrollStudentFormComponent implements OnInit {
 
 
   registerToClassGroup(): void {
-
-
-    this.classgroupService.enrollStudent(this.enrolledClassGroup.id).subscribe({
+    console.log(this.selectedClassgroupId);
+    this.classgroupService.enrollStudent(this.selectedClassgroupId).subscribe({
       next: reponse => {
 
         this.popupService.showPopup(`You've registered!`);

@@ -39,6 +39,14 @@ h2 {
   margin: 0;
   color: black;
   text-decoration: none;
+  transition: all;
+  transition-duration: 350ms;
+}
+
+.classgroup-card-root > a:hover {
+  font-weight: bold;
+  transition: all;
+  transition-duration: 350ms;
 }
 
 .different-bg {
