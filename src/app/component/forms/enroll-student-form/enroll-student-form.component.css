@@ -1,3 +1,10 @@
-.classgroup-dropdown{
-  width: 0.8vw;
+.classgroup-dropdown {
+  width: 80%;
+  justify-content: left;
+}
+
+.enroll-student {
+  display: flex;
+  flex-direction: row;
+
 }

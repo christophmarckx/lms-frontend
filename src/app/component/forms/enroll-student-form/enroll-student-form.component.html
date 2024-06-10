@@ -1,37 +1,28 @@
 @defer (when classgroups) {
-  <div class="classgroup-dropdown">
-    <form (ngSubmit)="registerToClassGroup()" [formGroup]="enrollClassgroupForm">
-      <select id="classgroup-select" formControlName="classgroup" (change)="onFormUpdate()">
+  <div class="enroll-student">
+    <!-- <form (ngSubmit)="registerToClassGroup()" [formGroup]="enrollClassgroupForm"> -->
+    <div class="classgroup-dropdown">
+      <select id="classgroup-select" [(ngModel)]="enrolledClassGroup">
         @for (classgroup of classgroups; track classgroup) {
-          <option [value]="classgroup.id">{{ classgroup.name }}</option>
+          <option [value]="classgroup" [selected]="classgroup.id === enrolledClassGroup.id">{{ classgroup.name }}</option>
         }
       </select>
+    </div>
 
-      @if (isFormInvalid) {
-        <div class="form-errors">
-          @for (controlName of formControlNames; track controlName) {
-            <div>
-              @if (hasError(controlName, 'required')) {
-                - {{ controlName }} is required.
-              }
-            </div>
-          }
-        </div>
-      }
-      @if (enrollFormError) {
-        <div class="backend-error" [innerHTML]="enrollFormError | processError"></div>
-      }
-      <div class="btn-container">
-        <button class="btn btn-create"
-                type="submit"
-                [class.btn]="!isFormInvalid"
-                [class.btn-disabled]="isFormInvalid"
-                [disabled]="isFormInvalid">
-          Save
-        </button>
-      </div>
-    </form>
+    <div class="btn-container">
+      <button class="btn btn-create"
+              type="button"
+              (click)="registerToClassGroup()">
+        Save
+      </button>
+    </div>
+    <!--</form>-->
   </div>
+
+
+  @if (enrollFormError) {
+    <div class="backend-error" [innerHTML]="enrollFormError | processError"></div>
+  }
 } @placeholder {
   <app-loading-spinner></app-loading-spinner>
 }

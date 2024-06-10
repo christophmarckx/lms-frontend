@@ -34,18 +34,13 @@ export class EnrollStudentFormComponent implements OnInit {
   enrollClassgroupForm: FormGroup;
   classgroups: Classgroup[];
   user: any;
+  selectedClassgroup: Classgroup;
 
   ngOnInit() {
-    this.enrollClassgroupForm = this.formBuilder.group({
-      classgroup: ['', [Validators.required]]
-    })
+
     this.getClassGroups().subscribe(cg => {
       this.classgroups = cg;
-      if (this.enrolledClassGroup) {
-        this.enrollClassgroupForm.patchValue({
-          classgroup: this.enrolledClassGroup.id,
-        })
-      }
+
     });
   }
 
@@ -53,31 +48,11 @@ export class EnrollStudentFormComponent implements OnInit {
     return this.classgroupService.getAllClassgroups()
   }
 
-  onFormUpdate() {
-    this.isFormInvalid = this.enrollClassgroupForm.invalid;
-  }
-
-  getError(controlName: string, errorName: string) {
-    const {errors} = this.enrollClassgroupForm.controls[controlName as keyof typeof this.enrollClassgroupForm.controls];
-    if (errors) {
-      return errors[errorName];
-    }
-    return '';
-  }
-
-  hasError(controlName: string, errorName: string): boolean {
-    return this.enrollClassgroupForm.controls[controlName as keyof typeof this.enrollClassgroupForm.controls].hasError(errorName);
-  }
 
   registerToClassGroup(): void {
-    if (this.isFormInvalid) {
-      alert('The data you inserted is invalid. Try again!');
-      return;
-    }
-    const rawValues = this.enrollClassgroupForm.getRawValue();
-    const classGroupId = rawValues.classgroup!;
 
-    this.classgroupService.enrollStudent(classGroupId).subscribe({
+
+    this.classgroupService.enrollStudent(this.enrolledClassGroup.id).subscribe({
       next: reponse => {
 
         this.popupService.showPopup(`You've registered!`);
