@@ -6,6 +6,7 @@ import {Student} from "../../models/student/student";
 import {CreateStudent} from "../../models/student/create-student";
 import {Course} from "../../models/course/course";
 import { environment } from '../../../environments/environment';
+import {StudentWithProgress} from "../../models/student/student-with-progress";
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class StudentService {
 
   getFollowedCourseByStudentId(studentId: string): Observable<Course> {
     return this.http.get<Course>(this.url + '/' + studentId + '/course');
+  }
+
+  getProgressOverview(): Observable<StudentWithProgress[]> {
+    return this.http.get<StudentWithProgress[]>(this.url + '/progress');
   }
 }

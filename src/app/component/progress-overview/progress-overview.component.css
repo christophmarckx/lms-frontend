@@ -1,0 +1,37 @@
+.progress-gallery {
+  width: 100%;
+}
+
+.root-module {
+}
+
+.page-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+h1 {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #489ccc;
+}
+
+.progress-card-root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #9bccd850;
+}
+
+.modules-card-root > p {
+  padding: 20px 15px;
+  margin: 0;
+  color: black;
+  text-decoration: none;
+}

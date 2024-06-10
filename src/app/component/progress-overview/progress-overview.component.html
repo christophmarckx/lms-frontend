@@ -1,0 +1,20 @@
+@defer (when studentsWithProgress) {
+  <div class="progress-gallery">
+    <div class="page-header">
+      <h1>View all students</h1>
+    </div>
+    @if (studentsWithProgress.length === 0) {
+      <div class="progress-card-root">
+        <p>No module to display</p>
+      </div>
+    } @else {
+      @for(studentWithProgress of studentsWithProgress; track studentWithProgress) {
+        <div class="root-module">
+          <app-progress-card [studentWithProgress]="studentWithProgress" [isPair]="($index+1) % 2 === 0"></app-progress-card>
+        </div>
+      }
+    }
+  </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+}
