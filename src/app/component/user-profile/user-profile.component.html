@@ -1,4 +1,4 @@
-@defer(when classgroups) {
+@defer (when classgroups) {
   <h1>Profile of {{ user.displayName }}</h1>
   <div>
     <h2>Email:</h2>
@@ -15,12 +15,25 @@
     } @else {
       <h2>Your classgroup:</h2>
 
-      @if (classgroups.length > 0){
-        <app-classgroup-card [classGroup]="classgroups[0]" [isPair]="true"></app-classgroup-card>
-      } @else {
-        <div class="no-classgroup">
-          <p>No class chosen</p>
+      @if (classgroups.length > 0) {
+        <div class="classgroup-card-root">
+          <a routerLink="/classgroups/{{classgroups[0].id}}">{{ classgroups[0].name }}</a>
+
+          <button class="btn btn-redirect" routerLink="/classgroups/{{classgroups[0].id}}">
+            Check it out!
+          </button>
         </div>
+      } @else {
+        @if (showDropdown) {
+            <app-enroll-student-form></app-enroll-student-form>
+        } @else {
+          <div class="classgroup-card-root">
+            <p>No class chosen</p>
+            <button class="btn btn-redirect" (click)="showDropdown = true">
+              Enroll in a class
+            </button>
+          </div>
+        }
       }
     }
   </div>

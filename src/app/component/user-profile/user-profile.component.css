@@ -13,7 +13,15 @@ h2 {
   font-weight: bold;
 }
 
-.no-classgroup {
+
+.classgroup-card-root > p {
+  padding: 20px 15px;
+  margin: 0;
+  color: black;
+  text-decoration: none;
+}
+
+.classgroup-card-root {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,10 +30,23 @@ h2 {
   background-color: #9bccd850;
 }
 
-.no-classgroup > p {
+.btn {
+  margin-right: 15px;
+}
+
+.classgroup-card-root > a {
   padding: 20px 15px;
   margin: 0;
   color: black;
   text-decoration: none;
+}
+
+.different-bg {
+  background-color: #489ccc50;
+}
+
+.module-card-root div {
+  flex: 1;
+  margin-right: 10px;
 }
 

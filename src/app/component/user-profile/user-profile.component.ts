@@ -33,6 +33,7 @@ export class UserProfileComponent implements OnInit {
   user: any;
   // @Input() id: string;
   classgroups: Classgroup[];
+  showDropdown: boolean = false;
 
   ngOnInit() {
     this.authenticationService.getAuthenticatedUserAsObservable().subscribe(user => this.user = user);
