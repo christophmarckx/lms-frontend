@@ -2,10 +2,10 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {CreateCodelab} from "../../models/codelab/create-codelab";
-import {environment} from "../../../environments/environment";
 import {Codelab} from "../../models/codelab/codelab";
 import {UpdateCodelab} from "../../models/codelab/update-codelab";
 import {CodelabProgress} from "../../models/codelab/codelab-progress";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

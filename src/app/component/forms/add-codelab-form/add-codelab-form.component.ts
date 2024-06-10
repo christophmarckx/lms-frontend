@@ -62,7 +62,7 @@ export class AddCodelabFormComponent implements OnInit {
 
   addCodelab() {
     if (this.isFormInvalid) {
-      alert('The data that you inserted is not valid. Try again!');
+      this.popupService.showPopup('Data is not valid');
       return;
     }
     const rawValues = this.createCodelabForm.getRawValue();
@@ -75,7 +75,7 @@ export class AddCodelabFormComponent implements OnInit {
       (response) => {
         this.popupService.showPopup("Codelab created!")
         ;
-        this.router.navigate(['']);
+        this.router.navigate(['/codelabs']);
       },
       (response) => {
         this.createCodelabError = response.error.errors;

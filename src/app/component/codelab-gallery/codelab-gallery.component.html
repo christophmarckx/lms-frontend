@@ -8,9 +8,15 @@
         }
       </ng-container>
     </div>
-    @for(codelab of codelabs; track codelab) {
-      <app-codelab-card [codelab]="codelab" [isPair]="$index % 2 === 0">
-      </app-codelab-card>
+    @if (codelabs.length === 0) {
+      <div class="codelabs-card-root">
+        <p>No codelab to display</p>
+      </div>
+    } @else {
+      @for(codelab of codelabs; track codelab) {
+        <app-codelab-card [codelab]="codelab" [isPair]="$index % 2 === 0">
+        </app-codelab-card>
+      }
     }
   </div>
 } @placeholder {

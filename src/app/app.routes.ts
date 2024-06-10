@@ -37,7 +37,7 @@ export const routes: Routes = [
   {
     path: 'classgroups/add-classgroup',
     component: AddClassgroupFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'classgroups/:classgroupId',
@@ -52,7 +52,7 @@ export const routes: Routes = [
   {
     path: 'courses/add-course',
     component: AddCourseFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'courses/:id',
@@ -62,7 +62,7 @@ export const routes: Routes = [
   {
     path: 'courses/:id/update-course',
     component: UpdateCourseFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'modules',
@@ -72,7 +72,7 @@ export const routes: Routes = [
   {
     path: 'modules/add-module',
     component: AddModuleFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'codelabs',
@@ -82,7 +82,7 @@ export const routes: Routes = [
   {
     path: 'codelabs/add-codelab',
     component: AddCodelabFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'codelabs/:id',

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {UpdateCourse} from "../../models/course/update-course";
 import {Course} from "../../models/course/course";
 import {CourseWithModules} from "../../models/course/course-with-modules";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
