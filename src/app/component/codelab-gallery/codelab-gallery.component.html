@@ -1,7 +1,7 @@
 @defer(when codelabs) {
   <div class="codelabs-gallery">
     <div class="page-header">
-      <h1>View all codelabs</h1>
+      <h2>View all codelabs</h2>
       <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
         @if (authenticatedUser.role === UserRole.COACH) {
           <button class="btn btn-add" routerLink="/codelabs/add-codelab">Create codelab</button>

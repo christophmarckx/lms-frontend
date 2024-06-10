@@ -1,7 +1,7 @@
 @defer (when moduleHierarchy) {
   <div class="modules-gallery">
     <div class="page-header">
-      <h1>View all modules</h1>
+      <h2>View all modules</h2>
       <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
         @if (authenticatedUser.role === UserRole.COACH) {
           <button class="btn btn-add" routerLink="/modules/add-module">Create module</button>

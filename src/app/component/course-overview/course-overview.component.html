@@ -1,7 +1,7 @@
 @defer (when courseWithModules) {
   <div class="course-container">
     <div class="page-header">
-      <h1>Course : {{ courseWithModules.name }}</h1>
+      <h2>Course : {{ courseWithModules.name }}</h2>
       @if (authenticatedUser.role === UserRole.COACH) {
         <button class="btn btn-redirect" routerLink="/courses/{{courseWithModules.id}}/update-course">Update course</button>
       }

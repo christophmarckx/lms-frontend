@@ -1,6 +1,6 @@
 <section>
   <div class="dialog-create-student">
-    <h1>Register a new student</h1>
+    <h2>Register a new student</h2>
     <form [formGroup]="createStudentForm" (ngSubmit)="onSubmit()">
       <label>Email</label>
       <input type="text" class="form-control" formControlName="email" placeholder="Email">
@@ -73,7 +73,7 @@
                 [class.btn-disabled]="!createStudentForm.valid"
                 [disabled]="!createStudentForm.valid"
         >
-          Validate
+          Submit
         </button>
       </div>
     </form>

@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {RouterLink} from "@angular/router";
-import { Student } from '../../../models/student/student';
+import {Student} from '../../../models/student/student';
 import {Coach} from "../../../models/coach/coach";
 
 @Component({

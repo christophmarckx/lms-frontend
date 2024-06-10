@@ -79,6 +79,8 @@ select {
   border: 2px solid #489ccc;
   border-radius: 10px;
   cursor: pointer;
+  transition: all;
+  transition-duration: 350ms;
 }
 
 .btn-container {
@@ -89,7 +91,6 @@ select {
   margin-top: 1rem;
   justify-content: flex-end;
 }
-
 
 .btn-disabled {
   color: #489ccc;
@@ -110,17 +111,23 @@ select {
   color: #fff;
   border: 2px solid #2f6d91;
   background-color: #2f6d91;
+  transition: all;
+  transition-duration: 350ms;
 }
 
 .btn-add {
   background: #08c400;
   border: 2px solid #08c400;
+  transition: all;
+  transition-duration: 350ms;
 }
 
 .btn-add:hover {
   background: #ffffff;
   color: #08c400;
   border: 2px solid #08c400;
+  transition: all;
+  transition-duration: 350ms;
 }
 
 .btn-redirect {
@@ -128,26 +135,36 @@ select {
   border: 2px solid #2f6d91;
   font-weight: normal;
   font-size: 1em;
+  transition: all;
+  transition-duration: 350ms;
 }
 
 .btn-details {
   font-weight: normal;
   font-size: 1em;
+  transition: all;
+  transition-duration: 350ms;
 }
 
 .btn-redirect:hover {
   background: #ffffff;
   color: #2f6d91;
   border: 2px solid #2f6d91;
+  transition: all;
+  transition-duration: 350ms;
 }
 
 .btn-cancel {
   background: #f46546;
   border: 2px solid #f46546;
+  transition: all;
+  transition-duration: 350ms;
 }
 
 .btn-cancel:hover {
   color: #f46546;
+  transition: all;
+  transition-duration: 350ms;
 }
 
 form h1 {
@@ -157,7 +174,20 @@ form h1 {
   margin-bottom: 25px;
 }
 
+h2 {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #489ccc;
+}
+
 .form-group {
   width: 100%;
   padding: 1rem;
+}
+
+h3 {
+  margin-right: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #489ccc;
 }

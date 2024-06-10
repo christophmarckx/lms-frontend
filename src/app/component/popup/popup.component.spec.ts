@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PopupComponent } from './popup.component';
+import {PopupComponent} from './popup.component';
 
 describe('PopupComponent', () => {
   let component: PopupComponent;
@@ -11,7 +11,7 @@ describe('PopupComponent', () => {
       imports: [PopupComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(PopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

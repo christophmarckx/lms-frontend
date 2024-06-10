@@ -1,6 +1,5 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import {CourseService} from "../../services/course/course.service";
-import {Course} from "../../models/course/course";
 import {PopupService} from "../../services/popup/popup.service";
 import {CourseWithModules} from "../../models/course/course-with-modules";
 import {ModuleCodelabsComponent} from "./module-codelabs/module-codelabs.component";

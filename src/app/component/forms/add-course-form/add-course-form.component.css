@@ -36,27 +36,9 @@
   transition: all;
 }
 
-
-.added-modules-container {
-  text-align: right;
-}
-
 .available-modules-container h3, .added-modules-container h3 {
   color: #489ccc;
   font-size: 1rem;
   width: 100%;
   text-align: center;
-}
-
-h1 {
-  font-size: 1.7em;
-  font-weight: bold;
-  color: #489ccc;
-}
-
-h3 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #489ccc;
-  width: fit-content;
 }

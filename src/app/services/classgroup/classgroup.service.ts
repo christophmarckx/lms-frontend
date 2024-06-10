@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {CreateClassgroup} from "../../models/classgroup/create-classgroup";
 import {ClassgroupWithMembers} from "../../models/classgroup/classgroup-with-members";
 import {Classgroup} from "../../models/classgroup/classgroup";
-import { environment } from '../../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 
 @Injectable({

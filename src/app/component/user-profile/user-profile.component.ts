@@ -1,12 +1,10 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {StudentService} from "../../services/student/student.service";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {ClassgroupService} from "../../services/classgroup/classgroup.service";
 import {Classgroup} from "../../models/classgroup/classgroup";
-import { UserRole } from '../../models/authentication/authenticated-user';
-import {PopupService} from "../../services/popup/popup.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UserRole} from '../../models/authentication/authenticated-user';
 import {EnrollStudentFormComponent} from "../forms/enroll-student-form/enroll-student-form.component";
 import {Observable} from "rxjs";
 import {ClassgroupCardComponent} from "../classgroup-gallery/classgroup-card/classgroup-card.component";

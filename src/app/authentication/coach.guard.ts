@@ -1,9 +1,8 @@
-import { CanActivateFn } from '@angular/router';
+import {CanActivateFn} from '@angular/router';
 import {inject} from "@angular/core";
 import {AuthenticationService} from "../services/authentication/authentication.service";
 import {UserRole} from "../models/authentication/authenticated-user";
-import {firstValueFrom, Observable} from "rxjs";
-import {resolve} from "@angular/compiler-cli";
+import {firstValueFrom} from "rxjs";
 
 export const coachGuard: CanActivateFn = (route, state) => {
   const authenticationService = inject(AuthenticationService);

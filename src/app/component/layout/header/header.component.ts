@@ -2,7 +2,7 @@ import {Component, inject} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {AuthenticationService} from "../../../services/authentication/authentication.service";
-import { UserRole } from '../../../models/authentication/authenticated-user';
+import {UserRole} from '../../../models/authentication/authenticated-user';
 
 @Component({
   selector: 'app-header',

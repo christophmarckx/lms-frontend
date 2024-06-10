@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ClassgroupGalleryComponent } from './classgroup-gallery.component';
+import {ClassgroupGalleryComponent} from './classgroup-gallery.component';
 
 describe('ClassgroupGalleryComponent', () => {
   let component: ClassgroupGalleryComponent;
@@ -11,7 +11,7 @@ describe('ClassgroupGalleryComponent', () => {
       imports: [ClassgroupGalleryComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ClassgroupGalleryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
