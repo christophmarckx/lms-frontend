@@ -14,7 +14,6 @@ import {ClassgroupOverviewComponent} from "./component/classgroup-overview/class
 import {ViewCodelabComponent} from "./component/view-codelab/view-codelab.component";
 import {CodelabGalleryComponent} from "./component/codelab-gallery/codelab-gallery.component";
 import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgroup-gallery.component";
-import {LoadingSpinnerComponent} from "./component/shared/loading-spinner/loading-spinner.component";
 import {coachGuard} from "./authentication/coach.guard";
 import {UpdateCodelabFormComponent} from "./component/forms/update-codelab-form/update-codelab-form.component";
 import {CourseOverviewComponent} from "./component/course-overview/course-overview.component";
@@ -37,7 +36,7 @@ export const routes: Routes = [
   {
     path: 'classgroups/add-classgroup',
     component: AddClassgroupFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'classgroups/:classgroupId',
@@ -52,7 +51,7 @@ export const routes: Routes = [
   {
     path: 'courses/add-course',
     component: AddCourseFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'courses/:id',
@@ -62,7 +61,7 @@ export const routes: Routes = [
   {
     path: 'courses/:id/update-course',
     component: UpdateCourseFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'modules',
@@ -72,7 +71,7 @@ export const routes: Routes = [
   {
     path: 'modules/add-module',
     component: AddModuleFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'codelabs',
@@ -82,7 +81,7 @@ export const routes: Routes = [
   {
     path: 'codelabs/add-codelab',
     component: AddCodelabFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'codelabs/:id',

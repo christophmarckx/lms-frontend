@@ -8,9 +8,16 @@
         }
       </ng-container>
     </div>
-    @for (classgroup of classgroups; track classgroup) {
-      <app-classgroup-card [classGroup]="classgroup" [isPair]="$index % 2 === 0">
-      </app-classgroup-card>
+    @if(classgroups.length === 0) {
+      <div class="classgroup-card-root">
+        <p>No classgroup to display</p>
+      </div>
+    }
+    @else {
+      @for (classgroup of classgroups; track classgroup) {
+        <app-classgroup-card [classGroup]="classgroup" [isPair]="$index % 2 === 0">
+        </app-classgroup-card>
+      }
     }
   </div>
 } @placeholder {

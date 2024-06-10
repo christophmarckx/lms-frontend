@@ -18,6 +18,11 @@
     } @else {
       <h2>All courses</h2>
     }
+    @if (courses.length === 0) {
+      <div class="courses-card-root">
+        <p>No course to display</p>
+      </div>
+    }
     @for (course of courses; track course) {
       <app-course-card [course]="course" [isPair]="$index % 2 === 0">
       </app-course-card>
