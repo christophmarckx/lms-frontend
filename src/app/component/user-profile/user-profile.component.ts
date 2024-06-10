@@ -23,13 +23,10 @@ import {UserService} from "../../services/user/user.service";
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent implements OnInit {
-  private readonly route: ActivatedRoute = inject(ActivatedRoute);
-  private readonly studentService: StudentService = inject(StudentService);
   private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
   private readonly userService: UserService = inject(UserService);
   protected readonly UserRole = UserRole;
   user: any;
-  // @Input() id: string;
   classgroups: Classgroup[];
 
   ngOnInit() {
@@ -39,11 +36,5 @@ export class UserProfileComponent implements OnInit {
 
   private getClassgroupsForUser(userId: string): Observable<Classgroup[]> {
     return this.userService.getAllClassgroupsForUserId(userId);
-  }
-
-  private getStudentById() {
-    this.studentService.getStudentById().subscribe(
-      student => this.user = student
-    );
   }
 }
