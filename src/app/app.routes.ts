@@ -15,8 +15,9 @@ import {ViewCodelabComponent} from "./component/view-codelab/view-codelab.compon
 import {CodelabGalleryComponent} from "./component/codelab-gallery/codelab-gallery.component";
 import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgroup-gallery.component";
 import {coachGuard} from "./authentication/coach.guard";
-import {CourseOverviewComponent} from "./component/course-overview/course-overview.component";
 import {UpdateCodelabFormComponent} from "./component/forms/update-codelab-form/update-codelab-form.component";
+import {CourseOverviewComponent} from "./component/course-overview/course-overview.component";
+
 
 export const routes: Routes = [
   {
