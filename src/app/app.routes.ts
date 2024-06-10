@@ -12,13 +12,11 @@ import {UpdateCourseFormComponent} from "./component/forms/update-course-form/up
 import {UserProfileComponent} from "./component/user-profile/user-profile.component";
 import {ClassgroupOverviewComponent} from "./component/classgroup-overview/classgroup-overview.component";
 import {ViewCodelabComponent} from "./component/view-codelab/view-codelab.component";
+import {CodelabGalleryComponent} from "./component/codelab-gallery/codelab-gallery.component";
+import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgroup-gallery.component";
 import {coachGuard} from "./authentication/coach.guard";
 import {CourseOverviewComponent} from "./component/course-overview/course-overview.component";
-import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgroup-gallery.component";
-import {CodelabGalleryComponent} from "./component/codelab-gallery/codelab-gallery.component";
 import {UpdateCodelabFormComponent} from "./component/forms/update-codelab-form/update-codelab-form.component";
-import {LoadingSpinnerComponent} from "./component/shared/loading-spinner/loading-spinner.component";
-
 
 export const routes: Routes = [
   {
@@ -37,7 +35,7 @@ export const routes: Routes = [
   {
     path: 'classgroups/add-classgroup',
     component: AddClassgroupFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'classgroups/:classgroupId',
@@ -52,7 +50,7 @@ export const routes: Routes = [
   {
     path: 'courses/add-course',
     component: AddCourseFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'courses/:id',
@@ -62,7 +60,7 @@ export const routes: Routes = [
   {
     path: 'courses/:id/update-course',
     component: UpdateCourseFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'modules',
@@ -72,7 +70,7 @@ export const routes: Routes = [
   {
     path: 'modules/add-module',
     component: AddModuleFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'codelabs',
@@ -82,7 +80,7 @@ export const routes: Routes = [
   {
     path: 'codelabs/add-codelab',
     component: AddCodelabFormComponent,
-    canActivate: [authGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'codelabs/:id',
@@ -98,9 +96,5 @@ export const routes: Routes = [
     path: 'profile',
     component: UserProfileComponent,
     canActivate: [authGuard]
-  },
-  {
-    path: 'test',
-    component: LoadingSpinnerComponent
   }
 ];

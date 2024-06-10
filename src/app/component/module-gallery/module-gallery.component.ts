@@ -26,18 +26,6 @@ export class ModuleGalleryComponent implements OnInit{
   moduleService: ModuleService = inject(ModuleService);
   @ViewChild('module-card') moduleId: string = '';
 
-  changeModuleId(newModuleId: string) {
-    this.selectModule(newModuleId);
-  }
-
-  selectModule(moduleId: string) {
-    if (this.selectedModule && moduleId === this.selectedModule.id) {
-      this.selectedModule = null;
-      return;
-    }
-    return this.moduleService.getModuleById(moduleId).subscribe(module => this.selectedModule = module);
-  }
-
   ngOnInit() {
     this.moduleService.getModuleHierarchy().subscribe(moduleHierarchy => this.moduleHierarchy = moduleHierarchy);
   }
