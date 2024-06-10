@@ -26,11 +26,7 @@ export class ClassgroupService {
     return this.http.get<ClassgroupWithMembers>(this.urlString + '/' + id);
   }
 
-  getAllClassgroupsForUserId(userId: string) {
-    return this.http.get<Classgroup[]>(this.urlString + '?userId=' + userId);
-  }
-
-  getAllCourses() {
+  getAllCourses() { //TODO CHECK
     return this.http.get<Classgroup[]>(this.urlString);
   }
 
