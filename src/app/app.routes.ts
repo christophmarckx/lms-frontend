@@ -17,6 +17,7 @@ import {ClassgroupGalleryComponent} from "./component/classgroup-gallery/classgr
 import {coachGuard} from "./authentication/coach.guard";
 import {UpdateCodelabFormComponent} from "./component/forms/update-codelab-form/update-codelab-form.component";
 import {CourseOverviewComponent} from "./component/course-overview/course-overview.component";
+import {LoadingSpinnerComponent} from "./component/shared/loading-spinner/loading-spinner.component";
 
 
 export const routes: Routes = [
@@ -97,5 +98,9 @@ export const routes: Routes = [
     path: 'profile',
     component: UserProfileComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'test',
+    component: LoadingSpinnerComponent
   }
 ];

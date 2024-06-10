@@ -18,7 +18,7 @@
 
 .loader-container {
   position: absolute;
-  top: 0;
+  top: 75px;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -31,4 +31,10 @@
 @keyframes spin {
   0% { transform: rotate(20deg); }
   100% { transform: rotate(380deg); }
+}
+
+@media screen and (max-width: 991px) {
+  .loader-container {
+    top: 52px;
+  }
 }
