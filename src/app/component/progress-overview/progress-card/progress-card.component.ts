@@ -21,8 +21,8 @@ export class ProgressCardComponent implements AfterViewInit {
   setWidth() {
     const progressIndicatorElement = document.getElementById(this.studentWithProgress.student.id);
     if (progressIndicatorElement) {
-      this.setStyle(progressIndicatorElement, '0');
-      setTimeout(() => this.setStyle(progressIndicatorElement, `${this.calculateWidth()}%`), 500);
+      this.setStyle(progressIndicatorElement, 0);
+      setTimeout(() => this.setStyle(progressIndicatorElement, this.calculateWidth()), 500);
     }
   }
 
@@ -30,11 +30,25 @@ export class ProgressCardComponent implements AfterViewInit {
     return Math.floor((this.studentWithProgress.actualProgression / this.studentWithProgress.totalProgression) * 100);
   }
 
-  setStyle(progressIndicatorElement: HTMLElement, width: string) {
-    this.renderer.setStyle(progressIndicatorElement, 'transition', 'width 500ms ease-in-out');
-    this.renderer.setStyle(progressIndicatorElement, 'width', width);
+  setStyle(progressIndicatorElement: HTMLElement, width: number) {
+    this.renderer.setStyle(progressIndicatorElement, 'transition', 'all 1000ms ease-in-out');
+    this.renderer.setStyle(progressIndicatorElement, 'width', `${width}%`);
     this.renderer.setStyle(progressIndicatorElement, 'height', '100%');
-    this.renderer.setStyle(progressIndicatorElement, 'background-color', '#08c400');
     this.renderer.setStyle(progressIndicatorElement, 'border-radius', '25px');
+    this.setColor(progressIndicatorElement, width);
+  }
+
+  setColor(progressIndicatorElement: HTMLElement, width: number) {
+    if (width < 25) {
+      this.renderer.setStyle(progressIndicatorElement, 'background-color', '#ee4e50');
+    } else if (width < 50) {
+      this.renderer.setStyle(progressIndicatorElement, 'background-color', '#f46546');
+    } else if (width < 75) {
+      this.renderer.setStyle(progressIndicatorElement, 'background-color', '#e4de2d');
+    } else if (width < 100) {
+      this.renderer.setStyle(progressIndicatorElement, 'background-color', '#b1e42d');
+    } else {
+      this.renderer.setStyle(progressIndicatorElement, 'background-color', '#08c400');
+    }
   }
 }
