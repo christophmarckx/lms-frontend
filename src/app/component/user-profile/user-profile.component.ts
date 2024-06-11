@@ -31,12 +31,16 @@ export class UserProfileComponent implements OnInit {
   private readonly classgroupService: ClassgroupService = inject(ClassgroupService);
   protected readonly UserRole = UserRole;
   user: any;
-  // @Input() id: string;
+  @Input() id: string;
   classgroups: Classgroup[];
   showDropdown: boolean = false;
 
   ngOnInit() {
-    this.authenticationService.getAuthenticatedUserAsObservable().subscribe(user => this.user = user);
+    if (this.id){
+      this.getStudentById(this.id)
+    } else {
+      this.authenticationService.getAuthenticatedUserAsObservable().subscribe(user => this.user = user);
+    }
     this.getClassgroupsForUser(this.user.id).subscribe(classgroups => this.classgroups = classgroups);
   }
 
@@ -44,8 +48,8 @@ export class UserProfileComponent implements OnInit {
     return this.classgroupService.getAllClassgroupsForUserId(userId);
   }
 
-  private getStudentById() {
-    this.studentService.getStudentById().subscribe(
+  private getStudentById(id: string) {
+    this.studentService.getStudentById(id).subscribe(
       student => this.user = student
     );
   }
