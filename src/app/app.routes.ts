@@ -98,5 +98,10 @@ export const routes: Routes = [
     path: 'profile',
     component: UserProfileComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'students/:studentId',
+    component: UserProfileComponent,
+    canActivate: [authGuard, coachGuard]
   }
 ];

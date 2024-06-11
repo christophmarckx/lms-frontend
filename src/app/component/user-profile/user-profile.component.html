@@ -22,9 +22,11 @@
           <div class="classgroup-card-root">
             <a routerLink="/classgroups/{{classgroups[0].id}}">{{ classgroups[0].name }}</a>
 
-            <button class="btn btn-redirect" (click)="showDropdown = true">
-              Change classgroup
-            </button>
+            @if(!studentId){
+              <button class="btn btn-redirect" (click)="showDropdown = true">
+                Change classgroup
+              </button>
+            }
           </div>
         }
       } @else {

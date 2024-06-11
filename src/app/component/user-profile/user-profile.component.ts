@@ -2,15 +2,14 @@ import {Component, inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {StudentService} from "../../services/student/student.service";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
-import {ClassgroupService} from "../../services/classgroup/classgroup.service";
 import {Classgroup} from "../../models/classgroup/classgroup";
-import { UserRole } from '../../models/authentication/authenticated-user';
-import {PopupService} from "../../services/popup/popup.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UserRole} from '../../models/authentication/authenticated-user';
 import {EnrollStudentFormComponent} from "../forms/enroll-student-form/enroll-student-form.component";
 import {Observable} from "rxjs";
 import {ClassgroupCardComponent} from "../classgroup-gallery/classgroup-card/classgroup-card.component";
 import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner.component";
+import {UserService} from "../../services/user/user.service";
+import {Student} from "../../models/student/student";
 
 @Component({
   selector: 'app-user-profile',
@@ -25,32 +24,32 @@ import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent implements OnInit {
-  private readonly route: ActivatedRoute = inject(ActivatedRoute);
-  private readonly studentService: StudentService = inject(StudentService);
+  @Input() studentId: string;
   private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
-  private readonly classgroupService: ClassgroupService = inject(ClassgroupService);
   protected readonly UserRole = UserRole;
+  private readonly userService: UserService = inject(UserService);
   user: any;
-  @Input() id: string;
   classgroups: Classgroup[];
   showDropdown: boolean = false;
 
   ngOnInit() {
-    if (this.id){
-      this.getStudentById(this.id)
+    if (this.studentId) {
+      this.getStudentById(this.studentId).subscribe(student => {
+        this.user = student;
+        this.getClassgroupsForUser(this.user.id).subscribe(classgroups => this.classgroups = classgroups);
+      })
+
     } else {
       this.authenticationService.getAuthenticatedUserAsObservable().subscribe(user => this.user = user);
+      this.getClassgroupsForUser(this.user.id).subscribe(classgroups => this.classgroups = classgroups);
     }
-    this.getClassgroupsForUser(this.user.id).subscribe(classgroups => this.classgroups = classgroups);
   }
 
   private getClassgroupsForUser(userId: string): Observable<Classgroup[]> {
-    return this.classgroupService.getAllClassgroupsForUserId(userId);
+    return this.userService.getAllClassgroupsForUserId(userId);
   }
 
-  private getStudentById(id: string) {
-    this.studentService.getStudentById(id).subscribe(
-      student => this.user = student
-    );
+  private getStudentById(id: string): Observable<Student> {
+    return this.userService.getStudentById(id);
   }
 }

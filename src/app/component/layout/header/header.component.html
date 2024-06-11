@@ -33,7 +33,8 @@
                 }
                 <li class="nav-item">
                   <a routerLink="profile" class="header-btn" routerLinkActive="header-btn-active">Profile</a>
-                </li><li class="nav-item">
+                </li>
+                <li class="nav-item">
                   <a class="header-btn" (click)="authenticationService.logoutUser()">Logout {{authenticatedUser.displayName}}</a>
                 </li>
               }
