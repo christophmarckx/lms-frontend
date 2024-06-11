@@ -1,8 +1,8 @@
 
 export const environment = {
-  backendUrl:'http://localhost:8080',
+  backendUrl:'https://lms-testing-07c37f7a8e37.herokuapp.com/',
   keycloakUrl:'https://keycloak.switchfully.com/',
   realm:'java-2024-02-COTTT',
   clientId:'lms',
-  keycloakRedirectUri:'http://localhost:4200'
+  keycloakRedirectUri:'https://switchfully-testing-lms.netlify.app/'
 };
