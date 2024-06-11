@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {StudentService} from "../../services/student/student.service";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
