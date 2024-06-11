@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Renderer2, ElementRef, inject, AfterViewInit} from '@angular/core';
 import {StudentWithProgress} from "../../../models/student/student-with-progress";
 
 @Component({
@@ -8,7 +8,33 @@ import {StudentWithProgress} from "../../../models/student/student-with-progress
   templateUrl: './progress-card.component.html',
   styleUrl: './progress-card.component.css'
 })
-export class ProgressCardComponent {
+export class ProgressCardComponent implements AfterViewInit {
   @Input() studentWithProgress: StudentWithProgress;
   @Input() isPair!: boolean;
+  private renderer: Renderer2 = inject(Renderer2);
+  private elementRef: ElementRef = inject(ElementRef);
+
+  ngAfterViewInit() {
+    this.setWidth();
+  }
+
+  setWidth() {
+    const progressIndicatorElement = document.getElementById(this.studentWithProgress.student.id);
+    if (progressIndicatorElement) {
+      this.setStyle(progressIndicatorElement, '0');
+      setTimeout(() => this.setStyle(progressIndicatorElement, `${this.calculateWidth()}%`), 500);
+    }
+  }
+
+  calculateWidth() {
+    return Math.floor((this.studentWithProgress.actualProgression / this.studentWithProgress.totalProgression) * 100);
+  }
+
+  setStyle(progressIndicatorElement: HTMLElement, width: string) {
+    this.renderer.setStyle(progressIndicatorElement, 'transition', 'width 500ms ease-in-out');
+    this.renderer.setStyle(progressIndicatorElement, 'width', width);
+    this.renderer.setStyle(progressIndicatorElement, 'height', '100%');
+    this.renderer.setStyle(progressIndicatorElement, 'background-color', '#08c400');
+    this.renderer.setStyle(progressIndicatorElement, 'border-radius', '25px');
+  }
 }

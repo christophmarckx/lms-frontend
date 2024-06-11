@@ -1,4 +1,15 @@
 <div class="progress-card-root" [class.different-bg]="!isPair">
+  <div class="student-header">
     <p>{{studentWithProgress.student.displayName}}</p>
+    <div class="progress-bar-container">
+      <div class="progress-bar">
+        <div class="white-space">
+          <div id="{{studentWithProgress.student.id}}" class="progress-indicator"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="student-progression">
     <p>{{studentWithProgress.actualProgression + " / " + studentWithProgress.totalProgression}}</p>
+  </div>
 </div>

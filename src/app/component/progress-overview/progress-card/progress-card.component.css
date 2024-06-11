@@ -15,3 +15,47 @@ p {
 .different-bg {
   background-color: #489ccc50;
 }
+
+.student-progression {
+  margin-left: 15px;
+  text-align: right;
+}
+
+.student-header {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-bar-container {
+  width: 30%;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 50px;
+  border: 2px solid #08c400;
+  background-color: whitesmoke;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.white-space {
+  border: 1px solid whitesmoke;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+}
+
+.progress-bar {
+  display: block;
+  height: 20px;
+  border-radius: 25px;
+  transition: width 500ms ease-in-out;
+  animation-duration: 500ms;
+}
