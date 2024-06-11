@@ -4,6 +4,23 @@
     <form (ngSubmit)="addCourse()" [formGroup]="createCourseForm">
       <label class="form-label" for="name">Name</label>
       <input class="form-control" formControlName="name" id="name" type="text"/>
+      @if (
+        createCourseForm.controls["name"].invalid &&
+        createCourseForm.controls["name"].touched &&
+        createCourseForm.controls["name"].errors
+        ) {
+        <div class="form-errors">
+          @if (createCourseForm.controls["name"].getError('required')) {
+            <div>Name is required</div>
+          }
+          @if (createCourseForm.controls["name"].getError('minlength')) {
+            <div>Name must be at least {{ getError('name', 'minlength').requiredLength }} characters long</div>
+          }
+          @if (createCourseForm.controls["name"].getError('maxlength')) {
+            <div>Name cannot be more than {{ getError('name', 'maxlength').requiredLength }} characters long</div>
+          }
+        </div>
+      }
       <label class="form-label" for="description">Description</label>
       <input class="form-control" formControlName="description" id="description" type="text"/>
       <div class="modules-container">
@@ -28,21 +45,6 @@
           </div>
         </div>
       </div>
-      @if (isFormInvalid) {
-        <div class="form-errors">
-          @for (controlName of formControlNames; track controlName) {
-            <div>
-              @if (hasError(controlName, 'required')) {
-                - {{ controlName }} is required.
-              } @else if (hasError(controlName, 'minlength')) {
-                - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
-              } @else if (hasError(controlName, 'maxlength')) {
-                - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
-              }
-            </div>
-          }
-        </div>
-      }
       @if (createCourseError) {
         <div class="backend-error" [innerHTML]="createCourseError | processError">
         </div>

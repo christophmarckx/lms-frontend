@@ -29,7 +29,6 @@ export class AddCourseFormComponent implements OnInit{
   private readonly moduleService = inject(ModuleService);
   private readonly router: Router = inject(Router);
   private readonly popupService: PopupService = inject(PopupService);
-  public formControlNames : string[] = ['name', 'description'];
   public isFormInvalid: boolean = true;
   public createCourseError?: string;
   public modules: Module[];
@@ -76,10 +75,6 @@ export class AddCourseFormComponent implements OnInit{
   getModules() {
     return this.moduleService.getAllModules()
       .subscribe(modules => this.modules = modules);
-  }
-
-  hasError(controlName: string, errorName: string): boolean {
-    return this.createCourseForm.controls[controlName as keyof typeof this.createCourseForm.controls].hasError(errorName);
   }
 
   getError(controlName: string, errorName: string) {
