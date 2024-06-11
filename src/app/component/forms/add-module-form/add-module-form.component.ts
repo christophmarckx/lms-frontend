@@ -29,7 +29,6 @@ export class AddModuleFormComponent implements OnInit {
   modules : Module[];
   selectedParentModule : string;
   public isFormInvalid: boolean = true;
-  public formControlNames : string[] = ['name', 'parentModuleId'];
   public createModuleError?: string;
 
   constructor() {
