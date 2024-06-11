@@ -1,4 +1,4 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {NgForOf} from "@angular/common";
@@ -6,6 +6,7 @@ import {ProcessErrorPipe} from "../../../pipe/process-error.pipe";
 import {PopupService} from "../../../services/popup/popup.service";
 import {CommentService} from "../../../services/comment/comment.service";
 import {CreateComment} from "../../../models/comment/create-comment";
+import {Comment} from "../../../models/comment/comment";
 
 @Component({
   selector: 'app-add-codelab-comment',
@@ -20,6 +21,8 @@ import {CreateComment} from "../../../models/comment/create-comment";
   styleUrl: './add-codelab-comment.component.css'
 })
 export class AddCodelabCommentComponent implements OnInit{
+  @Output() myEventEmitter: EventEmitter<Comment> = new EventEmitter<Comment>();
+  @Input({required: true}) codelabId!: string;
   private readonly popupService: PopupService = inject(PopupService);
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly router: Router = inject(Router);
@@ -28,7 +31,6 @@ export class AddCodelabCommentComponent implements OnInit{
   public createCodelabCommentError?: string;
   createCodelabCommentForm: FormGroup;
   commentService : CommentService = inject(CommentService);
-  @Input() id: string;
 
   ngOnInit(): void {
     this.createCodelabCommentForm = this.formBuilder.group({
@@ -47,20 +49,17 @@ export class AddCodelabCommentComponent implements OnInit{
       comment: rawValues.comment!,
     }
 
-    console.log(this.id)
-    this.commentService.createCodelabComment(createComment);
+    this.commentService.createCodelabComment(createComment, this.codelabId).subscribe({
+      next: (response)  => {
+        this.myEventEmitter.emit(response);
+        this.createCodelabCommentForm.patchValue({comment: ''})
+        this.popupService.showPopup('Comment has been successfully added');
+      },
+      error:err => {
+        this.createCodelabCommentError = err.error.errors;
+      }
+    });
   }
-
-  //   this.commentService.createCodelabComment(createComment).subscribe(
-  //     next:response => {
-  //       this.router.navigate(["codelabs/" + this.id]);
-  //       this.popupService.showPopup('Comment has been successfully added');
-  //     },
-  //     error:err => {
-  //       this.createModuleError = response.error.errors;
-  //     }
-  //   );
-  // }
 
   onFormUpdate() {
     this.isFormInvalid = this.createCodelabCommentForm.invalid;

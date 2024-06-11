@@ -1,35 +1,48 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, ViewChild} from '@angular/core';
 import {AddCodelabCommentComponent} from "../forms/add-codelab-comment/add-codelab-comment.component";
 import {CodelabService} from "../../services/codelab/codelab.service";
-import {Codelab} from "../../models/codelab/codelab";
 import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner.component";
 import {RouterLink} from "@angular/router";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {UserRole} from "../../models/authentication/authenticated-user";
+import {CodelabWithComments} from "../../models/codelab/codelab-with-comments";
+import {Comment} from "../../models/comment/comment";
+import {AsyncPipe, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-view-codelab',
   standalone: true,
-    imports: [
-        AddCodelabCommentComponent,
-        LoadingSpinnerComponent,
-      RouterLink
-    ],
+  imports: [
+    AddCodelabCommentComponent,
+    LoadingSpinnerComponent,
+    RouterLink,
+    AsyncPipe,
+    NgIf
+  ],
   templateUrl: './view-codelab.component.html',
   styleUrl: './view-codelab.component.css'
 })
 export class ViewCodelabComponent implements OnInit {
-
+  @ViewChild('addCodeLabComment') myComponent : AddCodelabCommentComponent
   codelabService: CodelabService = inject(CodelabService);
   authenticationService: AuthenticationService = inject(AuthenticationService);
   authenticatedUser: any;
-  codelab: Codelab;
+  codelab: CodelabWithComments;
 
   @Input() id!: string;
 
   ngOnInit() {
-    this.codelabService.getCodelab(this.id).subscribe(codelab => this.codelab = codelab);
+    this.codelabService.getCodelabWithComments(this.id).subscribe(codelab =>
+      {
+        this.codelab = codelab;
+        console.log(this.codelab);
+      }
+    );
     this.authenticatedUser = this.authenticationService.getAuthenticatedUser();
+  }
+
+  addComment(comment: Comment) {
+    this.codelab.comments.push(comment);
   }
 
   protected readonly UserRole = UserRole;

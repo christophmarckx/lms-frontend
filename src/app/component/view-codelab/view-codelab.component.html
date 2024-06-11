@@ -12,9 +12,28 @@
         <p>{{ codelab.description }}</p>
       </div>
     </div>
-    <app-add-codelab-comment [id]="codelab.id"></app-add-codelab-comment>
-    <div class="comments-container">
-      <p>Comments will go there</p>
+    <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
+      @if (authenticatedUser.role === UserRole.STUDENT) {
+        <app-add-codelab-comment #addCodeLabComment [codelabId]="codelab.id" (myEventEmitter)="addComment($event)" ></app-add-codelab-comment>
+      } @else {
+        <hr class="mt-4  mb-4">
+      }
+    </ng-container>
+    <div class="comments-container" >
+
+      @if (codelab.comments.length > 0){
+        <ul class="list-group list-group-flush">
+          <h2>Comments</h2>
+        @for (comment of codelab.comments; track comment){
+            <li class="list-group-item">
+              <p class="fw-bold mb-0">{{comment.student.displayName}}</p>
+              <p class="mb-0">{{comment.comment}}</p>
+            </li>
+        }
+        </ul>
+      } @else {
+        <p>No comments for this codelab</p>
+      }
     </div>
   </div>
 } @placeholder {
