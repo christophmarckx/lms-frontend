@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ClassgroupCardComponent } from './classgroup-card.component';
+import {ClassgroupCardComponent} from './classgroup-card.component';
 
 describe('ClassgroupCardComponent', () => {
   let component: ClassgroupCardComponent;
@@ -11,7 +11,7 @@ describe('ClassgroupCardComponent', () => {
       imports: [ClassgroupCardComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ClassgroupCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

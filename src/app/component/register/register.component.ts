@@ -1,11 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {
-  AbstractControlOptions,
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators
-} from "@angular/forms";
+import {AbstractControlOptions, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {catchError, throwError} from "rxjs";
 import {Router, RouterLink} from "@angular/router";
 import {StudentService} from "../../services/student/student.service";

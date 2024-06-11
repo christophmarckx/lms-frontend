@@ -1,17 +1,13 @@
 @defer(when modules) {
-  <h1>Add a new module!</h1>
+  <h2>Add a new module!</h2>
   <div class="form-group">
     <form (ngSubmit)="addModule()" [formGroup]="createModuleForm">
-      <label class="form-label" for="name">
-        Module name
-        <input class="form-control" formControlName="name" id="name" type="text">
-      </label>
-      <label class="form-label" for="parentModule">
-        Parent module
-        <select id="parentModule" formControlName="parentModuleId">
-          <option *ngFor="let module of modules" value="{{module.id}}">{{ module.name }}</option>
-        </select>
-      </label>
+      <label class="form-label" for="name">Module name</label>
+      <input class="form-control" formControlName="name" id="name" type="text">
+      <label class="form-label" for="parentModule">Parent module</label>
+      <select id="parentModule" formControlName="parentModuleId">
+      <option *ngFor="let module of modules" value="{{module.id}}">{{ module.name }}</option>
+    </select>
 
       @if (isFormInvalid) {
         <div class="form-errors">
@@ -38,7 +34,7 @@
                 [class.btn-disabled]="isFormInvalid"
                 [disabled]="isFormInvalid"
         >
-          Validate
+          Submit
         </button>
       </div>
     </form>

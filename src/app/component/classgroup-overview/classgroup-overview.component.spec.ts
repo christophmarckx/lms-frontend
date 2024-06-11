@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ClassgroupOverviewComponent } from './classgroup-overview.component';
+import {ClassgroupOverviewComponent} from './classgroup-overview.component';
 
 describe('ClassgroupOverviewComponent', () => {
   let component: ClassgroupOverviewComponent;
@@ -11,7 +11,7 @@ describe('ClassgroupOverviewComponent', () => {
       imports: [ClassgroupOverviewComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ClassgroupOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

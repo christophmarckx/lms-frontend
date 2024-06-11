@@ -1,4 +1,4 @@
-import { Module } from "../module/module";
+import {Module} from "../module/module";
 import {CodelabProgress} from "./codelab-progress";
 
 export interface Codelab {

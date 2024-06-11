@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddModuleFormComponent } from './add-module-form.component';
+import {AddModuleFormComponent} from './add-module-form.component';
 
 describe('AddModuleFormComponent', () => {
   let component: AddModuleFormComponent;
@@ -11,7 +11,7 @@ describe('AddModuleFormComponent', () => {
       imports: [AddModuleFormComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(AddModuleFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

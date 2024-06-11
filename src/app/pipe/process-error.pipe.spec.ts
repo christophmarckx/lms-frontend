@@ -1,4 +1,4 @@
-import { ProcessErrorPipe } from './process-error.pipe';
+import {ProcessErrorPipe} from './process-error.pipe';
 
 describe('ProcessErrorPipe', () => {
   it('create an instance', () => {

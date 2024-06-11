@@ -1,18 +1,45 @@
-@defer(when classgroups) {
-  <h2>Welcome, {{ user.displayName }}!</h2>
+@defer (when classgroups) {
+  <h1>Profile of {{ user.displayName }}</h1>
   <div>
-    <p>Email address: {{ user.email }}</p>
+    <h2>Email:</h2>
+    <p>
+      {{ user.email }}
+    </p>
   </div>
   <div>
     @if (user.role === UserRole.COACH) {
-      <h3>Your classgroups:</h3>
+      <h2>Your classgroups:</h2>
       @for (classgroup of classgroups; track classgroup) {
         <app-classgroup-card [classGroup]="classgroup" [isPair]="$index % 2 === 0"></app-classgroup-card>
       }
     } @else {
-      <h3>Your classgroup:</h3>
-      @if (classgroups !== undefined){
-        <app-enroll-student-form [enrolledClassGroup]="classgroups[0]"></app-enroll-student-form>
+      <h2>Your classgroup:</h2>
+
+      @if (classgroups.length > 0) {
+        @if (showDropdown) {
+          <app-enroll-student-form [enrolledClassGroup]="classgroups[0]"></app-enroll-student-form>
+        } @else {
+          <div class="classgroup-card-root">
+            <a routerLink="/classgroups/{{classgroups[0].id}}">{{ classgroups[0].name }}</a>
+
+            @if(!studentId){
+              <button class="btn btn-redirect" (click)="showDropdown = true">
+                Change classgroup
+              </button>
+            }
+          </div>
+        }
+      } @else {
+        @if (showDropdown) {
+          <app-enroll-student-form></app-enroll-student-form>
+        } @else {
+          <div class="classgroup-card-root">
+            <p>No class chosen</p>
+            <button class="btn btn-redirect" (click)="showDropdown = true">
+              Enroll in a class
+            </button>
+          </div>
+        }
       }
     }
   </div>

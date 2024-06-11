@@ -1,14 +1,14 @@
 @defer(when modules) {
-  <h1>Add a new course!</h1>
+  <h2>Add a new course!</h2>
   <div class="form-group">
     <form (ngSubmit)="addCourse()" [formGroup]="createCourseForm">
-      <label class="form-label" for="name">Name<input class="form-control" formControlName="name" id="name"
-                                                      type="text"/></label>
-      <label class="form-label" for="description">Description<input class="form-control" formControlName="description"
-                                                                    id="description" type="text"/></label>
+      <label class="form-label" for="name">Name</label>
+      <input class="form-control" formControlName="name" id="name" type="text"/>
+      <label class="form-label" for="description">Description</label>
+      <input class="form-control" formControlName="description" id="description" type="text"/>
       <div class="modules-container">
         <div class="available-modules-container">
-          <h3>Available modules</h3>
+          <label class="form-label">Available modules</label>
           <div class="available-modules">
             @for (module of modules; track module) {
               <p (click)="addModuleToCreationList(module)">
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="added-modules-container">
-          <h3>Added Modules</h3>
+          <label class="form-label">Added Modules</label>
           <div class="added-modules">
             @for (moduleToAdd of modulesToAdd; track moduleToAdd) {
               <p (click)="removeModuleFromCreationList(moduleToAdd)">
@@ -54,7 +54,7 @@
                 [class.btn-disabled]="isFormInvalid"
                 [disabled]="isFormInvalid"
         >
-          Validate
+          Submit
         </button>
       </div>
     </form>

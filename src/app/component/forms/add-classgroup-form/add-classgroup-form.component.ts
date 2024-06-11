@@ -1,6 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Observable} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {Router} from "@angular/router";
 import {ProcessErrorPipe} from "../../../pipe/process-error.pipe";

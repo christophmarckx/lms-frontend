@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddCodelabFormComponent } from './add-codelab-form.component';
+import {AddCodelabFormComponent} from './add-codelab-form.component';
 
 describe('AddCodelabFormComponent', () => {
   let component: AddCodelabFormComponent;
@@ -11,7 +11,7 @@ describe('AddCodelabFormComponent', () => {
       imports: [AddCodelabFormComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(AddCodelabFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

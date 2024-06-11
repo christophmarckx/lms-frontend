@@ -5,6 +5,7 @@ import Keycloak from "keycloak-js";
 import {PopupService} from "../popup/popup.service";
 import {AuthenticatedUser} from "../../models/authentication/authenticated-user";
 import { environment } from '../../../environments/environment';
+import {jwtDecode} from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +31,9 @@ export class AuthenticationService {
       onLoad: 'check-sso'
     })
       .then(authenticated => {
-        console.log("authentication");
         if (authenticated) {
-          this.getUserFromBackend()
+          const decodedToken = jwtDecode(this.keycloak.token!);
+          this.getUserFromBackend(decodedToken.sub!)
         }
         else {
           this.clearUser()
@@ -89,9 +90,9 @@ export class AuthenticationService {
     localStorage.setItem('authenticatedUser', JSON.stringify(authenticatedUser));
   }
 
-  private getUserFromBackend() {
+  private getUserFromBackend(id: string) {
     this.http
-      .get<AuthenticatedUser>(this.backendUrl)
+      .get<AuthenticatedUser>(`${this.backendUrl}/${id}`)
       .subscribe({
         next: authenticatedUser => {
           this.setSession(authenticatedUser);

@@ -6,6 +6,7 @@ import {Codelab} from "../../models/codelab/codelab";
 import {UpdateCodelab} from "../../models/codelab/update-codelab";
 import {CodelabProgress} from "../../models/codelab/codelab-progress";
 import { environment } from '../../../environments/environment';
+import {CodelabWithComments} from "../../models/codelab/codelab-with-comments";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class CodelabService {
 
   getCodelab(codelabId: string): Observable<Codelab> {
     return this.http.get<Codelab>(this.urlString + '/' + codelabId);
+  }
+
+  getCodelabWithComments(codelabId: string): Observable<CodelabWithComments> {
+    return this.http.get<CodelabWithComments>(this.urlString + '/' + codelabId + '/comments');
   }
 
   getAllCodelabs() {

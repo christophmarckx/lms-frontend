@@ -1,5 +1,5 @@
 @defer (when courseOptions && coaches) {
-  <h1>Add a new classgroup!</h1>
+  <h2>Add a new classgroup!</h2>
   <div class="form-group">
     <form (ngSubmit)="addClassgroup()" [formGroup]="createClassgroupForm">
       <label class="form-label" for="name">Name </label>
@@ -12,7 +12,7 @@
       </select>
       <div class="coaches-container">
         <div class="available-coaches-container">
-          <h3>Available coaches</h3>
+          <label class="form-label">Available coaches</label>
           <div class="available-coaches">
             @for (coach of coaches; track coach) {
               <p (click)="addCoachToCreationList(coach)">
@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="added-coaches-container">
-          <h3>Added coaches</h3>
+          <label class="form-label">Added coaches</label>
           <div class="added-coaches">
             @for (coachToAdd of coachesToAdd; track coachToAdd) {
               <p (click)="removeCoachFromCreationList(coachToAdd)">
@@ -57,7 +57,7 @@
                 [class.btn-disabled]="isFormInvalid"
                 [disabled]="isFormInvalid"
         >
-          Validate
+          Submit
         </button>
       </div>
     </form>
