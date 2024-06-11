@@ -45,7 +45,6 @@ export class EnrollStudentFormComponent implements OnInit {
 
 
   registerToClassGroup(): void {
-    console.log(this.selectedClassgroupId);
     this.classgroupService.enrollStudent(this.selectedClassgroupId).subscribe({
       next: reponse => {
         this.popupService.showPopup(`You've registered!`);

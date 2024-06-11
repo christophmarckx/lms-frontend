@@ -110,7 +110,6 @@ export class AddClassgroupFormComponent implements OnInit {
   }
 
   addCoachToCreationList(coachToAdd: Coach) {
-    console.log(coachToAdd);
     this.coachesToAdd.push(coachToAdd);
     this.coaches = this.coaches.filter(coach => coach.id !== coachToAdd.id);
   }

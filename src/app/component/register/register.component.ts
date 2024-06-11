@@ -44,7 +44,6 @@ export class RegisterComponent implements OnInit {
           return throwError(() => new Error());
         }))
       .subscribe(data => {
-        console.log(data);
         this.errorMessage = undefined;
         this.router.navigate(['/']);
       });

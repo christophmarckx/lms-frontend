@@ -35,7 +35,6 @@ export class ViewCodelabComponent implements OnInit {
     this.codelabService.getCodelabWithComments(this.id).subscribe(codelab =>
       {
         this.codelab = codelab;
-        console.log(this.codelab);
       }
     );
     this.authenticatedUser = this.authenticationService.getAuthenticatedUser();
