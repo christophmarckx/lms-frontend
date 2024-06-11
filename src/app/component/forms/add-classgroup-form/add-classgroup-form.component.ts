@@ -34,7 +34,6 @@ export class AddClassgroupFormComponent implements OnInit {
   private readonly popupService: PopupService = inject(PopupService);
   private readonly coachService: CoachService = inject(CoachService);
   private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
-  public formControlNames: string[] = ['name', 'courseId'];
   public isFormInvalid: boolean = true;
   public createClassgroupError?: string;
   public courseOptions: Course[];

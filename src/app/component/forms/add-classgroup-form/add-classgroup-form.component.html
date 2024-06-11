@@ -4,12 +4,43 @@
     <form (ngSubmit)="addClassgroup()" [formGroup]="createClassgroupForm">
       <label class="form-label" for="name">Name </label>
       <input class="form-control" formControlName="name" id="name" type="text"/>
+      @if (
+        createClassgroupForm.controls["name"].invalid &&
+        createClassgroupForm.controls["name"].touched &&
+        createClassgroupForm.controls["name"].errors
+        ) {
+        <div class="form-errors">
+          @if (createClassgroupForm.controls["name"].getError('required')) {
+            <div>Name is required</div>
+          }
+          @if (createClassgroupForm.controls["name"].getError('minlength')) {
+            <div>Name must be at least {{ getError('name', 'minlength').requiredLength }} characters long</div>
+          }
+          @if (createClassgroupForm.controls["name"].getError('maxlength')) {
+            <div>Name cannot be more than {{ getError('name', 'maxlength').requiredLength }} characters long</div>
+          }
+        </div>
+      }
       <label class="form-label" for="courseId">Course </label>
       <select id="courseId" formControlName="courseId" (change)="onCourseChange($event)">
         @for (course of courseOptions; track course.id) {
           <option [value]="course.id">{{ course.name }}</option>
         }
       </select>
+      @if (
+        createClassgroupForm.controls["courseId"].invalid &&
+        createClassgroupForm.controls["courseId"].touched &&
+        createClassgroupForm.controls["courseId"].errors
+        ) {
+        <div class="form-errors">
+          @if (createClassgroupForm.controls["courseId"].getError('required')) {
+            <div>Course is required</div>
+          }
+          @if (createClassgroupForm.controls["courseId"].getError('minlength') || createClassgroupForm.controls["courseId"].getError('maxlength')) {
+            <div>Course id must be {{ getError('courseId', 'minlength').requiredLength }} characters long</div>
+          }
+        </div>
+      }
       <div class="coaches-container">
         <div class="available-coaches-container">
           <label class="form-label">Available coaches</label>
@@ -32,21 +63,6 @@
           </div>
         </div>
       </div>
-      @if (isFormInvalid) {
-        <div class="form-errors">
-          @for (controlName of formControlNames; track controlName) {
-            <div>
-              @if (hasError(controlName, 'required')) {
-                - {{ controlName }} is required.
-              } @else if (hasError(controlName, 'minlength')) {
-                - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
-              } @else if (hasError(controlName, 'maxlength')) {
-                - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
-              }
-            </div>
-          }
-        </div>
-      }
       @if (createClassgroupError) {
         <div class="backend-error" [innerHTML]="createClassgroupError | processError"></div>
       }
