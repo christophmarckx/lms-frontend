@@ -1,6 +1,6 @@
 @defer(when courseName != '') {
   <div class="form-group">
-    <h1>Update the course name</h1>
+    <h2>Update the course name</h2>
     <form (ngSubmit)="updateCourseName()" [formGroup]="updateCourseNameForm">
       <label class="form-label" for="name">Name</label>
       <input class="form-control" formControlName="name" id="name" type="text"/>
@@ -30,7 +30,7 @@
                 [class.btn]="!isFormInvalid"
                 [class.btn-disabled]="isFormInvalid"
                 [disabled]="isFormInvalid">
-          Validate
+          Submit
         </button>
       </div>
     </form>

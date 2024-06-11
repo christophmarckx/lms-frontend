@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CodelabService} from "../../../services/codelab/codelab.service";
 import {Codelab} from "../../../models/codelab/codelab";
@@ -7,12 +7,14 @@ import {UpdateCodelab} from "../../../models/codelab/update-codelab";
 import {PopupService} from "../../../services/popup/popup.service";
 import {ModuleService} from "../../../services/module/module.service";
 import {Module} from "../../../models/module/module";
+import {LoadingSpinnerComponent} from "../../shared/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-update-codelab.ts-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingSpinnerComponent
   ],
   templateUrl: './update-codelab-form.component.html',
   styleUrl: './update-codelab-form.component.css'

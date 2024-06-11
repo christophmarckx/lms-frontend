@@ -1,18 +1,17 @@
 @defer(when modules) {
-  <h1>Add a new Codelab!</h1>
+  <h2>Add a new Codelab!</h2>
   <div class="form-group">
     <form (ngSubmit)="addCodelab()" [formGroup]="createCodelabForm">
       <label class="form-label" for="name">Name</label>
       <input class="form-control" formControlName="name" id="name" type="text"/>
       <label class="form-label" for="description">Description</label>
       <input class="form-control" formControlName="description" id="description" type="text"/>
-      <label class="form-label" for="description">Parent Module
-        <select formControlName="moduleId" (change)="onCodelabChange($event)">
-          @for (module of modules; track module) {
-            <option [value]="module.id">{{ module.name }}</option>
-          }
-        </select>
-      </label>
+      <label class="form-label" for="description">Parent Module</label>
+      <select formControlName="moduleId" (change)="onCodelabChange($event)">
+        @for (module of modules; track module) {
+          <option [value]="module.id">{{ module.name }}</option>
+        }
+      </select>
       @if (isFormInvalid) {
         <div class="form-errors">
           @for (controlName of formControlNames; track controlName) {
@@ -37,7 +36,7 @@
                 [class.btn]="!isFormInvalid"
                 [class.btn-disabled]="isFormInvalid"
                 [disabled]="isFormInvalid">
-          Validate
+          Submit
         </button>
       </div>
     </form>

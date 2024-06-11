@@ -1,4 +1,4 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {AsyncPipe, NgIf} from "@angular/common";
 import {ModuleCardComponent} from "../module-gallery/module-card/module-card.component";
 import {ModuleWithCoursesComponent} from "../module-gallery/module-with-courses/module-with-courses.component";

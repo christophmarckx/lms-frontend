@@ -102,7 +102,7 @@ export const routes: Routes = [
   {
     path: 'students/:studentId',
     component: UserProfileComponent,
-    canActivate: [authGuard, coachGuard]
+    canActivate: [coachGuard]
   },
   {
     path: 'progress-overview',

@@ -6,8 +6,6 @@ import {RouterLink} from "@angular/router";
 import {ClassgroupCardComponent} from "./classgroup-card/classgroup-card.component";
 import {UserRole} from "../../models/authentication/authenticated-user";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
-import {CourseService} from "../../services/course/course.service";
-import {Course} from "../../models/course/course";
 import {ClassgroupService} from "../../services/classgroup/classgroup.service";
 import {Classgroup} from "../../models/classgroup/classgroup";
 

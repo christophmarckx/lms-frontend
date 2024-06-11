@@ -48,12 +48,7 @@ p {
   padding: 15px 15px;
   margin: 0;
 }
-h1 {
-  margin-top: 15px;
-  color: #489ccc;
-  font-weight: bold;
-  font-size: 1.7em;
-}
+
 .page-header {
   margin: 0 15px;
   display: flex;

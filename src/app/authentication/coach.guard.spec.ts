@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
+import {TestBed} from '@angular/core/testing';
+import {CanActivateFn} from '@angular/router';
 
-import { coachGuard } from './coach.guard';
+import {coachGuard} from './coach.guard';
 
 describe('coachGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
+  const executeGuard: CanActivateFn = (...guardParameters) =>
       TestBed.runInInjectionContext(() => coachGuard(...guardParameters));
 
   beforeEach(() => {

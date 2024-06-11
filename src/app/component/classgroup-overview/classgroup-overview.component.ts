@@ -5,7 +5,7 @@ import {UserCardComponent} from "./user-card/user-card.component";
 import {ClassgroupWithMembers} from "../../models/classgroup/classgroup-with-members";
 import {ClassgroupService} from "../../services/classgroup/classgroup.service";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
-import { UserRole } from '../../models/authentication/authenticated-user';
+import {UserRole} from '../../models/authentication/authenticated-user';
 import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner.component";
 
 @Component({

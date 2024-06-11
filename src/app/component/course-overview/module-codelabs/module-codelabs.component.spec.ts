@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ModuleCodelabsComponent } from './module-codelabs.component';
+import {ModuleCodelabsComponent} from './module-codelabs.component';
 
 describe('ModuleCodelabsComponent', () => {
   let component: ModuleCodelabsComponent;
@@ -11,7 +11,7 @@ describe('ModuleCodelabsComponent', () => {
       imports: [ModuleCodelabsComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ModuleCodelabsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

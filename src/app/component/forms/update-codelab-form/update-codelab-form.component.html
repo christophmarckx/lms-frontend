@@ -1,12 +1,14 @@
-<div class="form-group">
-  <h1>Update codelab</h1>
-  <form (ngSubmit)="updateCodelab()" [formGroup]="updateCodelabForm">
-    <label class="form-label" for="name">Name</label>
-    <input class="form-control" formControlName="name" id="name" type="text"/>
-    <label class="form-label" for="description">Description</label><input class="form-control" formControlName="description" id="description" type="text"/>
-    <label class="form-label" for="moduleId">Module</label>
-    <select formControlName="moduleId" id="moduleId" type="text">
-      @if (codelab) {
+@defer (when codelab) {
+  <div class="form-group">
+    <h2>Update codelab</h2>
+    <form (ngSubmit)="updateCodelab()" [formGroup]="updateCodelabForm">
+      <label class="form-label" for="name">Name</label>
+      <input class="form-control" formControlName="name" id="name" type="text"/>
+      <label class="form-label" for="description">Description</label><input class="form-control"
+                                                                            formControlName="description"
+                                                                            id="description" type="text"/>
+      <label class="form-label" for="moduleId">Module</label>
+      <select formControlName="moduleId" id="moduleId" type="text">
         @for (module of modules; track module) {
           @if (module.id === this.codelab.module.id) {
             <option value="{{module.id}}" selected="selected">{{ module.name }}</option>
@@ -14,38 +16,38 @@
             <option value="{{module.id}}" selected="">{{ module.name }}</option>
           }
         }
+      </select>
+      @if (isFormInvalid) {
+        <div class="form-errors">
+          @for (controlName of formControlNames; track controlName) {
+            <div>
+              @if (hasError(controlName, 'required')) {
+                - {{ controlName }} is required.
+              } @else if (hasError(controlName, 'minlength')) {
+                - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
+              } @else if (hasError(controlName, 'maxlength')) {
+                - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
+              }
+            </div>
+          }
+        </div>
       }
-    </select>
-    @if (isFormInvalid) {
-      <div class="form-errors">
-        @for (controlName of formControlNames; track controlName) {
-          <div>
-            @if (hasError(controlName, 'required')) {
-              - {{ controlName }} is required.
-            } @else if (hasError(controlName, 'minlength')) {
-              - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
-            } @else if (hasError(controlName, 'maxlength')) {
-              - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
-            }
-          </div>
-        }
+      @if (updateCodelabError) {
+        <div class="backend-error">
+          {{ updateCodelabError }}
+        </div>
+      }
+      <div class="btn-container">
+        <button class="btn btn-create"
+                type="submit"
+                [class.btn]="!isFormInvalid"
+                [class.btn-disabled]="isFormInvalid"
+                [disabled]="isFormInvalid">
+          Submit
+        </button>
       </div>
-    }
-    @if (updateCodelabError) {
-      <div class="backend-error">
-        {{ updateCodelabError }}
-      </div>
-    }
-    <div class="btn-container">
-      <button class="btn btn-create"
-              type="submit"
-              [class.btn]="!isFormInvalid"
-              [class.btn-disabled]="isFormInvalid"
-              [disabled]="isFormInvalid">
-        Validate
-      </button>
-    </div>
-  </form>
-</div>
-
-
+    </form>
+  </div>
+} @placeholder {
+  <app-loading-spinner></app-loading-spinner>
+}

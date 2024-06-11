@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CodelabsCardComponent } from './codelabs-card.component';
+import {CodelabsCardComponent} from './codelabs-card.component';
 
 describe('CodelabsCardComponent', () => {
   let component: CodelabsCardComponent;
@@ -11,7 +11,7 @@ describe('CodelabsCardComponent', () => {
       imports: [CodelabsCardComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(CodelabsCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

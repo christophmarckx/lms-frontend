@@ -1,14 +1,14 @@
 @defer (when codelab) {
   <div>
     <div class="codelab-header">
-      <h1>{{ codelab.name }}</h1>
+      <h2>{{ codelab.name }}</h2>
       @if (authenticatedUser.role === UserRole.COACH) {
         <a routerLink="/codelabs/{{codelab.id}}/update-codelab" class="btn btn-redirect">Edit codelab</a>
       }
     </div>
     <div class="different-different-bg">
       <div class="description-container">
-        <h2>Description:</h2>
+        <h3>Description:</h3>
         <p>{{ codelab.description }}</p>
       </div>
     </div>

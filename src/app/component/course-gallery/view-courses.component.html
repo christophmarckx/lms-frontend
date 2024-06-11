@@ -1,7 +1,7 @@
 @defer(when courses) {
   <div class="courses-gallery">
     <div class="page-header">
-      <h1>View all courses</h1>
+      <h2>View all courses</h2>
       <ng-container *ngIf="authenticationService.getAuthenticatedUserAsObservable() | async as authenticatedUser">
         @if (authenticatedUser.role === UserRole.COACH) {
           <button class="btn btn-add" routerLink="/courses/add-course">Create course</button>
@@ -10,13 +10,13 @@
     </div>
     @if (courseFollowed) {
       <div class="followed-course">
-        <h2>My course</h2>
+        <h3>My course</h3>
         <app-course-card [course]="courseFollowed" [isPair]="false">
         </app-course-card>
       </div>
-      <h2>Other courses</h2>
+      <h3>Other courses</h3>
     } @else {
-      <h2>All courses</h2>
+      <h3>All courses</h3>
     }
     @if (courses.length === 0) {
       <div class="courses-card-root">

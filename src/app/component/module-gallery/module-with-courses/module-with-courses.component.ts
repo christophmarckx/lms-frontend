@@ -1,5 +1,5 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
-import { ModuleWithCourses } from '../../../models/module/module-with-courses';
+import {ModuleWithCourses} from '../../../models/module/module-with-courses';
 import {Module} from "../../../models/module/module";
 import {ModuleService} from "../../../services/module/module.service";
 
