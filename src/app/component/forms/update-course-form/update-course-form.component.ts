@@ -72,10 +72,6 @@ export class UpdateCourseFormComponent implements OnInit {
     )
   }
 
-  hasError(controlName: string, errorName: string): boolean {
-    return this.updateCourseNameForm.controls[controlName as keyof typeof this.updateCourseNameForm.controls].hasError(errorName);
-  }
-
   getError(controlName: string, errorName: string) {
     const {errors} = this.updateCourseNameForm.controls[controlName as keyof typeof this.updateCourseNameForm.controls];
     if (errors) {

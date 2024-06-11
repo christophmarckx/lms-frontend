@@ -32,7 +32,6 @@ export class AddCodelabFormComponent implements OnInit {
   modules: Module[];
   createCodelabForm: FormGroup;
   createCodelabError?: string;
-  formControlNames: string[] = ['name', 'description', 'moduleId'];
 
 
   getModules(): void {
@@ -81,10 +80,6 @@ export class AddCodelabFormComponent implements OnInit {
         this.createCodelabError = response.error.errors;
       }
     );
-  }
-
-  hasError(controlName: string, errorName: string): boolean {
-    return this.createCodelabForm.controls[controlName as keyof typeof this.createCodelabForm.controls].hasError(errorName);
   }
 
   getError(controlName: string, errorName: string) {

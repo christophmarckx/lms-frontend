@@ -4,26 +4,56 @@
     <form (ngSubmit)="addCodelab()" [formGroup]="createCodelabForm">
       <label class="form-label" for="name">Name</label>
       <input class="form-control" formControlName="name" id="name" type="text"/>
+      @if (
+        createCodelabForm.controls["name"].invalid &&
+        createCodelabForm.controls["name"].touched &&
+        createCodelabForm.controls["name"].errors
+        ) {
+        <div class="form-errors">
+          @if (createCodelabForm.controls["name"].getError('required')) {
+            <div>Name is required</div>
+          }
+          @if (createCodelabForm.controls["name"].getError('minlength')) {
+            <div>Name must be at least {{ getError('name', 'minlength').requiredLength }} characters long</div>
+          }
+          @if (createCodelabForm.controls["name"].getError('maxlength')) {
+            <div>Name cannot be more than {{ getError('name', 'maxlength').requiredLength }} characters long</div>
+          }
+        </div>
+      }
       <label class="form-label" for="description">Description</label>
       <input class="form-control" formControlName="description" id="description" type="text"/>
-      <label class="form-label" for="description">Parent Module</label>
-      <select formControlName="moduleId" (change)="onCodelabChange($event)">
+      @if (
+        createCodelabForm.controls["description"].invalid &&
+        createCodelabForm.controls["description"].touched &&
+        createCodelabForm.controls["description"].errors
+        ) {
+        <div class="form-errors">
+          @if (createCodelabForm.controls["description"].getError('minlength')) {
+            <div>Description must be at least {{ getError('description', 'minlength').requiredLength }} characters long</div>
+          }
+          @if (createCodelabForm.controls["description"].getError('maxlength')) {
+            <div>Description cannot be more than {{ getError('description', 'maxlength').requiredLength }} characters long</div>
+          }
+        </div>
+      }
+      <label class="form-label" for="parent-module">Parent Module</label>
+      <select id="parent-module" formControlName="moduleId" (change)="onCodelabChange($event)">
         @for (module of modules; track module) {
           <option [value]="module.id">{{ module.name }}</option>
         }
       </select>
-      @if (isFormInvalid) {
+      @if (
+        createCodelabForm.controls["moduleId"].invalid &&
+        createCodelabForm.controls["moduleId"].touched &&
+        createCodelabForm.controls["moduleId"].errors
+        ) {
         <div class="form-errors">
-          @for (controlName of formControlNames; track controlName) {
-            <div>
-              @if (hasError(controlName, 'required')) {
-                - {{ controlName }} is required.
-              } @else if (hasError(controlName, 'minlength')) {
-                - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
-              } @else if (hasError(controlName, 'maxlength')) {
-                - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
-              }
-            </div>
+          @if (createCodelabForm.controls["moduleId"].getError('required')) {
+            <div>Module is required</div>
+          }
+          @if (createCodelabForm.controls["moduleId"].getError('minlength') || createCodelabForm.controls["moduleId"].getError('maxlength')) {
+            <div>Module id must be {{ getError('moduleId', 'maxlength').requiredLength }} characters long</div>
           }
         </div>
       }

@@ -1,7 +1,7 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import {PopupService} from "../../../services/popup/popup.service";
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ActivatedRoute, Router, RouterModule} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 import {ClassgroupService} from "../../../services/classgroup/classgroup.service";
 import {Classgroup} from "../../../models/classgroup/classgroup";
 import {Observable} from "rxjs";
@@ -26,7 +26,6 @@ export class EnrollStudentFormComponent implements OnInit {
   private readonly popupService: PopupService = inject(PopupService);
   private readonly route: Router = inject(Router);
   private readonly classgroupService: ClassgroupService = inject(ClassgroupService);
-  public formControlNames: string[] = ['classgroup'];
   public enrollFormError?: string;
   @Input() enrolledClassGroup: Classgroup;
   selectedClassgroupId: string;
@@ -46,10 +45,8 @@ export class EnrollStudentFormComponent implements OnInit {
 
 
   registerToClassGroup(): void {
-    console.log(this.selectedClassgroupId);
     this.classgroupService.enrollStudent(this.selectedClassgroupId).subscribe({
       next: reponse => {
-
         this.popupService.showPopup(`You've registered!`);
 
         this.route.navigateByUrl('/', {skipLocationChange: true}).then(() => {

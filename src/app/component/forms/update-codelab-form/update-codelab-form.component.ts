@@ -28,7 +28,6 @@ export class UpdateCodelabFormComponent implements OnInit{
   private readonly moduleService: ModuleService = inject(ModuleService);
   public isFormInvalid: boolean = true;
   public codelab!: Codelab;
-  public formControlNames: string[] = ['name', 'description', 'moduleId'];
   @Input() id: string;
   modules: Module[] = [];
   public updateCodelabError?: string;
@@ -51,12 +50,10 @@ export class UpdateCodelabFormComponent implements OnInit{
     if (!this.id) return;
     this.codelabService.getCodelab(this.id).subscribe(
         codelab => {
-          console.log(codelab)
           this.codelab = codelab;
           this.updateCodelabForm.controls["name"].setValue(codelab.name);
           this.updateCodelabForm.controls["description"].setValue(codelab.description);
           this.updateCodelabForm.controls["moduleId"].setValue(codelab.module.id);
-
         });
   }
 
@@ -90,10 +87,6 @@ export class UpdateCodelabFormComponent implements OnInit{
 
   private getModules() {
     this.moduleService.getAllModules().subscribe(modules => this.modules = modules)
-  }
-
-  hasError(controlName: string, errorName: string): boolean {
-    return this.updateCodelabForm.controls[controlName as keyof typeof this.updateCodelabForm.controls].hasError(errorName);
   }
 
   getError(controlName: string, errorName: string) {

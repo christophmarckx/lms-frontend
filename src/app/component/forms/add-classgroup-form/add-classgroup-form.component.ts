@@ -34,7 +34,6 @@ export class AddClassgroupFormComponent implements OnInit {
   private readonly popupService: PopupService = inject(PopupService);
   private readonly coachService: CoachService = inject(CoachService);
   private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
-  public formControlNames: string[] = ['name', 'courseId'];
   public isFormInvalid: boolean = true;
   public createClassgroupError?: string;
   public courseOptions: Course[];
@@ -93,10 +92,6 @@ export class AddClassgroupFormComponent implements OnInit {
     );
   }
 
-  hasError(controlName: string, errorName: string): boolean {
-    return this.createClassgroupForm.controls[controlName as keyof typeof this.createClassgroupForm.controls].hasError(errorName);
-  }
-
   getError(controlName: string, errorName: string) {
     const {errors} = this.createClassgroupForm.controls[controlName as keyof typeof this.createClassgroupForm.controls];
     if (errors) {
@@ -115,7 +110,6 @@ export class AddClassgroupFormComponent implements OnInit {
   }
 
   addCoachToCreationList(coachToAdd: Coach) {
-    console.log(coachToAdd);
     this.coachesToAdd.push(coachToAdd);
     this.coaches = this.coaches.filter(coach => coach.id !== coachToAdd.id);
   }

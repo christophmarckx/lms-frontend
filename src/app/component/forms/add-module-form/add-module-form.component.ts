@@ -29,7 +29,6 @@ export class AddModuleFormComponent implements OnInit {
   modules : Module[];
   selectedParentModule : string;
   public isFormInvalid: boolean = true;
-  public formControlNames : string[] = ['name', 'parentModuleId'];
   public createModuleError?: string;
 
   constructor() {
@@ -70,13 +69,8 @@ export class AddModuleFormComponent implements OnInit {
   ngOnInit(): void {
     this.moduleService.getAllModules().subscribe(module => {
       this.modules = module;
-      // this.modules.unshift({id: "", name: "<No parent module>", parentModule: null})
+      this.modules.unshift({id: "", name: "No parent module", parentModule: null})
     });
-  }
-
-
-  hasError(controlName: string, errorName: string): boolean {
-    return this.createModuleForm.controls[controlName as keyof typeof this.createModuleForm.controls].hasError(errorName);
   }
 
   getError(controlName: string, errorName: string) {

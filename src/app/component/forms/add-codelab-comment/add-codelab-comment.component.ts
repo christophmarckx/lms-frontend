@@ -27,7 +27,6 @@ export class AddCodelabCommentComponent implements OnInit{
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly router: Router = inject(Router);
   public isFormInvalid: boolean = true;
-  public formControlNames : string[] = ['comment'];
   public createCodelabCommentError?: string;
   createCodelabCommentForm: FormGroup;
   commentService : CommentService = inject(CommentService);
@@ -53,6 +52,7 @@ export class AddCodelabCommentComponent implements OnInit{
       next: (response)  => {
         this.myEventEmitter.emit(response);
         this.createCodelabCommentForm.patchValue({comment: ''})
+        this.createCodelabCommentForm.controls['comment'].reset();
         this.popupService.showPopup('Comment has been successfully added');
       },
       error:err => {
@@ -63,11 +63,6 @@ export class AddCodelabCommentComponent implements OnInit{
 
   onFormUpdate() {
     this.isFormInvalid = this.createCodelabCommentForm.invalid;
-  }
-
-
-  hasError(controlName: string, errorName: string): boolean {
-    return this.createCodelabCommentForm.controls[controlName as keyof typeof this.createCodelabCommentForm.controls].hasError(errorName);
   }
 
   getError(controlName: string, errorName: string) {

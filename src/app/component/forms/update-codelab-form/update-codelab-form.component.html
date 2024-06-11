@@ -4,9 +4,25 @@
     <form (ngSubmit)="updateCodelab()" [formGroup]="updateCodelabForm">
       <label class="form-label" for="name">Name</label>
       <input class="form-control" formControlName="name" id="name" type="text"/>
-      <label class="form-label" for="description">Description</label><input class="form-control"
-                                                                            formControlName="description"
-                                                                            id="description" type="text"/>
+      @if (
+        updateCodelabForm.controls["name"].invalid &&
+        updateCodelabForm.controls["name"].touched &&
+        updateCodelabForm.controls["name"].errors
+        ) {
+        <div class="form-errors">
+          @if (updateCodelabForm.controls["name"].getError('required')) {
+            <div>Name is required</div>
+          }
+          @if (updateCodelabForm.controls["name"].getError('minlength')) {
+            <div>Name must be at least {{ getError('name', 'minlength').requiredLength }} characters long</div>
+          }
+          @if (updateCodelabForm.controls["name"].getError('maxlength')) {
+            <div>Name cannot be more than {{ getError('name', 'maxlength').requiredLength }} characters long</div>
+          }
+        </div>
+      }
+      <label class="form-label" for="description">Description</label>
+      <input class="form-control" formControlName="description" id="description" type="text"/>
       <label class="form-label" for="moduleId">Module</label>
       <select formControlName="moduleId" id="moduleId" type="text">
         @for (module of modules; track module) {
@@ -17,18 +33,20 @@
           }
         }
       </select>
-      @if (isFormInvalid) {
+      @if (
+        updateCodelabForm.controls["moduleId"].invalid &&
+        updateCodelabForm.controls["moduleId"].touched &&
+        updateCodelabForm.controls["moduleId"].errors
+        ) {
         <div class="form-errors">
-          @for (controlName of formControlNames; track controlName) {
-            <div>
-              @if (hasError(controlName, 'required')) {
-                - {{ controlName }} is required.
-              } @else if (hasError(controlName, 'minlength')) {
-                - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
-              } @else if (hasError(controlName, 'maxlength')) {
-                - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
-              }
-            </div>
+          @if (updateCodelabForm.controls["moduleId"].getError('required')) {
+            <div>Module is required</div>
+          }
+          @if (updateCodelabForm.controls["moduleId"].getError('minlength')) {
+            <div>Name must be at least {{ getError('name', 'minlength').requiredLength }} characters long</div>
+          }
+          @if (updateCodelabForm.controls["moduleId"].getError('maxlength')) {
+            <div>Name cannot be more than {{ getError('name', 'maxlength').requiredLength }} characters long</div>
           }
         </div>
       }
