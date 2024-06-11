@@ -2,22 +2,22 @@
   <section>
     <div class="form-group">
       <form (ngSubmit)="addComment()" [formGroup]="createCodelabCommentForm">
-        <label class="form-label" for="comment">
-          <input class="form-control" formControlName="comment" id="comment" type="text" placeholder="Write a comment"/>
-        </label>
-
-        @if (isFormInvalid) {
+        <label class="form-label" for="comment">Add your comment</label>
+        <input class="form-control" formControlName="comment" id="comment" type="text" placeholder="Write a comment"/>
+        @if (
+          createCodelabCommentForm.controls["comment"].invalid &&
+          createCodelabCommentForm.controls["comment"].touched &&
+          createCodelabCommentForm.controls["comment"].errors
+          ) {
           <div class="form-errors">
-            @for (controlName of formControlNames; track controlName) {
-              <div>
-                @if (hasError(controlName, 'required')) {
-                  - {{ controlName }} is required.
-                } @else if (hasError(controlName, 'minlength')) {
-                  - {{ controlName }} must be at least {{ getError(controlName, 'minlength').requiredLength }} characters long.
-                } @else if (hasError(controlName, 'maxlength')) {
-                  - {{ controlName }} cannot be more than  {{ getError(controlName, 'maxlength').requiredLength }}  characters long.
-                }
-              </div>
+            @if (createCodelabCommentForm.controls["comment"].getError('required')) {
+              <div>Comment is required</div>
+            }
+            @if (createCodelabCommentForm.controls["comment"].getError('minlength')) {
+              <div>Comment must be at least {{ getError('comment', 'minlength').requiredLength }} characters long</div>
+            }
+            @if (createCodelabCommentForm.controls["comment"].getError('maxlength')) {
+              <div>Comment cannot be more than {{ getError('comment', 'maxlength').requiredLength }} characters long</div>
             }
           </div>
         }
@@ -31,7 +31,7 @@
                   [class.btn-disabled]="isFormInvalid"
                   [disabled]="isFormInvalid"
           >
-            Add comment
+            Submit
           </button>
         </div>
       </form>

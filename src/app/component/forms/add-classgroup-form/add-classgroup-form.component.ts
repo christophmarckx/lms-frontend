@@ -92,10 +92,6 @@ export class AddClassgroupFormComponent implements OnInit {
     );
   }
 
-  hasError(controlName: string, errorName: string): boolean {
-    return this.createClassgroupForm.controls[controlName as keyof typeof this.createClassgroupForm.controls].hasError(errorName);
-  }
-
   getError(controlName: string, errorName: string) {
     const {errors} = this.createClassgroupForm.controls[controlName as keyof typeof this.createClassgroupForm.controls];
     if (errors) {
