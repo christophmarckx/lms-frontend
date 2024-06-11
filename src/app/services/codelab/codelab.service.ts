@@ -5,7 +5,7 @@ import {CreateCodelab} from "../../models/codelab/create-codelab";
 import {Codelab} from "../../models/codelab/codelab";
 import {UpdateCodelab} from "../../models/codelab/update-codelab";
 import {CodelabProgress} from "../../models/codelab/codelab-progress";
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import {CodelabWithComments} from "../../models/codelab/codelab-with-comments";
 
 @Injectable({

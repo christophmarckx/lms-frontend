@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Module} from "../../models/module/module";
 import {ModuleWithCourses} from "../../models/module/module-with-courses";
 import {ModuleHierarchy} from "../../models/module/module-hierarchy";
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
